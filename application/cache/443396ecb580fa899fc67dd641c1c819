@@ -1,0 +1,111 @@
+1473019636TS--->
+
+<!DOCTYPE html>
+<html lang="en-US">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="Lahir Wisada Santoso" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="keywords" content="" />
+        <title>Si Dika</title>
+        <link rel="shortcut icon" href="assets/img/favico.ico">
+<!--        <link rel="stylesheet" type="text/css" href="http://localhost:8080/github/2016apsidika/_assets/css/front/gscompiled.css" />-->
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/github/2016apsidika/_assets/css/front/gsstyle.css" />
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/github/2016apsidika/_assets/css/front/gsshortcode.css" />
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/github/2016apsidika/_assets/css/front/gswoocommerce.css" />
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/github/2016apsidika/_assets/css/front/responsive.css" />
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/github/2016apsidika/_assets/css/front/gurita_dialog.css" />
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/github/2016apsidika/_assets/3rd/font-awesome/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/github/2016apsidika/_assets/3rd/nivo-lightbox/nivo-lightbox.css" />
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/github/2016apsidika/_assets/3rd/nivo-lightbox/themes/default/default.css" />
+
+        <!-- Google Font -->
+        <link rel="stylesheet" href="http://localhost:8080/github/2016apsidika/_assets/font/csse3e5.css?family=Montserrat:400,700" />
+        <link rel="stylesheet" href="http://localhost:8080/github/2016apsidika/_assets/font/googlefont.css?family=Shadows Into Light:400" />
+        <link rel="stylesheet" href="http://localhost:8080/github/2016apsidika/_assets/font/css975a.css?family=Raleway:400,700" />
+
+        <link type="text/css" rel="stylesheet" href="http://localhost:8080/github/2016apsidika/_assets/css/all_css.css" media="" />
+                    </head>
+    <body class="">
+        <div class="line-loader">
+            <div class="loader"></div>
+        </div>
+
+        <div class="gurita-dialog-overlay"></div>
+        <div class="gurita-dialog-box">
+            <div class="gurita-dialog-content">
+                <div class="gurita-dialog-message"></div>
+                <a href="#" class="dialog-button">Close</a>
+            </div>
+        </div>
+
+        <div>
+            <header id="line-header">
+                <div class="line-wrap">
+                    <div class="line-logo">
+                        <a href="http://localhost:8080/github/2016apsidika/" class="line-logo-simple">
+                            <img alt="logo" width="100%" src="http://localhost:8080/github/2016apsidika/_assets/img/gurita.png">
+                        </a>
+                    </div>
+                    <div class="line-icon-menu">
+                        <span></span>
+                    </div>
+                    <div class="line-menu">
+                        <span></span>
+                    </div>
+                    <nav class="baris-menu">
+                        <ul class="line-menu-inner">
+    <li class="">
+        <a href="http://localhost:8080/github/2016apsidika/">Etalase</a>
+    </li>
+    <li class="">
+        <a href="http://localhost:8080/github/2016apsidika/front_end/about_us/index">Tentang Gurita Store</a>
+    </li>
+</ul>                    </nav>
+                    <div class="baris-menu-registrasi">
+                                                    <a href="http://localhost:8080/github/2016apsidika/front_end/member/login">Masuk</a>
+                            <a href="http://localhost:8080/github/2016apsidika/front_end/member/register">Registrasi</a>
+                                            </div>
+                </div>
+            </header>
+            <div id="baris-halaman-utama">
+                            </div>
+
+                        <hr />
+
+            <footer id="line-footer">
+                <div class="line-wrap">
+                    <div class="copyright">
+                        Copyright © 2014 !. All Rights Reserved.
+                    </div>
+                    <a href="#" id="line-gotop">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </footer>
+        </div>
+
+
+
+<!--        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/3rd/jquery/jquery-core.js"></script>
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/3rd/jquery/jquery-ui.js"></script>
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/3rd/jquery/jquery-nav.js"></script>
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/3rd/jquery/jquery-isotope.js"></script>
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/3rd/jquery/jquery-flexslider.js"></script>
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/3rd/jquery/jquery-mb.YTPlayer.js"></script>
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/3rd/jquery/jquery-validate.js"></script>
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/3rd/jquery/jquery-countTo.js"></script>
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/3rd/jquery/jquery-countdown.js"></script>
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/3rd/jquery/jquery-waypoints.js"></script>
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/3rd/jquery/jquery-scrollReveal.js"></script>
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/3rd/jquery/jquery-imagesloaded.js"></script>
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/3rd/nivo-lightbox/nivo-lightbox.js"></script>-->
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/all_js.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/3rd/jquery/jquery-mb.YTPlayer.js"></script>
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/gscomponents.js"></script>
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/theme.js"></script>
+                    </body>
+</html>

@@ -1,0 +1,527 @@
+1467261822TS---><!DOCTYPE html>
+<html lang="en">
+    <head>        
+        <!-- META SECTION -->
+        <title>Si Dika</title>            
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="Lahir Wisada Santoso" />
+
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <!-- END META SECTION -->
+
+        <!-- CSS INCLUDE -->        
+        <link rel="stylesheet" type="text/css" id="theme" href="http://localhost:8080/github/2016apsidika/_assets/css/atlant/theme-default.css"/>
+        <!-- EOF CSS INCLUDE -->
+        
+        <link type="text/css" rel="stylesheet" href="http://localhost:8080/github/2016apsidika/_assets/css/all_css.css" media="" />
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/github/2016apsidika/_assets/css/plugins/select2/select2.min.css" media="" />
+    </head>
+    <body class="">
+        <!-- START PAGE CONTAINER -->
+        <div class="page-container">
+
+            <!-- START PAGE SIDEBAR -->
+            <div class="page-sidebar">
+                <!-- START X-NAVIGATION -->
+                
+
+<ul class="x-navigation">
+    <li class="xn-logo">
+        <a href="http://localhost:8080/github/2016apsidika/">BKPP</a>
+        <a href="#" class="x-navigation-control"></a>
+    </li>
+    <li class="xn-profile">
+                    <a href="#" class="profile-mini">
+                <img src="http://localhost:8080/github/2016apsidika/_assets/uploads/images/users/user_default_avatar.jpg" alt="User"/>
+            </a>
+            <div class="profile">
+                <div class="profile-image">
+                    <img src="http://localhost:8080/github/2016apsidika/_assets/uploads/images/users/user_default_avatar.jpg" alt="User"/>
+                </div>
+                <div class="profile-data">
+                    <div class="profile-data-name">User</div>
+                    <div class="profile-data-title">Tamu</div>
+                </div>
+            </div>
+                                                                                
+    </li>
+    <li class="xn-title">Menu</li>
+        <li class="xn-openable"><a href="#"><span class="fa fa-circle-o"></span> <span class="xn-text">Perencanaan</span></span></a><ul><li ><a href="http://localhost:8080/github/2016apsidika/back_end/cdaftar_diklat"><span class="fa fa-circle-o"></span> Daftar Diklat</span></a></li></ul></li><li class="xn-openable"><a href="#"><span class="fa fa-circle-o"></span> <span class="xn-text">Pustaka Data</span></span></a><ul><li ><a href="http://localhost:8080/github/2016apsidika/back_end/cref_tingkat_pendidikan"><span class="fa fa-circle-o"></span> Ref. Pendidikan</span></a></li><li ><a href="http://localhost:8080/github/2016apsidika/back_end/cref_golongan"><span class="fa fa-circle-o"></span> Ref. Golongan</span></a></li><li ><a href="http://localhost:8080/github/2016apsidika/back_end/cref_skpd"><span class="fa fa-circle-o"></span> Ref. SKPD</span></a></li><li ><a href="http://localhost:8080/github/2016apsidika/back_end/cref_pegawai"><span class="fa fa-circle-o"></span> Ref. PNS</span></a></li><li ><a href="http://localhost:8080/github/2016apsidika/back_end/cref_kabupaten_kota"><span class="fa fa-circle-o"></span> Ref. Kabupaten Kota</span></a></li><li ><a href="http://localhost:8080/github/2016apsidika/back_end/cref_provinsi"><span class="fa fa-circle-o"></span> Ref. Provinsi</span></a></li><li ><a href="http://localhost:8080/github/2016apsidika/back_end/cref_ttd"><span class="fa fa-circle-o"></span> Ref. TTD</span></a></li><li ><a href="http://localhost:8080/github/2016apsidika/back_end/cref_jabatan"><span class="fa fa-circle-o"></span> Ref. Jabatan</span></a></li></ul></li><li class="xn-openable"><a href="#"><span class="fa fa-circle-o"></span> <span class="xn-text">Sistem</span></span></a><ul><li ><a href="http://localhost:8080/github/2016apsidika/back_bone/modul"><span class="fa fa-circle-o"></span> Modul</span></a></li><li ><a href="http://localhost:8080/github/2016apsidika/back_bone/member"><span class="fa fa-circle-o"></span> Member</span></a></li><li ><a href="http://localhost:8080/github/2016apsidika/back_bone/role"><span class="fa fa-circle-o"></span> Role</span></a></li></ul></li></ul>                <!-- END X-NAVIGATION -->
+            </div>
+            <!-- END PAGE SIDEBAR -->
+
+            <!-- PAGE CONTENT -->
+            <div class="page-content">
+
+                <!-- START X-NAVIGATION VERTICAL -->
+                <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+    <!-- TOGGLE NAVIGATION -->
+    <li class="xn-icon-button">
+        <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
+    </li>
+    <!-- END TOGGLE NAVIGATION -->
+    <!-- SEARCH -->
+    <li class="xn-search">
+        <form role="form">
+            <input type="text" name="search" placeholder="Search..."/>
+        </form>
+    </li>   
+    <!-- END SEARCH -->
+    <!-- SIGN OUT -->
+    <li class="xn-icon-button pull-right">
+        <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>                        
+    </li> 
+    <!-- END SIGN OUT -->
+    </ul>                <!-- END X-NAVIGATION VERTICAL -->                     
+
+                <!-- START BREADCRUMB -->
+                <ul class="breadcrumb">
+    <li><a href="http://localhost:8080/github/2016apsidika/">Home</a></li>
+                                        <li><a href="http://localhost:8080/github/2016apsidika/back_end/cpeserta_diklat">Peserta Diklat</a></li>
+                                                <li class="active">Pendaftaran Peserta Diklat</li>
+                            
+</ul>                <!-- END BREADCRUMB -->                       
+
+                <!-- PAGE CONTENT WRAPPER -->
+                <div class="page-content-wrap">
+                    
+<div class="row">
+    <div class="col-md-12">
+
+        <form id="frm-daftar-peserta-diklat" partclass="ed14e1763bdf657c9f71f8a0ee392c0d_rWBeUxKufGHtYJF3CD" enctype="multipart/form-data" method="POST" class="form-horizontal">
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">Formulir <strong>Peserta Diklat contoh diklat Angkatan II</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <p></p>
+                </div>
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">NIP *</label>
+                        <div class="col-md-6 col-xs-12">
+                            <input type="hidden" name="id_diklat" id="txt-id_diklat" value="16">
+                            <input type="text" name="nip" id="txt-nip" class="form-control" value="">                               
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">No. Kep</label>
+                        <div class="col-md-6 col-xs-12">
+                            <input type="text" name="no_kep" id="txt-no_kep" class="form-control" value="">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Gelar Depan</label>
+                        <div class="col-md-6 col-xs-12">
+                            <input type="text" name="gelar_depan" id="txt-gelar_depan" class="form-control" value="">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Nama Depan *</label>
+                        <div class="col-md-6 col-xs-12">
+                            <input type="text" name="nama_depan" id="txt-nama_depan" class="form-control" value="">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Nama Tengah</label>
+                        <div class="col-md-6 col-xs-12">
+                            <input type="text" name="nama_tengah" id="txt-nama_tengah" class="form-control" value="">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Nama Belakang *</label>
+                        <div class="col-md-6 col-xs-12">
+                            <input type="text" name="nama_belakang" id="txt-nama_belakang" class="form-control" value="">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Gelar Belakang</label>
+                        <div class="col-md-6 col-xs-12">
+                            <input type="text" name="gelar_belakang" id="txt-gelar_belakang" class="form-control" value="">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Tempat Lahir *</label>
+                        <div class="col-md-6 col-xs-12">
+                            <input type="text" name="tempat_lahir" id="txt-tempat_lahir" class="form-control" value="">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Tgl. Lahir *</label>
+                        <div class="col-md-6 col-xs-12">                                            
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                <input id="txt-tgl_lahir" type="text" name="tgl_lahir" class="form-control datepicker" value="">
+                            </div>                                            
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">SKPD *</label>
+                        <div class="col-md-6 col-xs-12">                                            
+                            <select id="slc-skpd" class="form-control select2-basic" name="id_skpd">
+                            </select>
+                            <span class="help-block">Pilih SKPD Saat ini.<br />Masukkan kata kunci pada kotak inputan kemudian pilih SKPD yang dimaksud.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Jabatan *</label>
+                        <div class="col-md-6 col-xs-12">                                            
+                            <select id="slc-jabatan" class="form-control select2-basic" name="id_jabatan">
+                            </select>
+                            <span class="help-block">Pilih Jabatan Saat ini.<br />Masukkan kata kunci pada kotak inputan kemudian pilih Jabatan yang dimaksud.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Golongan *</label>
+                        <div class="col-md-6 col-xs-12">                                            
+                            <select id="slc-golongan" class="form-control select2-basic" name="id_golongan">
+                            </select>
+                            <span class="help-block">Pilih Golongan Saat ini.<br />Masukkan kata kunci pada kotak inputan kemudian pilih Golongan yang dimaksud.</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" class="btn-primary btn pull-right">Submit</button>
+                    <a href="http://localhost:8080/github/2016apsidika/back_end/cpeserta_diklat/index/ed14e1763bdf657c9f71f8a0ee392c0d_rWBeUxKufGHtYJF3CD" class="btn-default btn">Batal / Kembali</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>                </div>
+                <!-- END PAGE CONTENT WRAPPER -->                                
+            </div>            
+            <!-- END PAGE CONTENT -->
+        </div>
+        <!-- END PAGE CONTAINER -->
+
+        <!-- MESSAGE BOX-->
+        <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
+            <div class="mb-container">
+                <div class="mb-middle">
+                    <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
+                    <div class="mb-content">
+                        <p>Anda yakin melakukan log out?</p>                    
+                        <p>Tekan Tidak untuk batal log out. Tekan Ya untuk menutup sesi saat ini.</p>
+                    </div>
+                    <div class="mb-footer">
+                        <div class="pull-right">
+                            <a href="http://localhost:8080/github/2016apsidika/back_bone/member/logout" class="btn btn-success btn-lg">Ya</a>
+                            <button class="btn btn-default btn-lg mb-control-close">Tidak</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END MESSAGE BOX-->
+
+        <div id="whateverelement"></div>
+
+        <!-- START PRELOADS -->
+        <audio id="audio-alert" src="http://localhost:8080/github/2016apsidika/_assets/audio/atlant/alert.mp3" preload="auto"></audio>
+        <audio id="audio-fail" src="http://localhost:8080/github/2016apsidika/_assets/audio/atlant/fail.mp3" preload="auto"></audio>
+        <!-- END PRELOADS -->                  
+
+
+        
+
+
+        <!-- START SCRIPTS -->
+        <!-- START PLUGINS -->
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/bootstrap/bootstrap.min.js"></script>        
+<!-- END PLUGINS -->
+
+<!-- START THIS PAGE PLUGINS-->        
+<script type='text/javascript' src='http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/icheck/icheck.min.js'></script>        
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/scrolltotop/scrolltopcontrol.js"></script>
+
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/morris/raphael-min.js"></script>
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/morris/morris.min.js"></script>       
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/rickshaw/d3.v3.js"></script>
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/rickshaw/rickshaw.min.js"></script>
+<script type='text/javascript' src='http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'></script>
+<script type='text/javascript' src='http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/jvectormap/jquery-jvectormap-world-mill-en.js'></script>                
+<script type='text/javascript' src='http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/bootstrap/bootstrap-datepicker.js'></script>                
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/owl/owl.carousel.min.js"></script>                 
+
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/moment.min.js"></script>
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/daterangepicker/daterangepicker.js"></script>
+
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/bootstrap/bootstrap-dialog.js"></script>
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/bootstrap/bootstrap-file-input.js"></script>
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins/bootstrap/bootstrap-select.js"></script>
+<!-- END THIS PAGE PLUGINS-->        
+
+<!-- START TEMPLATE -->
+
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/plugins.js"></script>        
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/actions.js"></script>
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/helper.js"></script>
+
+<!-- <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/atlant/demo_dashboard.js"></script> -->
+<!-- END TEMPLATE -->
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/all_js.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/plugins/select2/select2.full.min.js" charset="UTF-8"></script>
+
+        <script type="text/javascript" src="http://localhost:8080/github/2016apsidika/_assets/js/helper/general_helper.js"></script>
+
+        
+<script type="text/javascript">
+    
+    var formDetailPesertaDiklat = {
+        data: {
+            nip: null,
+            no_kep: null,
+            gelar_depan: null,
+            nama_depan: null,
+            nama_tengah: null,
+            nama_belakang: null,
+            gelar_belakang: null,
+            tempat_lahir: null,
+            tgl_lahir: null,
+            id_skpd: null,
+            id_jabatan: null,
+            id_diklat: null,
+            
+        },
+        collectData: function(){
+            var self = this;
+            
+            self.data.id_jabatan = $("#slc-jabatan").val();
+            self.data.id_skpd = $("#slc-skpd").val();
+            self.data.id_golongan = $("#slc-golongan").val();
+            self.data.nip = $("#txt-nip").val();
+            self.data.id_diklat = $("#txt-id_diklat").val();
+            self.data.no_kep = $("#txt-no_kep").val();
+            self.data.gelar_depan = $("#txt-gelar_depan").val();
+            self.data.nama_depan = $("#txt-nama_depan").val();
+            self.data.nama_tengah = $("#txt-nama_tengah").val();
+            self.data.nama_belakang = $("#txt-nama_belakang").val();
+            self.data.gelar_belakang = $("#txt-gelar_belakang").val();
+            self.data.tempat_lahir = $("#txt-tempat_lahir").val();
+            self.data.tgl_lahir = $("#txt-tgl_lahir").val();
+            
+            return self.data;
+        }
+    };
+    
+    $(document).ready(function () {
+        
+        $("#frm-daftar-peserta-diklat").submit(function(e){
+            e.preventDefault();
+            
+            var data = formDetailPesertaDiklat.collectData();
+            
+            $.ajax({
+                url: "http://localhost:8080/github/2016apsidika/back_end/cpeserta_diklat/detail/ed14e1763bdf657c9f71f8a0ee392c0d_rWBeUxKufGHtYJF3CD",
+                data: data,
+                method: 'POST',
+                success: function(response, textStatus){
+                    window.location.href = "http://localhost:8080/github/2016apsidika/back_end/cpeserta_diklat/index/ed14e1763bdf657c9f71f8a0ee392c0d_rWBeUxKufGHtYJF3CD";
+                }
+            });
+            
+            return false;
+        });
+    });
+</script><script>
+
+    var slc_pegawai_cfg = {
+        data: [],
+        ajax: {
+            url: "http://localhost:8080/github/2016apsidika/back_end/cref_pegawai/get_like",
+            placeholder: 'Pilih Pegawai',
+            dataType: 'json',
+            delay: 250,
+            method: 'post',
+            width: '100%',
+            data: function (params) {
+                var selected_skpd = $("#slc-skpd").val(), data = {
+                    keyword: params.term, // search term
+                    id_skpd: false,
+                    page: params.page
+                };
+                if (selected_skpd != null) {
+                    data.id_skpd = selected_skpd;
+                } else {
+                    modalConfirm({
+                        id: 'message-box-confirm',
+                        title: 'Mohon Perhatian',
+                        msg: 'Mohon pilih SKPD terlebih dahulu',
+                        onOk: function () {
+                        }
+                    });
+                    return false;
+                }
+                return data;
+            },
+            processResults: function (data, params) {
+
+                var data = $.map(data, function (obj) {
+                    obj.id = obj.id || obj.id_pegawai;
+                    obj.text = obj.text || obj.nama_sambung;
+                    return obj;
+                });
+                params.page = params.page || 1;
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        escapeMarkup: function (markup) {
+            return markup;
+        }, // let our custom formatter work
+        minimumInputLength: 2
+    }, slc_skpd_cfg = {
+        data: [],
+        ajax: {
+            url: "http://localhost:8080/github/2016apsidika/back_end/cref_skpd/get_like",
+            placeholder: 'Pilih SKPD',
+            dataType: 'json',
+            delay: 250,
+            method: 'post',
+            width: '100%',
+            data: function (params) {
+                return {
+                    keyword: params.term, // search term
+                    page: params.page
+                };
+            },
+            processResults: function (data, params) {
+
+                var data = $.map(data, function (obj) {
+                    obj.id = obj.id || obj.id_skpd;
+                    obj.text = obj.text || obj.nama_skpd;
+                    return obj;
+                });
+                params.page = params.page || 1;
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        escapeMarkup: function (markup) {
+            return markup;
+        }, // let our custom formatter work
+        minimumInputLength: 2
+    }, slc_jabatan_cfg = {
+        data: [],
+        ajax: {
+            url: "http://localhost:8080/github/2016apsidika/back_end/cref_jabatan/get_like",
+            placeholder: 'Pilih Jabatan',
+            dataType: 'json',
+            delay: 250,
+            method: 'post',
+            width: '100%',
+            data: function (params) {
+                return {
+                    keyword: params.term, // search term
+                    page: params.page
+                };
+            },
+            processResults: function (data, params) {
+
+                var data = $.map(data, function (obj) {
+                    obj.id = obj.id || obj.id_jabatan;
+                    obj.text = obj.text || obj.jabatan;
+                    return obj;
+                });
+                params.page = params.page || 1;
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        escapeMarkup: function (markup) {
+            return markup;
+        }, // let our custom formatter work
+        minimumInputLength: 2
+    }, slc_golongan_cfg = {
+        data: [],
+        ajax: {
+            url: "http://localhost:8080/github/2016apsidika/back_end/cref_golongan/get_like",
+            placeholder: 'Pilih Golongan',
+            dataType: 'json',
+            delay: 250,
+            method: 'post',
+            width: '100%',
+            data: function (params) {
+                return {
+                    keyword: params.term, // search term
+                    page: params.page
+                };
+            },
+            processResults: function (data, params) {
+
+                var data = $.map(data, function (obj) {
+                    obj.id = obj.id || obj.id_golongan;
+                    obj.text = obj.text || obj.golongan;
+                    return obj;
+                });
+                params.page = params.page || 1;
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        escapeMarkup: function (markup) {
+            return markup;
+        }, // let our custom formatter work
+        minimumInputLength: 2
+    };
+
+
+
+
+    $(document).ready(function () {
+
+        
+        
+        $("#slc-skpd").select2(slc_skpd_cfg);
+    
+        $("#slc-jabatan").select2(slc_jabatan_cfg);
+    
+        $("#slc-golongan").select2(slc_golongan_cfg);
+
+    });
+</script>                <!-- END SCRIPTS -->         
+    </body>
+</html>
+
+
+
+
+
+

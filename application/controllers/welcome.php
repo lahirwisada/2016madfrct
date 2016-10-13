@@ -7,6 +7,7 @@ class Welcome extends LWS_Controller {
 
     public function __consturct() {
         parent::__construct();
+        //hore
     }
 
     public function access_rules($_rules = array()) {

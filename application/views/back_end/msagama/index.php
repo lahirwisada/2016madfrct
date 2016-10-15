@@ -51,10 +51,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                             No
                                         </th>
                                         <th>
-                                            Jabatan
-                                        </th>
-                                        <th>
-                                            Keterangan
+                                            Nama Agama
                                         </th>
                                         <th width="15%">Aksi</th>
                                     </tr>
@@ -67,15 +64,12 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                     <?php echo $next_list_number; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo beautify_str($record->jabatan) ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo beautify_str($record->keterangan) ?>
+                                                    <?php echo beautify_str($record->kode_provinsi) ?>
                                                 </td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm">
-                                                        <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->id_jabatan; ?>">Ubah</a>
-                                                        <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->id_jabatan; ?>">Hapus</a>
+                                                        <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->id_agama; ?>">Ubah</a>
+                                                        <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->id_agama; ?>">Hapus</a>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -19,25 +19,14 @@ $detail = isset($detail) ? $detail : FALSE;
                 <div class="panel-body">
 
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Kode Provinsi *</label>
+                        <label class="col-md-3 col-xs-12 control-label">Nama Agama *</label>
                         <div class="col-md-6 col-xs-12">                                            
                             <div class="input-group">
-                                <input type="text" name="kode_provinsi" class="form-control" value="<?php echo $detail ? $detail->kode_provinsi : ""; ?>">
+                                <input type="text" name="nama_agama" class="form-control" value="<?php echo $detail ? $detail->nama_agama : ""; ?>">
                             </div>                                            
                             <span class="help-block">Isikan sesuai dengan kode provinsi yang tertera pada Ketetapan Kementerian Dalam Negeri tentang Wilayah Indonesia.</span>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Provinsi *</label>
-                        <div class="col-md-6 col-xs-12">                                            
-                            <div class="input-group">
-                                <input type="text" name="nama_provinsi" class="form-control" value="<?php echo $detail ? $detail->nama_provinsi : ""; ?>">
-                            </div>                                            
-                            <span class="help-block">Nama Provinsi. contoh : BANTEN</span>
-                        </div>
-                    </div>
-
                 </div>
                 <div class="panel-footer">
                     <button type="submit" class="btn-primary btn pull-right">Submit</button>

@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Back_end extends Cpustaka_data {
+class Back_end extends Lwpustaka_data {
     
     protected $backend_controller_location = "back_end/";
 

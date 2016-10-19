@@ -64,7 +64,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                     <?php echo $next_list_number; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo beautify_str($record->kode_provinsi) ?>
+                                                    <?php echo beautify_str($record->nama_agama) ?>
                                                 </td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm">

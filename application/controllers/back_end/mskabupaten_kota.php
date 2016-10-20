@@ -3,12 +3,12 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Msprovinsi extends Back_end {
+class Mskabupaten_kota extends Back_end {
 
-    public $model = 'model_master_provinsi';
+    public $model = 'model_master_kabupaten_kota';
 
     public function __construct() {
-        parent::__construct('kelola_pustaka_provinsi', 'Pustaka Provinsi');
+        parent::__construct('kelola_pustaka_kabupaten_kota', 'Pustaka Kabupaten Kota');
     }
 
     public function index() {
@@ -20,7 +20,7 @@ class Msprovinsi extends Back_end {
 
     public function detail($id = FALSE) {
         parent::detail($id, array(
-            "kode_provinsi","nama_provinsi",
+            "id_provinsi","kode_kabupaten","nama_kabupaten",
         ));
 
         $this->set("bread_crumb", array(
@@ -33,8 +33,8 @@ class Msprovinsi extends Back_end {
     public function get_like() {
         $keyword = $this->input->post("keyword");
 
-        $kabupaten_found = $this->model_ref_provinsi->get_like($keyword);
+        $provinsi_found = $this->model_ref_kabupaten_kota->get_like($keyword);
         
-        $this->to_json($provinsi_found);
+        $this->to_json($kabupaten_kota_found);
     }
 }

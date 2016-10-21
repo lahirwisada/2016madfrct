@@ -51,10 +51,13 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                             No
                                         </th>
                                         <th>
-                                            Kode Kabupaten Kota
+                                            Kode
                                         </th>
                                         <th>
-                                            Nama Kabupaten Kota
+                                            Provinsi
+                                        </th>
+                                        <th>
+                                            Kab/Kota
                                         </th>
                                         <th width="15%">Aksi</th>
                                     </tr>
@@ -68,6 +71,9 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                 </td>
                                                 <td>
                                                     <?php echo beautify_str($record->kode_kabupaten) ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo beautify_str($record->nama_provinsi) ?>
                                                 </td>
                                                 <td>
                                                     <?php echo beautify_str($record->nama_kabupaten) ?>

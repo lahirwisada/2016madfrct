@@ -39,10 +39,11 @@ class Master_kabupaten_kota extends LWS_model {
             "columns" => array(
                 "nama_provinsi",
                 "kode_provinsi",
-            ),
+           ),
             "referenced" => "LEFT"
         ),
     );
+    
     protected $attribute_types = array();
 }
 ?>

@@ -2,7 +2,7 @@
 if (!defined("BASEPATH")) {
     exit("No direct script access allowed");
 } include_once "entity/master_kabupaten_kota.php";
-class Model_master_kabupaten_kota extends master_kabupaten_kota {
+class model_master_kabupaten_kota extends master_kabupaten_kota {
     protected $rules = array(
         array("id_provinsi", "required|numeric"),
         array("kode_kabupaten", "required|min_length[1]|max_length[30]"),

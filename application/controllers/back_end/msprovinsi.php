@@ -33,8 +33,8 @@ class Msprovinsi extends Back_end {
     public function get_like() {
         $keyword = $this->input->post("keyword");
 
-        $kabupaten_found = $this->model_ref_provinsi->get_like($keyword);
-        
+        $provinsi_found = $this->model_master_provinsi->get_like($keyword);
+       
         $this->to_json($provinsi_found);
     }
 }

@@ -35,7 +35,8 @@ $user_role = isset($user_role) ? $user_role : '';
         <!-- END META SECTION -->
         
         <!-- CSS INCLUDE -->        
-        <link rel="stylesheet" type="text/css" id="theme" href="<?php echo css(); ?>atlant/theme-default.css"/>
+        <?php /* <link rel="stylesheet" type="text/css" id="theme" href="<?php echo css(); ?>atlant/theme-default.css"/> */ ?>
+        <link rel="stylesheet" type="text/css" id="theme" href="<?php echo css(); ?>atlant/theme-forest.css"/>
         
         <?php echo isset($css) ? $css : ''; ?>
         <?php echo load_partial('template/additional_css'); ?>

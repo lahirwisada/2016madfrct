@@ -58,7 +58,8 @@ $current_user_roles = isset($current_user_roles) ? $current_user_roles : "Tamu";
         <!-- END META SECTION -->
 
         <!-- CSS INCLUDE -->        
-        <link rel="stylesheet" type="text/css" id="theme" href="<?php echo css(); ?>atlant/theme-default.css"/>
+        <?php /* <link rel="stylesheet" type="text/css" id="theme" href="<?php echo css(); ?>atlant/theme-default.css"/> */ ?>
+        <link rel="stylesheet" type="text/css" id="theme" href="<?php echo css(); ?>atlant/theme-forest.css"/>
         <!-- EOF CSS INCLUDE -->
 
         <?php echo isset($css) ? $css : ''; ?>

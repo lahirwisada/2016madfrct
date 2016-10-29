@@ -73,10 +73,10 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                     <?php echo beautify_str($record->kode_satminkal) ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo beautify_str($record->nama_kotama) ?>
+                                                    <?php echo beautify_str($record->ur_kotama) ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo beautify_str($record->nama_satminkal) ?>
+                                                    <?php echo beautify_str($record->ur_satminkal) ?>
                                                 </td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm">

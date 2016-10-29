@@ -5,7 +5,7 @@ $detail = isset($detail) ? $detail : FALSE;
     var slc_kotama_cfg = {
         data: [],
         ajax: {
-            url: "<?php echo base_url(); ?>back_end/master_kotama/get_like",
+            url: "<?php echo base_url(); ?>back_end/mskotama/get_like",
             placeholder: 'Pilih Kotama',
             dataType: 'json',
             delay: 250,
@@ -20,7 +20,7 @@ $detail = isset($detail) ? $detail : FALSE;
             processResults: function (data, params) {
                 var data = $.map(data, function (obj) {
                     obj.id = obj.id || obj.id_kotama;
-                    obj.text = obj.text || obj.kode_kotama + " " + obj.ur_kotama;
+                    obj.text = obj.text || obj.ur_kotama;
                     return obj;
                 });
                 params.page = params.page || 1;
@@ -39,7 +39,7 @@ $detail = isset($detail) ? $detail : FALSE;
         slc_kotama_cfg.data = [
             {
                 id: '<?php echo $detail->id_kotama ?>',
-                text: '<?php echo $detail->kode_kotama . " " . $detail->ur_kotama; ?>'
+                text: '<?php echo $detail->$detail->ur_kotama; ?>'
             }
         ];
 <?php endif; ?>

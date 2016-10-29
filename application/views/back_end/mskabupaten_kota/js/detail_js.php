@@ -5,7 +5,7 @@ $detail = isset($detail) ? $detail : FALSE;
     var slc_provinsi_cfg = {
         data: [],
         ajax: {
-            url: "<?php echo base_url(); ?>back_end/master_provinsi/get_like",
+            url: "<?php echo base_url(); ?>back_end/msprovinsi/get_like",
             placeholder: 'Pilih Provinsi',
             dataType: 'json',
             delay: 250,
@@ -20,7 +20,7 @@ $detail = isset($detail) ? $detail : FALSE;
             processResults: function (data, params) {
                 var data = $.map(data, function (obj) {
                     obj.id = obj.id || obj.id_provinsi;
-                    obj.text = obj.text || obj.kode_provinsi + " " + obj.nama_provinsi;
+                    obj.text = obj.text || obj.nama_provinsi;
                     return obj;
                 });
                 params.page = params.page || 1;
@@ -39,7 +39,7 @@ $detail = isset($detail) ? $detail : FALSE;
         slc_provinsi_cfg.data = [
             {
                 id: '<?php echo $detail->id_provinsi ?>',
-                text: '<?php echo $detail->kode_provinsi . " " . $detail->nama_provinsi; ?>'
+                text: '<?php echo $detail->nama_provinsi; ?>'
             }
         ];
 <?php endif; ?>

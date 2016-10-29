@@ -33,7 +33,7 @@ class Mskotama extends Back_end {
     public function get_like() {
         $keyword = $this->input->post("keyword");
 
-        $kabupaten_found = $this->model_ref_kotama->get_like($keyword);
+        $kotama_found = $this->model_master_kotama->get_like($keyword);
         
         $this->to_json($kotama_found);
     }

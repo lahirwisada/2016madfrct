@@ -1,0 +1,1 @@
+<script src="<?php echo assets(); ?>/3rd/ckeditor/ckeditor.js"></script>

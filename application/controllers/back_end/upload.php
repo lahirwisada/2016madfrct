@@ -4,7 +4,7 @@ class upload extends CI_Controller
         
     function index()
     {
-        $this->load->view('upload/form_upload');
+        $this->load->view('back_end/upload/form_upload');
     }
     
     

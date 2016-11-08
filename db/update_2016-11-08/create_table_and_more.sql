@@ -16,3 +16,8 @@ WITH (
 );
 ALTER TABLE sc_fcstprsn.master_jenis_formulir
   OWNER TO postgres;
+
+
+CREATE TRIGGER "tru_master_jenis_formulir" BEFORE UPDATE ON "sc_fcstprsn"."master_jenis_formulir"
+FOR EACH ROW
+EXECUTE PROCEDURE "sc_fcstprsn"."tru_update_date"();

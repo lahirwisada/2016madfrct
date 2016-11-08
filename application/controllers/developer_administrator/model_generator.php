@@ -51,6 +51,7 @@ class Model_generator extends LWS_Controller {
             $generate_model = FALSE;
         }
         $table_name = $this->input->get('table_name');
+        
         if (!$generate_single) {
             $this->wrought->create_models($generate_model);
         } else {

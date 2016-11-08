@@ -1,4 +1,4 @@
-1476295746TS---><!DOCTYPE html>
+1476892291TS---><!DOCTYPE html>
 <html lang="en">
     <head>        
         <!-- META SECTION -->
@@ -69,7 +69,7 @@
                                                                                 
     </li>
     <li class="xn-title">Menu</li>
-        <li class=" active xn-openable"><a href="#"><span class="fa fa-circle-o"></span> <span class="xn-text">Sistem</span></span></a><ul><li class=" active "><a href="http://localhost:8080/github/mabesAD/back_bone/modul"><span class="fa fa-circle-o"></span> Modul</span></a></li><li ><a href="http://localhost:8080/github/mabesAD/back_bone/member"><span class="fa fa-circle-o"></span> Member</span></a></li><li ><a href="http://localhost:8080/github/mabesAD/back_bone/role"><span class="fa fa-circle-o"></span> Role</span></a></li></ul></li></ul>                <!-- END X-NAVIGATION -->
+        <li class=" active xn-openable"><a href="#"><span class="fa fa-circle-o"></span> <span class="xn-text">Sistem</span></span></a><ul><li class=" active "><a href="http://localhost:8080/github/mabesAD/back_bone/modul"><span class="fa fa-circle-o"></span> Modul</span></a></li><li ><a href="http://localhost:8080/github/mabesAD/back_bone/member"><span class="fa fa-circle-o"></span> Member</span></a></li><li ><a href="http://localhost:8080/github/mabesAD/back_bone/role"><span class="fa fa-circle-o"></span> Role</span></a></li></ul></li><li class="xn-openable"><a href="#"><span class="fa fa-circle-o"></span> <span class="xn-text">Pustaka Data</span></span></a><ul><li ><a href="http://localhost:8080/github/mabesAD/back_end/msagama"><span class="fa fa-circle-o"></span> Referensi Agama</span></a></li><li ><a href="http://localhost:8080/github/mabesAD/back_end/msprovinsi"><span class="fa fa-circle-o"></span> Referensi Provinsi</span></a></li></ul></li></ul>                <!-- END X-NAVIGATION -->
             </div>
             <!-- END PAGE SIDEBAR -->
 
@@ -166,6 +166,54 @@
                                                 <td>
                                                     1                                                </td>
                                                 <td>
+                                                    msagama                                                </td>
+                                                <td>
+                                                    Referensi Agama                                                </td>
+                                                <td>
+                                                    Pustaka Data                                                </td>
+                                                <td>
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a class="btn btn-default" href="http://localhost:8080/github/mabesAD/back_bone/modul/detail/6">Ubah</a>
+                                                        <a class="btn btn-default btn-hapus-modul" href="javascript:void(0);" rel="http://localhost:8080/github/mabesAD/back_bone/modul/delete/6">Hapus</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                                                                                                                <tr>
+                                                <td>
+                                                    2                                                </td>
+                                                <td>
+                                                    pustaka_data                                                </td>
+                                                <td>
+                                                    Pustaka Data                                                </td>
+                                                <td>
+                                                                                                    </td>
+                                                <td>
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a class="btn btn-default" href="http://localhost:8080/github/mabesAD/back_bone/modul/detail/5">Ubah</a>
+                                                        <a class="btn btn-default btn-hapus-modul" href="javascript:void(0);" rel="http://localhost:8080/github/mabesAD/back_bone/modul/delete/5">Hapus</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                                                                                                                <tr>
+                                                <td>
+                                                    3                                                </td>
+                                                <td>
+                                                    msprovinsi                                                </td>
+                                                <td>
+                                                    Referensi Provinsi                                                </td>
+                                                <td>
+                                                    Pustaka Data                                                </td>
+                                                <td>
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a class="btn btn-default" href="http://localhost:8080/github/mabesAD/back_bone/modul/detail/7">Ubah</a>
+                                                        <a class="btn btn-default btn-hapus-modul" href="javascript:void(0);" rel="http://localhost:8080/github/mabesAD/back_bone/modul/delete/7">Hapus</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                                                                                                                <tr>
+                                                <td>
+                                                    4                                                </td>
+                                                <td>
                                                     role                                                </td>
                                                 <td>
                                                     Role                                                </td>
@@ -180,7 +228,7 @@
                                             </tr>
                                                                                                                                 <tr>
                                                 <td>
-                                                    2                                                </td>
+                                                    5                                                </td>
                                                 <td>
                                                     member                                                </td>
                                                 <td>
@@ -196,7 +244,7 @@
                                             </tr>
                                                                                                                                 <tr>
                                                 <td>
-                                                    3                                                </td>
+                                                    6                                                </td>
                                                 <td>
                                                     modul                                                </td>
                                                 <td>
@@ -212,7 +260,7 @@
                                             </tr>
                                                                                                                                 <tr>
                                                 <td>
-                                                    4                                                </td>
+                                                    7                                                </td>
                                                 <td>
                                                     sistem                                                </td>
                                                 <td>

@@ -1,4 +1,4 @@
-1476292139TS---><!DOCTYPE html>
+1476892646TS---><!DOCTYPE html>
 <html lang="en">
     <head>        
         <!-- META SECTION -->
@@ -69,7 +69,7 @@
                                                                                 
     </li>
     <li class="xn-title">Menu</li>
-        <li class=" active xn-openable"><a href="#"><span class="fa fa-circle-o"></span> <span class="xn-text">Sistem</span></span></a><ul><li ><a href="http://localhost:8080/github/mabesAD/back_bone/modul"><span class="fa fa-circle-o"></span> Modul</span></a></li><li ><a href="http://localhost:8080/github/mabesAD/back_bone/member"><span class="fa fa-circle-o"></span> Member</span></a></li><li class=" active "><a href="http://localhost:8080/github/mabesAD/back_bone/role"><span class="fa fa-circle-o"></span> Role</span></a></li></ul></li></ul>                <!-- END X-NAVIGATION -->
+        <li class=" active xn-openable"><a href="#"><span class="fa fa-circle-o"></span> <span class="xn-text">Sistem</span></span></a><ul><li ><a href="http://localhost:8080/github/mabesAD/back_bone/modul"><span class="fa fa-circle-o"></span> Modul</span></a></li><li ><a href="http://localhost:8080/github/mabesAD/back_bone/member"><span class="fa fa-circle-o"></span> Member</span></a></li><li class=" active "><a href="http://localhost:8080/github/mabesAD/back_bone/role"><span class="fa fa-circle-o"></span> Role</span></a></li></ul></li><li class="xn-openable"><a href="#"><span class="fa fa-circle-o"></span> <span class="xn-text">Pustaka Data</span></span></a><ul><li ><a href="http://localhost:8080/github/mabesAD/back_end/msagama"><span class="fa fa-circle-o"></span> Referensi Agama</span></a></li><li ><a href="http://localhost:8080/github/mabesAD/back_end/msprovinsi"><span class="fa fa-circle-o"></span> Referensi Provinsi</span></a></li></ul></li></ul>                <!-- END X-NAVIGATION -->
             </div>
             <!-- END PAGE SIDEBAR -->
 

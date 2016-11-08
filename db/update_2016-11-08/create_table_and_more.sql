@@ -69,3 +69,42 @@ Surabaya, .... Nov 2016';
 CREATE TRIGGER "tru_tr_125t" BEFORE UPDATE ON "sc_fcstprsn"."tr_125t"
 FOR EACH ROW
 EXECUTE PROCEDURE "sc_fcstprsn"."tru_update_date"();
+
+
+-----------------------------------------------------------------
+--  tr_f125t_detail
+-----------------------------------------------------------------
+
+
+CREATE TABLE sc_fcstprsn.tr_125t_detail
+(
+  id_f125t_detail serial NOT NULL,
+  id_f125t integer,
+  id_pangkat integer,
+  jumlah_secata integer,
+  jumlah_secaba integer,
+  jumlah_sesarcab integer,
+  jumlah_selapa_setingkat integer,
+  jumlah_sesko_angkatan_setingkat integer,
+  jumlah_sesko_tni integer,
+  jumlah_subtotal integer,
+  created_date timestamp without time zone,
+  created_by character varying(200),
+  modified_date timestamp without time zone,
+  modified_by character varying(200),
+  record_active integer DEFAULT 1,
+  CONSTRAINT pk_tr_125t_detail PRIMARY KEY (id_f125t_detail),
+  CONSTRAINT fk_tr_125t_detail_tr_125t FOREIGN KEY (id_f125t)
+      REFERENCES sc_fcstprsn.tr_125t (id_f125t) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE CASCADE
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE sc_fcstprsn.tr_125t_detail
+  OWNER TO postgres;
+
+
+CREATE TRIGGER "tru_tr_125t_detail" BEFORE UPDATE ON "sc_fcstprsn"."tr_125t_detail"
+FOR EACH ROW
+EXECUTE PROCEDURE "sc_fcstprsn"."tru_update_date"();

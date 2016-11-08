@@ -8,7 +8,7 @@ CREATE TABLE sc_fcstprsn.master_jenis_formulir
   created_by character varying(200),
   modified_date timestamp without time zone,
   modified_by character varying(200),
-  record_active integer,
+  record_active integer DEFAULT 1,
   CONSTRAINT pk_master_jenis_formulir PRIMARY KEY (id_jenis_formulir)
 )
 WITH (

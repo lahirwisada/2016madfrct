@@ -20,7 +20,7 @@ class Mstriwulan extends Back_end {
 
     public function detail($id = FALSE) {
         parent::detail($id, array(
-            "kode_triwulan","nama_triwulan","keterangan",
+            "kode_triwulan","nama_triwulan"
         ));
 
         $this->set("bread_crumb", array(

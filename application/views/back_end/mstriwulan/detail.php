@@ -18,18 +18,30 @@ $detail = isset($detail) ? $detail : FALSE;
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Kode Triwulan *</label>
-                        <div class="col-md-6 col-xs-12">
+                        <label class="col-md-3 col-xs-12 control-label">Kode Triwulan*</label>
+                        <div class="col-md-6 col-xs-12">                                            
+                            <div class="input-group">
                                 <input type="text" name="kode_triwulan" class="form-control" value="<?php echo $detail ? $detail->kode_triwulan : ""; ?>">
-                            <span class="help-block"></span>
+                            </div>                                            
+                            <span class="help-block">Isikan sesuai dengan kode triwulan.</span>
                         </div>
                     </div>
-                    
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Nama Triwulan *</label>
-                        <div class="col-md-6 col-xs-12">
-                                <input type="text" name="nama_triwulan" class="form-control" value="<?php echo $detail ? $detail->nama_triwulan : ""; ?>">                                           
-                            <span class="help-block"></span>
+                        <div class="col-md-6 col-xs-12">                                            
+                            <div class="input-group">
+                                <input type="text" name="nama_triwulan" class="form-control" value="<?php echo $detail ? $detail->nama_triwulan : ""; ?>">
+                            </div>                                            
+                            <span class="help-block">Isikan sesuai dengan Nama Triwulan.</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Keterangan*</label>
+                        <div class="col-md-6 col-xs-12">                                            
+                            <div class="input-group">
+                                <input type="text" name="keterangan" class="form-control" value="<?php echo $detail ? $detail->keterangan : ""; ?>">
+                            </div>                                            
+                            <span class="help-block">Isikan sesuai dengan Keterangan.</span>
                         </div>
                     </div>
                 </div>

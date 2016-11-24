@@ -17,7 +17,7 @@ class Rekap extends Base_rekap {
 
     public $model = 'model_tr_125t';
     public $jenis_formulir_rekap = '125t';
-
+    
     //put your code here
     public function __construct() {
         parent::__construct('modul_rekap', 'Rekap');

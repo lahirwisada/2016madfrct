@@ -23,7 +23,7 @@ class tr_f126t_detail extends LWS_Model {
 
     protected $attribute_labels = array(
         "id_f126t_detail" => array("id_f126t_detail", "id_f126t_detail"),
-        "id_f126t" => array("id_f126t", "id_f125t"),
+        "id_f126t" => array("id_f126t", "id_f126t"),
         "id_pangkat" => array("id_pangkat", "id_pangkat"),
         "jumlah_sd" => array("jumlah_sd", "jumlah_sd"),
         "jumlah_sltp" => array("jumlah_sltp", "jumlah_sltp"),

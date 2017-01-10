@@ -16,7 +16,7 @@ class tr_102E1 extends LWS_Model {
 
     protected $attribute_labels = array(
         "id_f102E1" => array("id_f102E1", "id_f102E1"),
-        "id_triwulan" => array("id_triwulan", "Triwulan"),
+        "id_bulan" => array("id_bulan", "Triwulan"),
         "id_kotama" => array("id_kotama", "Kotama"),
         "path_excel" => array("path_excel", "Patch Excel"),
         "tanggal_upload" => array("tanggal_upload", "Tanggal Upload"),
@@ -35,7 +35,7 @@ class tr_102E1 extends LWS_Model {
     );
     protected $rules = array(
         array("id_f102E1", ""),
-        array("id_triwulan", ""),
+        array("id_bulan", ""),
         array("id_kotama", ""),
         array("path_excel", ""),
         array("tanggal_upload", ""),
@@ -61,11 +61,11 @@ class tr_102E1 extends LWS_Model {
             ),
             "referenced" => "LEFT"
         ),
-        "master_triwulan" => array(
-            "fkey" => "id_triwulan",
+        "master_bulan" => array(
+            "fkey" => "id_bulan",
             "columns" => array(
-                "nama_triwulan",
-                "kode_triwulan",
+                "nama_bulan",
+                "kode_bulan",
            ),
             "referenced" => "LEFT"
         ),

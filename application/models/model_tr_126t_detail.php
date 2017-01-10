@@ -43,7 +43,9 @@ class model_tr_126t_detail extends tr_f126t_detail {
         */
         
         if($response_data["form_format"] && $response_data["read_data"]){
+            echo '<pre>';
             var_dump($response_data["data"]);
+            echo '</pre>';
         }
         
     }

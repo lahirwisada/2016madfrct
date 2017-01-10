@@ -12,7 +12,8 @@ class model_tr_125t extends tr_125t {
 
     protected $rules = array(
         array("id_f125t", ""),
-        array("id_triwulan", ""),
+        array("id_bulan", "required"),
+        array("id_tahun", "required"),
         array("id_kotama", ""),
         array("path_excel", ""),
         array("tanggal_upload", "required"),

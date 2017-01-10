@@ -2,9 +2,9 @@
 
 if (!defined("BASEPATH")) {
     exit("No direct script access allowed");
-} include_once "entity/tr_f126t_detail.php";
+} include_once "entity/tr_f102E1_detail.php";
 
-class model_tr_102E1_detail extends tr_f126t_detail {
+class model_tr_102E1_detail extends tr_f102E1_detail {
 
     public function __construct() {
         parent::__construct();
@@ -56,7 +56,9 @@ class model_tr_102E1_detail extends tr_f126t_detail {
         */
         
         if($response_data["form_format"] && $response_data["read_data"]){
+            echo '<pre>';
             var_dump($response_data["data"]);
+            echo '</pre>';
         }
         
     }

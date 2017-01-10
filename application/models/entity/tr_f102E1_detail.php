@@ -22,7 +22,7 @@ class tr_f102E1_detail extends LWS_Model {
     }
 
     protected $attribute_labels = array(
-        "id_f102E1_detail" => array("id_f102E1_detail", "id_f126t_detail"),
+        "id_f102E1_detail" => array("id_f102E1_detail", "id_f102E1_detail"),
         "id_f102E1" => array("id_f102E1", "id_f102E1"),
         "id_pangkat" => array("id_pangkat", "id_pangkat"),
         "jumlah_top" => array("jumlah_top", "jumlah_top/dspp"),
@@ -47,6 +47,7 @@ class tr_f102E1_detail extends LWS_Model {
         "jumlah_prt" => array("jumlah_prt", "jumlah_prt"),
         "jumlah_prd" => array("jumlah_prd", "jumlah_prd"),
         "jumlah_subtotal" => array("jumlah_subtotal", "jumlah_subtotal"),
+        "keterangan" => array("keterangan", "keterangan"),
         "jumlah_pns" => array("jumlah_pns", "jumlah_pns"),
         "jumlah_ksong" => array("jumlah_ksong", "jumlah_ksong"),
         "created_date" => array("created_date", "created_date"),
@@ -81,6 +82,7 @@ class tr_f102E1_detail extends LWS_Model {
         array("jumlah_prt", ""),
         array("jumlah_prd", ""),
         array("jumlah_subtotal", ""),
+        array("keterangan", ""),
         array("jumlah_pns", ""),
         array("jumlah_ksong", ""),
         array("created_date", ""),
@@ -90,9 +92,10 @@ class tr_f102E1_detail extends LWS_Model {
         array("record_active", ""),
     );
     protected $related_tables = array();
-    protected $attribute_types = array();
+    protected $attribute_types = array(
+        "jumlah_top" => 'int'
+    );
     public $col_map = array(
-        
         "C" => "jumlah_top",
         "D" => "jumlah_myj",
         "E" => "jumlah_brj",
@@ -115,6 +118,7 @@ class tr_f102E1_detail extends LWS_Model {
         "V" => "jumlah_prt",
         "W" => "jumlah_prd",
         "X" => "jumlah_subtotal",
+        "Y" => "keterangan",
         "Z" => "jumlah_pns",
         "AA" => "jumlah_ksong",
     );

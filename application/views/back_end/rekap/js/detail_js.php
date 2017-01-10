@@ -2,11 +2,11 @@
 $detail = isset($detail) ? $detail : FALSE;
 ?>
 <script>
-    var slc_triwulan_cfg = {
+    var slc_bulan_cfg = {
         data: [],
         ajax: {
-            url: "<?php echo base_url(); ?>back_end/mstriwulan/get_like",
-            placeholder: 'Pilih Triwulan',
+            url: "<?php echo base_url(); ?>back_end/msbulan/get_like",
+            placeholder: 'Pilih Bulan',
             dataType: 'json',
             delay: 250,
             method: 'post',
@@ -19,8 +19,8 @@ $detail = isset($detail) ? $detail : FALSE;
             },
             processResults: function (data, params) {
                 var data = $.map(data, function (obj) {
-                    obj.id = obj.id || obj.id_triwulan;
-                    obj.text = obj.text || obj.nama_triwulan;
+                    obj.id = obj.id || obj.id_bulan;
+                    obj.text = obj.text || obj.nama_bulan;
                     return obj;
                 });
                 params.page = params.page || 1;
@@ -35,18 +35,18 @@ $detail = isset($detail) ? $detail : FALSE;
         }, // let our custom formatter work
         minimumInputLength: 2
     };
-<?php if ($detail && $detail->id_triwulan != ""): ?>
-        slc_triwulan_cfg.data = [
+<?php if ($detail && $detail->id_bulan != ""): ?>
+        slc_bulan_cfg.data = [
             {
-                id: '<?php echo $detail->id_triwulan ?>',
-                text: '<?php echo $detail->nama_triwulan; ?>'
+                id: '<?php echo $detail->id_bulan ?>',
+                text: '<?php echo $detail->nama_bulan; ?>'
             }
         ];
 <?php endif; ?>
     $(document).ready(function () {
-        $("#slc-triwulan").select2(slc_triwulan_cfg);
-<?php if ($detail && $detail->id_triwulan != ""): ?>
-            $("#slc-triwulan").val(<?php echo $detail->id_triwulan ?>).trigger("change");
+        $("#slc-bulan").select2(slc_bulan_cfg);
+<?php if ($detail && $detail->id_bulan != ""): ?>
+            $("#slc-bulan").val(<?php echo $detail->id_bulan ?>).trigger("change");
 <?php endif; ?>
     });
 </script>

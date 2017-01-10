@@ -22,14 +22,22 @@ $id_diklat = isset($id_diklat) ? $id_diklat : 0;
 
 
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Triwulan *</label>
+                        <label class="col-md-3 col-xs-12 control-label">Bulan *</label>
                         <div class="col-md-6 col-xs-12">                                            
-                            <select id="slc-triwulan" class="form-control select2-basic" name="id_triwulan">
+                            <select id="slc-bulan" class="form-control select2-basic" name="id_bulan">
                             </select>
-                            <span class="help-block">Pilih Triwulan.<br />Masukkan kata kunci pada kotak inputan kemudian pilih triwulan yang dimaksud.</span>
+                            <span class="help-block">Pilih Bulan.<br />Masukkan kata kunci pada kotak inputan kemudian pilih bulan yang dimaksud.</span>
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Tahun *</label>
+                        <div class="col-md-6 col-xs-12">
+                            <input type="text" name="id_tahun" id="txt-id_tahun" class="form-control" value="<?php echo $detail ? $detail->id_tahun : ""; ?>">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Tgl. Upload *</label>
                         <div class="col-md-6 col-xs-12">                                            

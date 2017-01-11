@@ -19,6 +19,13 @@ class Model_master_pangkat extends Master_pangkat {
                     "ur_pangkat",
                         ), FALSE, TRUE, FALSE, 1, TRUE, $force_limit, $force_offset);
     }
+    
+    public function get_detail_by_kode_pangkat($kode_pangkat = ''){
+        if($kode_pangkat != ''){
+            return $this->get_detail("kode_pangkat LIKE '%".$kode_pangkat."%'");
+        }
+        return FALSE;
+    }
 
 }
 

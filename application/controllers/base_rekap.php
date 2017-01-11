@@ -138,7 +138,7 @@ class Base_rekap extends Back_end {
      * parse excel and collect cells data
      * Form 125 T
      */
-    protected function read_excel_data_125t() {
+    protected function read_excel_data_125t_all() {
         $response_data_125t = array(
             "form_format" => TRUE,
             "read_data" => TRUE,
@@ -208,6 +208,99 @@ class Base_rekap extends Back_end {
                 }
                 
                 $response_data_125t["data"] = $record_found;
+            }
+        }
+        unset($active_sheet);
+        return $response_data_125t;
+    }
+    
+    private function validate_final_response_data($response_data = array()){
+        $final_response = array();
+        if(is_array($response_data) && !empty($response_data)){
+            foreach($response_data as $key => $arr_value){
+                if($key !== '' && !empty($arr_value)){
+                    $final_response[$key] = $arr_value;
+                }
+            }
+        }
+        unset($response_data);
+        return $final_response;
+    }
+    
+    /**
+     * parse excel and collect cells data
+     * Form 125 T
+     */
+    protected function read_excel_data_125t() {
+        $response_data_125t = array(
+            "form_format" => TRUE,
+            "read_data" => TRUE,
+            "data" => array()
+        );
+
+        $active_sheet = $this->excel->setActiveSheetIndexByName('125T');
+        if ($active_sheet !== FALSE) {
+
+            $last_row = $active_sheet->getHighestRow();
+            $start_row = 9;
+            $kotama_kesatuan_awal_row = 1;
+            $readed_first_row = FALSE;
+
+            $known_bentuk_formulir_column = $active_sheet->getCell('I10')->getValue();
+            $known_judul_tni_column = $active_sheet->getCell('A1')->getValue();
+            $known_kesatuan_column = $active_sheet->getCell('A2')->getValue();
+            $known_judul_column = $active_sheet->getCell('A6')->getValue();
+            $known_bulan_tahun_column = $active_sheet->getCell('A7')->getValue();
+            $known_null_column = $active_sheet->getCell('B45')->getValue();
+            $known_nama_penandatangan_column = $active_sheet->getCell('F47')->getValue();
+            $known_nrp_penandatangan_column = $active_sheet->getCell('F48')->getValue();
+
+//            var_dump(strtolower($known_bentuk_formulir_column) == 'bentuk : pers-125.t*)' ,
+//                    strtolower($known_judul_tni_column) == 'tentara nasional indonesia angkatan darat' ,
+//                    strtolower($known_kesatuan_column) != '' ,
+//                    strtolower($known_judul_column) != '' ,
+//                    strtolower($known_bulan_tahun_column) != '' ,
+//                    strtolower($known_nama_penandatangan_column) != '' ,
+//                    strtolower($known_nrp_penandatangan_column) != '' ,
+//                    $known_null_column === NULL);exit;
+            
+            if (!(strtolower($known_bentuk_formulir_column) == 'bentuk : pers-125.t*)' &&
+                    strtolower($known_judul_tni_column) == 'tentara nasional indonesia angkatan darat' &&
+                    strtolower($known_kesatuan_column) != '' &&
+                    strtolower($known_judul_column) != '' &&
+                    strtolower($known_bulan_tahun_column) != '' &&
+                    strtolower($known_nama_penandatangan_column) != '' &&
+                    strtolower($known_nrp_penandatangan_column) != '' &&
+                    $known_null_column === NULL)) {
+                
+//                    echo "slh";exit;
+                /**
+                 * WRONG TEMPLATE
+                 */
+                $response_data_125t = array(
+                    "form_format" => FALSE,
+                    "read_data" => FALSE,
+                    "data" => array()
+                );
+            } else {
+                /**
+                 * baca kolom A-J menggunakan ascii
+                 */
+                $record_found = array();
+
+
+                $reach_last_row = FALSE;
+
+                while (!$reach_last_row) {
+                    if ($start_row >= $last_row) {
+                        $reach_last_row = TRUE;
+                    } else {
+                        list($start_row, $records) = $this->collect_matrix_data_f125t($active_sheet, $readed_first_row, $start_row, $last_row);
+                        $record_found[$records["nama_kotama"]] = $records["records"];
+                    }
+                }
+                
+                $response_data_125t["data"] = $this->validate_final_response_data($record_found);
             }
         }
         unset($active_sheet);
@@ -495,11 +588,14 @@ class Base_rekap extends Back_end {
                 "model_tr_102E1_detail"
             ));
             $response_form125t = $this->read_excel_data_125t();
-
             $this->model_tr_125t_detail->save_records($response_form125t);
+            
+            
             $response_form126t = $this->read_excel_data_126t();
 //            var_dump($response_form126t);exit;
             $this->model_tr_126t_detail->save_records($response_form126t);
+            
+            
             $response_form102E1 = $this->read_excel_data_102E1();
 //            var_dump($response_form102E1);exit;
             $this->model_tr_102E1_detail->save_records($response_form102E1);

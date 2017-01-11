@@ -73,5 +73,11 @@ class model_tr_125t_detail extends tr_f125t_detail {
             unset($detail_satuan);
         }
     }
+    
+    public function all(){
+        return parent::get_all(array(
+                    "ur_pangkat",
+                        ), FALSE, TRUE, TRUE, 1, TRUE);
+    }
 
 }

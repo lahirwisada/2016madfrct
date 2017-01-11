@@ -57,7 +57,61 @@ class tr_f125t_detail extends LWS_Model {
         array("modified_by", ""),
         array("record_active", ""),
     );
-    protected $related_tables = array();
+    protected $related_tables = array(
+        "mskot" => array(
+            "table_name" => "master_kotama",
+            "fkey" => "id_kotama",
+            "table_alias" => "mskot",
+            "columns" => array(
+                array("kode_kotama","det_kode_kotama"),
+                array("ur_kotama","det_ur_kotama"),
+            ),
+            "referenced" => "LEFT"
+        ),
+        "master_pangkat" => array(
+            "table_name" => "master_pangkat",
+            "fkey" => "id_pangkat",
+            "columns" => array(
+                "kode_pangkat",
+                "ur_pangkat",
+            ),
+            "referenced" => "LEFT"
+        ),
+        "tr_125t" => array(
+            "fkey" => "id_f125t",
+            "columns" => array(
+                "id_triwulan",
+                "id_kabupaten_kota",
+                "path_excel",
+                "tanggal_upload",
+                "tanggal_ttd",
+                "uraian_atas_ttd",
+                "jabatan_ttd",
+                "nama_ttd",
+                "pangkat_ttd",
+                "nrp_ttd",
+           ),
+            "referenced" => "LEFT"
+        ),
+        "master_triwulan" => array(
+            "fkey" => "id_triwulan",
+            "reference_to" => "tr_125t",
+            "columns" => array(
+                "nama_triwulan",
+                "kode_triwulan",
+           ),
+            "referenced" => "LEFT"
+        ),
+        "master_kotama" => array(
+            "fkey" => "id_kotama",
+            "reference_to" => "tr_125t",
+            "columns" => array(
+                "kode_kotama",
+                "ur_kotama",
+            ),
+            "referenced" => "LEFT"
+        ),
+    );
     protected $attribute_types = array();
     public $col_map = array(
         "C" => "jumlah_secata",

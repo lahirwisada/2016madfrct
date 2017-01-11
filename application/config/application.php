@@ -61,7 +61,7 @@ $config['created_by'] = 'created_by';
 $config['modified_by'] = 'modified_by';
 $config['record_active'] = 'record_active';
 
-$config['default_limit_row'] = 20;
+$config['default_limit_row'] = 30;
 $config['limit_key_param'] = 'limit';
 $config['offset_key_param'] = 'offset';
 $config['keyword_key_param'] = 'keyword';
@@ -71,7 +71,11 @@ $config['keyword_key_param'] = 'keyword';
  * array("nama_modul"=>array("nama_aksi"=>array("nama_aksi_dikontroller")))
  */
  
- $config['modul_action_configuration'] = array();
+ $config['modul_action_configuration'] = array(
+     "rekap" => array(
+        "read" => array("index", "detail_125t"),
+    ),
+ );
  /**
 $config['modul_action_configuration'] = array(
     "cdaftar_diklat" => array(

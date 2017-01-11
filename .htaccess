@@ -6,7 +6,7 @@ RewriteEngine on
 # Case Sensitive Broh
 #
 ##
-RewriteBase /github/mabesAD/
+RewriteBase /github/mabesAD/2016madfrct/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

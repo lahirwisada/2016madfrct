@@ -21,6 +21,7 @@ class Rekap extends Base_rekap {
     //put your code here
     public function __construct() {
         parent::__construct('modul_rekap', 'Rekap 125 T');
+        $this->load->model('model_tr_125t_detail');
     }
 
     public function index() {
@@ -51,6 +52,11 @@ class Rekap extends Base_rekap {
         $this->add_cssfiles(array("plugins/select2/select2.min.css"));
         $this->add_jsfiles(array("plugins/select2/select2.full.min.js"));
 //        $this->add_jsfiles(array("avant/plugins/form-jasnyupload/fileinput.min.js"));
+    }
+    
+    public function detail_125t($id_125t = FALSE){
+        $records = $this->model_tr_125t_detail->all();
+        $this->set('records', $records->record_set);
     }
 
 }

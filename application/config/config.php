@@ -18,7 +18,7 @@ if (!defined('BASEPATH'))
   |
  */
 
-$config['base_url'] = "http://" . $_SERVER['SERVER_NAME'].":8080/github/mabesAD/";
+$config['base_url'] = "http://" . $_SERVER['SERVER_NAME'].":8080/github/mabesAD/2016madfrct/";
 
 //$config['base_url']	= "http://www.ikatifa-upnjatim.web.id/";
 

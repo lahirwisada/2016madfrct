@@ -19,19 +19,15 @@ $detail = isset($detail) ? $detail : FALSE;
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Kode Kotama *</label>
-                        <div class="col-md-6 col-xs-12">                                            
-                            <div class="input-group">
-                                <input type="text" name="kode_kotama" class="form-control" value="<?php echo $detail ? $detail->kode_kotama : ""; ?>">
-                            </div>                                            
+                        <div class="col-md-6 col-xs-12">
+                                <input type="text" name="kode_kotama" class="form-control" value="<?php echo $detail ? $detail->kode_kotama : ""; ?>">                                   
                             <span class="help-block">Isikan sesuai dengan kode kotama.</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">UR Kotama *</label>
-                        <div class="col-md-6 col-xs-12">                                            
-                            <div class="input-group">
-                                <input type="text" name="ur_kotama" class="form-control" value="<?php echo $detail ? $detail->ur_kotama : ""; ?>">
-                            </div>                                            
+                        <div class="col-md-6 col-xs-12">
+                                <input type="text" name="ur_kotama" class="form-control" value="<?php echo $detail ? $detail->ur_kotama : ""; ?>">                                        
                             <span class="help-block">Isikan sesuai dengan UR kotama.</span>
                         </div>
                     </div>

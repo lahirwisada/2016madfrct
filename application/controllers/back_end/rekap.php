@@ -20,7 +20,7 @@ class Rekap extends Base_rekap {
     
     //put your code here
     public function __construct() {
-        parent::__construct('modul_rekap', 'Rekap');
+        parent::__construct('modul_rekap', 'Rekap 125 T');
     }
 
     public function index() {

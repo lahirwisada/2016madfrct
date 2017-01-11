@@ -483,8 +483,7 @@ class Base_rekap extends Back_end {
     }
 
     protected function save_detail($id = FALSE) {
-//        return $this->{$this->model}->save($id);
-        return TRUE;
+        return $this->{$this->model}->save($id);
     }
 
     protected function after_save($id = FALSE, $saved_id = FALSE) {

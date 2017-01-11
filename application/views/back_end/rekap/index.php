@@ -74,23 +74,21 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                     <?php echo $next_list_number; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo beautify_str($record->nama_skpd) . " " . beautify_str($record->abbr_skpd) ?>
+                                                    <?php echo beautify_str($record->ur_kotama); ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo beautify_str($record->alamat_skpd) . " " . beautify_str($record->kodepos) ?>
-                                                    <br />
-                                                    <?php echo beautify_str($record->no_telp) . " " . $record->email ?>
+                                                    <?php echo beautify_str($record->nama_triwulan); ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $record->website ?>
+                                                    <?php echo pg_date_to_text($record->tanggal_upload); ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo beautify_str($record->col_order) ?>
+                                                    <?php echo beautify_str($record->nama_ttd)." (NRP. ".$record->nrp_ttd.")"; ?>
                                                 </td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm">
-                                                        <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->id_skpd; ?>">Ubah</a>
-                                                        <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->id_skpd; ?>">Hapus</a>
+                                                        <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->id_f125t; ?>">Ubah</a>
+                                                        <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->id_f125t; ?>">Hapus</a>
                                                     </div>
                                                 </td>
                                             </tr>

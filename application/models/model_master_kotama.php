@@ -31,6 +31,13 @@ class Model_master_kotama extends Master_kotama {
         }
         return $result;
     }
+    
+    public function get_id_by_uraian($uraian = ''){
+        if($uraian != ''){
+            return $this->get_detail("ur_kotama LIKE '%".$uraian."%'");
+        }
+        return FALSE;
+    }
 
 }
 

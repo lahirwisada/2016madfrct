@@ -24,6 +24,7 @@ class tr_f125t_detail extends LWS_Model {
     protected $attribute_labels = array(
         "id_f125t_detail" => array("id_f125t_detail", "id_f125t_detail"),
         "id_f125t" => array("id_f125t", "id_f125t"),
+        "id_kotama" => array("id_kotama", "id_kotama"),
         "id_pangkat" => array("id_pangkat", "id_pangkat"),
         "jumlah_secata" => array("jumlah_secata", "jumlah_secata"),
         "jumlah_secaba" => array("jumlah_secaba", "jumlah_secaba"),
@@ -41,6 +42,7 @@ class tr_f125t_detail extends LWS_Model {
     protected $rules = array(
         array("id_f125t_detail", ""),
         array("id_f125t", ""),
+        array("id_kotama", ""),
         array("id_pangkat", ""),
         array("jumlah_secata", ""),
         array("jumlah_secaba", ""),

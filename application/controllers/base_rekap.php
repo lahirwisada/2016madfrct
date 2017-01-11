@@ -12,6 +12,7 @@ class Base_rekap extends Back_end {
 
     public function __construct($cmodul_name = 'base_kelola_rekap', $header_title = 'Base Kelola Rekap') {
         parent::__construct($cmodul_name, $header_title);
+        $this->load->model(array('model_master_kotama', 'model_master_pangkat'));
     }
 
     public $jenis_formulir_rekap = 'unknown';
@@ -579,7 +580,7 @@ class Base_rekap extends Back_end {
         return $this->{$this->model}->save($id);
     }
 
-    protected function after_save($id = FALSE, $saved_id = FALSE) {
+    protected function after_save($id = FALSE, $id_form_detail = FALSE) {
         ini_set('memory_limit', '-1');
         if ($this->load_excel_library()) {
             $this->load->model(array(
@@ -588,17 +589,17 @@ class Base_rekap extends Back_end {
                 "model_tr_102E1_detail"
             ));
             $response_form125t = $this->read_excel_data_125t();
-            $this->model_tr_125t_detail->save_records($response_form125t);
+            $this->model_tr_125t_detail->save_records($id_form_detail, $response_form125t);
             
             
             $response_form126t = $this->read_excel_data_126t();
 //            var_dump($response_form126t);exit;
-            $this->model_tr_126t_detail->save_records($response_form126t);
+            $this->model_tr_126t_detail->save_records($id_form_detail, $response_form126t);
             
             
             $response_form102E1 = $this->read_excel_data_102E1();
 //            var_dump($response_form102E1);exit;
-            $this->model_tr_102E1_detail->save_records($response_form102E1);
+            $this->model_tr_102E1_detail->save_records($id_form_detail, $response_form102E1);
        
             
         }

@@ -45,17 +45,20 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                 <div class="block">
                     <div class="dataTables_wrapper no-footer">
                         <div class="table-responsive">
-                            <table class="table no-footer" id="DataTables_Table_0">
+                            <table class="table table-bordered table-condensed table-striped no-footer" id="DataTables_Table_0">
                                 <thead>
                                     <tr role="row">
                                         <th>
                                             No
                                         </th>
-                                        <th>
+<!--                                        <th>
                                             Ur Kotama
-                                        </th>
-                                        <th>
+                                        </th>-->
+<!--                                        <th>
                                             Triwulan Ke-
+                                        </th>-->
+                                        <th>
+                                            Bulan
                                         </th>
                                         <th>
                                             Tgl Upload
@@ -73,11 +76,11 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                 <td>
                                                     <?php echo $next_list_number; ?>
                                                 </td>
-                                                <td>
+<!--                                                <td>
                                                     <?php echo beautify_str($record->ur_kotama); ?>
-                                                </td>
+                                                </td>-->
                                                 <td>
-                                                    <?php echo beautify_str($record->nama_triwulan); ?>
+                                                    <?php echo beautify_str($record->nama_bulan) . " " . $record->id_tahun ?>
                                                 </td>
                                                 <td>
                                                     <?php echo pg_date_to_text($record->tanggal_upload); ?>
@@ -87,9 +90,9 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                 </td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm">
-                                                        <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail_125t") . "/" . $record->id_f125t; ?>">Detail</a>
-                                                        <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->id_f125t; ?>">Ubah</a>
-                                                        <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->id_f125t; ?>">Hapus</a>
+                                                        <!--<a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail_125t") . "/" . $record->id_formulir; ?>">Detail</a>-->
+                                                        <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->id_formulir; ?>">Ubah</a>
+                                                        <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->id_formulir; ?>">Hapus</a>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -65,11 +65,12 @@ class Base_rekap extends Back_end {
     protected function collect_row_data($active_sheet, $slash_index_min, $slash_index_max, $start_row, $col_map) {
         $row = array();
         for ($x = $slash_index_min; $x <= $slash_index_max; $x++) {
-            $col_alphabet = chr($x);
+//            $col_alphabet = chr($x);
+            $col_alphabet = PHPExcel_Cell::stringFromColumnIndex($x - 1);
             $cell_index = $col_alphabet . $start_row;
             $_row = $active_sheet->getCell($cell_index)->getCalculatedValue();
             $row[$col_map[$col_alphabet]] = $_row;
-            if(is_null($_row)){
+            if (is_null($_row)) {
                 $row[$col_map[$col_alphabet]] = 0;
             }
             unset($_row);
@@ -99,13 +100,19 @@ class Base_rekap extends Back_end {
         /**
          * Baca Matrix tabel F125 per Kotama
          */
-        $nama_kotama = $this->get_nama_kotama($active_sheet, $start_row);
+        $nama_kotama = trim($this->get_nama_kotama($active_sheet, $start_row));
+        $is_not_jumlah = trim(substr(strtolower($nama_kotama), 0, 6)) !== 'jumlah';
+        if ($is_not_jumlah) {
+            $id_kotama = $this->model_master_kotama->check_id_by_uraian_and_insert($nama_kotama);
+        }
         $start_row +=5;
 
         $col_map = $this->model_tr_125t_detail->col_map;
 
-        $slash_index_min = 67; // 65 = A
-        $slash_index_max = 73; // 73 = I
+//        $slash_index_min = 67; // 65 = A
+//        $slash_index_max = 73; // 73 = I
+        $slash_index_min = PHPExcel_Cell::columnIndexFromString('C');
+        $slash_index_max = PHPExcel_Cell::columnIndexFromString('H');
 
         $catch_jumlah_row = FALSE;
         $records = array();
@@ -113,16 +120,17 @@ class Base_rekap extends Back_end {
             $cell_index = 'A' . $start_row;
             $is_not_null_row = $active_sheet->getCell($cell_index)->getValue();
             $cell_index = 'B' . $start_row;
-            $is_jumlah_row = $active_sheet->getCell($cell_index)->getValue();
+            $is_jumlah_row = trim($active_sheet->getCell($cell_index)->getValue());
 
-            if ($is_not_null_row !== NULL) {
+            if ($is_not_jumlah && $is_not_null_row !== NULL) {
+                $id_pangkat = $this->model_master_pangkat->check_id_by_kode_pangkat_and_insert($is_jumlah_row);
                 $records[$is_jumlah_row] = $this->collect_row_data($active_sheet, $slash_index_min, $slash_index_max, $start_row, $col_map);
             }
             $start_row++;
 
             if (trim(strtolower($is_jumlah_row)) == 'jumlah') {
                 $catch_jumlah_row = TRUE;
-                $start_row--;
+//                $start_row--;
             }
         }
         unset($active_sheet);
@@ -171,7 +179,7 @@ class Base_rekap extends Back_end {
 //                    strtolower($known_nama_penandatangan_column) != '' ,
 //                    strtolower($known_nrp_penandatangan_column) != '' ,
 //                    $known_null_column === NULL);exit;
-            
+
             if (!(strtolower($known_bentuk_formulir_column) == 'bentuk : pers-125.t*)' &&
                     strtolower($known_judul_tni_column) == 'tentara nasional indonesia angkatan darat' &&
                     strtolower($known_kesatuan_column) != '' &&
@@ -180,7 +188,7 @@ class Base_rekap extends Back_end {
                     strtolower($known_nama_penandatangan_column) != '' &&
                     strtolower($known_nrp_penandatangan_column) != '' &&
                     $known_null_column === NULL)) {
-                
+
 //                    echo "slh";exit;
                 /**
                  * WRONG TEMPLATE
@@ -207,19 +215,19 @@ class Base_rekap extends Back_end {
                         $record_found[$records["nama_kotama"]] = $records["records"];
                     }
                 }
-                
+
                 $response_data_125t["data"] = $record_found;
             }
         }
         unset($active_sheet);
         return $response_data_125t;
     }
-    
-    private function validate_final_response_data($response_data = array()){
+
+    private function validate_final_response_data($response_data = array()) {
         $final_response = array();
-        if(is_array($response_data) && !empty($response_data)){
-            foreach($response_data as $key => $arr_value){
-                if($key !== '' && !empty($arr_value)){
+        if (is_array($response_data) && !empty($response_data)) {
+            foreach ($response_data as $key => $arr_value) {
+                if ($key !== '' && !empty($arr_value)) {
                     $final_response[$key] = $arr_value;
                 }
             }
@@ -227,7 +235,7 @@ class Base_rekap extends Back_end {
         unset($response_data);
         return $final_response;
     }
-    
+
     /**
      * parse excel and collect cells data
      * Form 125 T
@@ -243,7 +251,7 @@ class Base_rekap extends Back_end {
         if ($active_sheet !== FALSE) {
 
             $last_row = $active_sheet->getHighestRow();
-            $start_row = 9;
+            $start_row = 57;
             $kotama_kesatuan_awal_row = 1;
             $readed_first_row = FALSE;
 
@@ -264,7 +272,7 @@ class Base_rekap extends Back_end {
 //                    strtolower($known_nama_penandatangan_column) != '' ,
 //                    strtolower($known_nrp_penandatangan_column) != '' ,
 //                    $known_null_column === NULL);exit;
-            
+
             if (!(strtolower($known_bentuk_formulir_column) == 'bentuk : pers-125.t*)' &&
                     strtolower($known_judul_tni_column) == 'tentara nasional indonesia angkatan darat' &&
                     strtolower($known_kesatuan_column) != '' &&
@@ -273,7 +281,7 @@ class Base_rekap extends Back_end {
                     strtolower($known_nama_penandatangan_column) != '' &&
                     strtolower($known_nrp_penandatangan_column) != '' &&
                     $known_null_column === NULL)) {
-                
+
 //                    echo "slh";exit;
                 /**
                  * WRONG TEMPLATE
@@ -300,19 +308,18 @@ class Base_rekap extends Back_end {
                         $record_found[$records["nama_kotama"]] = $records["records"];
                     }
                 }
-                
+
                 $response_data_125t["data"] = $this->validate_final_response_data($record_found);
             }
         }
         unset($active_sheet);
-        
+
         return $response_data_125t;
     }
+
     /**
      * ini yang dikejakan samsul
-     */    
-    
-    
+     */
     protected function collect_matrix_data_f126t($active_sheet, $readed_first_row, $_start_row, $last_row) {
         /**
          * cari baris pertama
@@ -322,13 +329,19 @@ class Base_rekap extends Back_end {
         /**
          * Baca Matrix tabel F126 per Kotama
          */
-        $nama_kotama = $this->get_nama_kotama($active_sheet, $start_row);
+        $nama_kotama = trim($this->get_nama_kotama($active_sheet, $start_row));
+        $is_not_jumlah = trim(substr(strtolower($nama_kotama), 0, 6)) !== 'jumlah';
+        if ($is_not_jumlah) {
+            $id_kotama = $this->model_master_kotama->check_id_by_uraian_and_insert($nama_kotama);
+        }
         $start_row +=5;
 
         $col_map = $this->model_tr_126t_detail->col_map;
 
-        $slash_index_min = 67; // 65 = A
-        $slash_index_max = 77; // 73 = I
+//        $slash_index_min = 67; // 65 = A
+//        $slash_index_max = 77; // 73 = I
+        $slash_index_min = PHPExcel_Cell::columnIndexFromString('C');
+        $slash_index_max = PHPExcel_Cell::columnIndexFromString('L');
 
         $catch_jumlah_row = FALSE;
         $records = array();
@@ -336,16 +349,17 @@ class Base_rekap extends Back_end {
             $cell_index = 'A' . $start_row;
             $is_not_null_row = $active_sheet->getCell($cell_index)->getValue();
             $cell_index = 'B' . $start_row;
-            $is_jumlah_row = $active_sheet->getCell($cell_index)->getValue();
+            $is_jumlah_row = trim($active_sheet->getCell($cell_index)->getValue());
 
-            if ($is_not_null_row !== NULL) {
+            if ($is_not_jumlah && $is_not_null_row !== NULL) {
+                $id_pangkat = $this->model_master_pangkat->check_id_by_kode_pangkat_and_insert($is_jumlah_row);
                 $records[$is_jumlah_row] = $this->collect_row_data($active_sheet, $slash_index_min, $slash_index_max, $start_row, $col_map);
             }
             $start_row++;
 
             if (trim(strtolower($is_jumlah_row)) == 'jumlah') {
                 $catch_jumlah_row = TRUE;
-                $start_row--;
+//                $start_row--;
             }
         }
         unset($active_sheet);
@@ -370,7 +384,7 @@ class Base_rekap extends Back_end {
         );
 
         $active_sheet = $this->excel->setActiveSheetIndexByName('126T');
-        
+
 
         if ($active_sheet !== FALSE) {
 
@@ -387,9 +401,9 @@ class Base_rekap extends Back_end {
             $known_null_column = $active_sheet->getCell('B45')->getValue();
             $known_nama_penandatangan_column = $active_sheet->getCell('H47')->getValue();
             $known_nrp_penandatangan_column = $active_sheet->getCell('H48')->getValue();
-            
-            
-            
+
+
+
             if (!(strtolower($known_bentuk_formulir_column) == 'bentuk : pers-126.t*)' &&
                     strtolower($known_judul_tni_column) == 'tentara nasional indonesia angkatan darat' &&
                     strtolower($known_kesatuan_column) != '' &&
@@ -423,18 +437,17 @@ class Base_rekap extends Back_end {
                         $record_found[$records["nama_kotama"]] = $records["records"];
                     }
                 }
-                
-                $response_data_126t["data"] = $record_found;
+
+                $response_data_126t["data"] = $this->validate_final_response_data($record_found);
             }
         }
         unset($active_sheet);
-        
+
         return $response_data_126t;
     }
-    
-    
+
     //sampai disini
-    
+
     protected function collect_matrix_data_f102E1($active_sheet, $readed_first_row, $_start_row, $last_row) {
         /**
          * cari baris pertama
@@ -445,30 +458,34 @@ class Base_rekap extends Back_end {
          * Baca Matrix tabel F102E1 per Kotama
          */
         $nama_kotama = $this->get_nama_kotama($active_sheet, $start_row);
-        $start_row +=5;
+        $is_writing = trim(substr(strtolower($nama_kotama), 0, 6)) !== 'jumlah';
+        $start_row +=3;
 
         $col_map = $this->model_tr_102E1_detail->col_map;
-
-        $slash_index_min = 67; // 65 = A
-        $slash_index_max = 91; // 73 = I
+//        $slash_index_min = 67; // 65 = A
+//        $slash_index_max = 91; // 73 = I
+        $slash_index_min = PHPExcel_Cell::columnIndexFromString('C');
+        $slash_index_max = PHPExcel_Cell::columnIndexFromString('AA');
 
         $catch_jumlah_row = FALSE;
         $records = array();
+        $category = NULL;
         while (!$catch_jumlah_row && $start_row < $last_row) {
             $cell_index = 'A' . $start_row;
             $is_not_null_row = $active_sheet->getCell($cell_index)->getValue();
             $cell_index = 'B' . $start_row;
             $is_jumlah_row = $active_sheet->getCell($cell_index)->getValue();
-
-            if ($is_not_null_row !== NULL) {
-                $records[$is_jumlah_row] = $this->collect_row_data($active_sheet, $slash_index_min, $slash_index_max, $start_row, $col_map);
-            }
-            $start_row++;
-
-            if (trim(strtolower($is_jumlah_row)) == 'jumlah') {
+            if ($is_not_null_row !== NULL && $is_jumlah_row !== NULL) {
+                $category = $is_jumlah_row;
+            } elseif ($is_jumlah_row !== NULL) {
+                if ($is_writing && trim(strtolower($is_jumlah_row)) !== 'jumlah') {
+                    $records[$category][trim(substr($is_jumlah_row, 3))] = $this->collect_row_data($active_sheet, $slash_index_min, $slash_index_max, $start_row, $col_map);
+                }
+            } else {
                 $catch_jumlah_row = TRUE;
                 $start_row--;
             }
+            $start_row++;
         }
         unset($active_sheet);
         return array(
@@ -492,35 +509,38 @@ class Base_rekap extends Back_end {
         );
 
         $active_sheet = $this->excel->setActiveSheetIndexByName('102E1');
-        
+
 
         if ($active_sheet !== FALSE) {
 
             $last_row = $active_sheet->getHighestRow();
-            $start_row = 48;
+            $start_row = 60;
             $kotama_kesatuan_awal_row = 1;
             $readed_first_row = FALSE;
 
-            $known_bentuk_formulir_column = $active_sheet->getCell('Y2')->getValue();
+            $known_bentuk_formulir_column = $active_sheet->getCell('V2')->getValue();
             $known_judul_tni_column = $active_sheet->getCell('A1')->getValue();
             $known_kesatuan_column = $active_sheet->getCell('A2')->getValue();
             $known_judul_column = $active_sheet->getCell('A4')->getValue();
-            $known_bulan_tahun_column = $active_sheet->getCell('A5')->getValue();
+            $known_sub_judul_column = $active_sheet->getCell('A5')->getValue();
+            $known_bulan_tahun_column = $active_sheet->getCell('A6')->getValue();
             $known_null_column = $active_sheet->getCell('B42')->getValue();
-            $known_nama_penandatangan_column = $active_sheet->getCell('V44')->getValue();
-            $known_nrp_penandatangan_column = $active_sheet->getCell('V45')->getValue();
-            
-            
-            var_dump (strtolower($known_bentuk_formulir_column) == 'bentuk      : pers-102 E1',
-                    strtolower($known_judul_tni_column) == 'tentara nasional indonesia angkatan darat',
-                    strtolower($known_kesatuan_column) != '',
-                    strtolower($known_judul_column) != '',
-                    strtolower($known_bulan_tahun_column) != '',
-                    strtolower($known_nama_penandatangan_column) != '',
-                    strtolower($known_nrp_penandatangan_column) != '',
-                    $known_null_column === NULL);exit;
-            
-            if (!(strtolower($known_bentuk_formulir_column) == 'bentuk      : pers-102 E1' &&
+            $known_nama_penandatangan_column = $active_sheet->getCell('V45')->getValue();
+            $known_nrp_penandatangan_column = $active_sheet->getCell('V46')->getValue();
+
+
+//            var_dump(strtolower($known_bentuk_formulir_column) == 'bentuk      : pers-102 e1',
+//                    strtolower($known_judul_tni_column) == 'tentara nasional indonesia angkatan darat',
+//                    strtolower($known_kesatuan_column) != '',
+//                    strtolower($known_judul_column) != '',
+//                    strtolower($known_sub_judul_column) != '',
+//                    strtolower($known_bulan_tahun_column) != '',
+//                    strtolower($known_nama_penandatangan_column) != '',
+//                    strtolower($known_nrp_penandatangan_column) != '',
+//                    $known_null_column === NULL);
+//            exit;
+
+            if (!(strtolower($known_bentuk_formulir_column) == 'bentuk      : pers-102 e1' &&
                     strtolower($known_judul_tni_column) == 'tentara nasional indonesia angkatan darat' &&
                     strtolower($known_kesatuan_column) != '' &&
                     strtolower($known_judul_column) != '' &&
@@ -553,19 +573,15 @@ class Base_rekap extends Back_end {
                         $record_found[$records["nama_kotama"]] = $records["records"];
                     }
                 }
-                
-                $response_data_102E1["data"] = $record_found;
+
+                $response_data_102E1["data"] = $this->validate_final_response_data($record_found);
             }
         }
         unset($active_sheet);
-        
+
         return $response_data_102E1;
     }
-    
-    
-    
-    
-    
+
     //sampai disini
     protected function load_excel_library() {
         if ($this->before_save_response && is_array($this->before_save_response) && array_key_exists('success_upload', $this->before_save_response) && $this->before_save_response['success_upload']) {
@@ -578,6 +594,7 @@ class Base_rekap extends Back_end {
 
     protected function save_detail($id = FALSE) {
         return $this->{$this->model}->save($id);
+//        return TRUE;
     }
 
     protected function after_save($id = FALSE, $id_form_detail = FALSE) {
@@ -589,19 +606,18 @@ class Base_rekap extends Back_end {
                 "model_tr_102E1_detail"
             ));
             $response_form125t = $this->read_excel_data_125t();
+//            var_dump($response_form125t);exit();
             $this->model_tr_125t_detail->save_records($id_form_detail, $response_form125t);
-            
-            
+
+
             $response_form126t = $this->read_excel_data_126t();
 //            var_dump($response_form126t);exit;
             $this->model_tr_126t_detail->save_records($id_form_detail, $response_form126t);
-            
-            
+
+
             $response_form102E1 = $this->read_excel_data_102E1();
 //            var_dump($response_form102E1);exit;
             $this->model_tr_102E1_detail->save_records($id_form_detail, $response_form102E1);
-       
-            
         }
         return TRUE;
 //        $this->{$this->model}->read_excel_data($response);

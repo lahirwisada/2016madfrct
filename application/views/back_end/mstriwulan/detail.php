@@ -35,7 +35,7 @@ $detail = isset($detail) ? $detail : FALSE;
                             <span class="help-block">Isikan sesuai dengan Nama Triwulan.</span>
                         </div>
                     </div>
-                    <div class="form-group">
+<!--                    <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Keterangan*</label>
                         <div class="col-md-6 col-xs-12">                                            
                             <div class="input-group">
@@ -43,7 +43,7 @@ $detail = isset($detail) ? $detail : FALSE;
                             </div>                                            
                             <span class="help-block">Isikan sesuai dengan Keterangan.</span>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="panel-footer">
                     <button type="submit" class="btn-primary btn pull-right">Submit</button>

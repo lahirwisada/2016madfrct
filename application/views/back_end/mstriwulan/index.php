@@ -56,9 +56,9 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                         <th>
                                             Nama Triwulan
                                         </th>
-                                        <th>
+<!--                                        <th>
                                             Keterangan
-                                        </th>
+                                        </th>-->
                                         <th width="15%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -75,9 +75,9 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                 <td>
                                                     <?php echo beautify_str($record->nama_triwulan) ?>
                                                 </td>
-                                                <td>
+<!--                                                <td>
                                                     <?php echo beautify_str($record->keterangan) ?>
-                                                </td>
+                                                </td>-->
                                                 <td>
                                                     <div class="btn-group btn-group-sm">
                                                         <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->id_triwulan; ?>">Ubah</a>

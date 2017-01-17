@@ -15,9 +15,9 @@ class Master_bulan extends LWS_model {
     }
 
     protected $attribute_labels = array(
-        "id_bulan" => array("id_bulan", "Id Modul"),
-        "kode_bulan" => array("kode_bulan", "kode_modul"),
-        "nama_bulan" => array("nama_bulan", "nama_modul"),
+        "id_bulan" => array("id_bulan", "Id Bulan"),
+        "kode_bulan" => array("kode_bulan", "Kode Bulan"),
+        "nama_bulan" => array("nama_bulan", "Nama Bulan"),
 //        "keterangan" => array("keterangan", "keterangan"),
 //        "created_date" => array("created_date", "created_date"),
 //        "created_by" => array("created_by", "created_by"),

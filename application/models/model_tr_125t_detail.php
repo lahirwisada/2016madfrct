@@ -12,7 +12,8 @@ class model_tr_125t_detail extends tr_f125t_detail {
 
     protected $rules = array(
         array("id_f125t_detail", ""),
-        array("id_f125t", ""),
+        array("id_formulir", ""),
+        array("id_kotama", ""),
         array("id_pangkat", ""),
         array("jumlah_secata", ""),
         array("jumlah_secaba", ""),
@@ -20,7 +21,7 @@ class model_tr_125t_detail extends tr_f125t_detail {
         array("jumlah_selapa_setingkat", ""),
         array("jumlah_sesko_angkatan_setingkat", ""),
         array("jumlah_sesko_tni", ""),
-        array("jumlah_subtotal", ""),
+//        array("jumlah_subtotal", ""),
         array("created_date", ""),
         array("created_by", ""),
         array("modified_date", ""),
@@ -51,11 +52,13 @@ class model_tr_125t_detail extends tr_f125t_detail {
         $detail_pangkat = $this->model_master_pangkat->get_detail_by_kode_pangkat(strtolower($kode_pangkat));
         if ($detail_pangkat && !empty($array_jumlah)) {
             $object_tr_125_detail = new model_tr_125t_detail();
+            $object_tr_125_detail->id_formulir = $id_form_detail;
+            $object_tr_125_detail->id_kotama = $id_kotama;
             $object_tr_125_detail->id_pangkat = $detail_pangkat->id_pangkat;
-            $object_tr_125_detail->id_f125t = $id_form_detail;
-            foreach($array_jumlah as $key_field => $value){
+            foreach ($array_jumlah as $key_field => $value) {
                 $object_tr_125_detail->{$key_field} = $value;
             }
+//            var_dump($object_tr_125_detail);exit();
             $object_tr_125_detail->save();
         }
         unset($detail_pangkat, $object_tr_125_detail);
@@ -63,8 +66,7 @@ class model_tr_125t_detail extends tr_f125t_detail {
 
     public function save_per_satuan($id_form_detail, $satuan_kotama, $array_data_satuan = array()) {
         if (is_array($array_data_satuan) && !empty($array_data_satuan)) {
-            $detail_satuan = $this->model_master_kotama->get_id_by_uraian($satuan_kotama);
-
+            $detail_satuan = $this->model_master_kotama->get_id_by_uraian(strtolower($satuan_kotama));
             if ($detail_satuan) {
                 foreach ($array_data_satuan as $kode_pangkat => $array_jumlah) {
                     $this->save_per_kelompok_pangkat($id_form_detail, $detail_satuan->id_kotama, $kode_pangkat, $array_jumlah);
@@ -73,11 +75,37 @@ class model_tr_125t_detail extends tr_f125t_detail {
             unset($detail_satuan);
         }
     }
-    
-    public function all(){
+
+    public function all() {
         return parent::get_all(array(
                     "ur_pangkat",
                         ), FALSE, TRUE, TRUE, 1, TRUE);
+    }
+
+    public function arrange_by_kotama($records = FALSE) {
+        $result = array();
+        if ($records) {
+            foreach ($records as $record) {
+                $kotama = $record->det_ur_kotama;
+                if (isset($result[$kotama])) {
+                    $result[$kotama][] = $record;
+                } else {
+                    $result[$kotama] = array($record);
+                }
+            }
+        }
+//        var_dump($result);exit();
+        return $result;
+    }
+
+    public function get_data($id_formulir = FALSE) {
+        $result = FALSE;
+        if ($id_formulir) {
+            $this->db->where($this->table_name . ".id_formulir", $id_formulir, NULL, FALSE);
+            $result = $this->get_all();
+        }
+//        var_dump($result);exit();
+        return $this->arrange_by_kotama($result);
     }
 
 }

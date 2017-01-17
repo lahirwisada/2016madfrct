@@ -32,7 +32,7 @@ $detail = isset($detail) ? $detail : FALSE;
                             <div class="input-group">
                                 <input type="text" name="nama_diktuk" class="form-control" value="<?php echo $detail ? $detail->nama_diktuk : ""; ?>">
                             </div>                                            
-                            <span class="help-block">Isikan sesuai dengan Nama Diktuk.</span>
+                            <span class="help-block">Isikan sesuai dengan nama Diktuk.</span>
                         </div>
                     </div>
                 </div>

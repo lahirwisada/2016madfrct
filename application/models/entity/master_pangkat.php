@@ -15,9 +15,9 @@ class Master_pangkat extends LWS_model {
     }
 
     protected $attribute_labels = array(
-        "id_pangkat" => array("id_pangkat", "Id Modul"),
-        "kode_pangkat" => array("kode_pangkat", "kode_modul"),
-        "ur_pangkat" => array("ur_pangkat", "ur_modul"),
+        "id_pangkat" => array("id_pangkat", "Id Pangkat"),
+        "kode_pangkat" => array("kode_pangkat", "Kode Pangkat"),
+        "ur_pangkat" => array("ur_pangkat", "Nama Pangkat"),
 //        "created_date" => array("created_date", "created_date"),
 //        "created_by" => array("created_by", "created_by"),
 //        "modified_date" => array("modified_date", "modified_date"),

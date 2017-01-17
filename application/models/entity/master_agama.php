@@ -15,8 +15,8 @@ class Master_agama extends LWS_model {
     }
 
     protected $attribute_labels = array(
-        "id_agama" => array("id_agama", "Id Modul"),
-        "nama_agama" => array("nama_agama", "nama_modul"),
+        "id_agama" => array("id_agama", "Id Agama"),
+        "nama_agama" => array("nama_agama", "Nama Agama"),
 //        "created_date" => array("created_date", "created_date"),
 //        "created_by" => array("created_by", "created_by"),
 //        "modified_date" => array("modified_date", "modified_date"),

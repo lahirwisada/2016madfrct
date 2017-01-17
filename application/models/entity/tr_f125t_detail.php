@@ -23,7 +23,7 @@ class tr_f125t_detail extends LWS_Model {
 
     protected $attribute_labels = array(
         "id_f125t_detail" => array("id_f125t_detail", "id_f125t_detail"),
-        "id_f125t" => array("id_f125t", "id_f125t"),
+        "id_formulir" => array("id_formulir", "id_formulir"),
         "id_kotama" => array("id_kotama", "id_kotama"),
         "id_pangkat" => array("id_pangkat", "id_pangkat"),
         "jumlah_secata" => array("jumlah_secata", "jumlah_secata"),
@@ -32,7 +32,7 @@ class tr_f125t_detail extends LWS_Model {
         "jumlah_selapa_setingkat" => array("jumlah_selapa_setingkat", "jumlah_selapa_setingkat"),
         "jumlah_sesko_angkatan_setingkat" => array("jumlah_sesko_angkatan_setingkat", "jumlah_sesko_angkatan_setingkat"),
         "jumlah_sesko_tni" => array("jumlah_sesko_tni", "jumlah_sesko_tni"),
-        "jumlah_subtotal" => array("jumlah_subtotal", "jumlah_subtotal"),
+//        "jumlah_subtotal" => array("jumlah_subtotal", "jumlah_subtotal"),
         "created_date" => array("created_date", "created_date"),
         "created_by" => array("created_by", "created_by"),
         "modified_date" => array("modified_date", "modified_date"),
@@ -41,7 +41,7 @@ class tr_f125t_detail extends LWS_Model {
     );
     protected $rules = array(
         array("id_f125t_detail", ""),
-        array("id_f125t", ""),
+        array("id_formulir", ""),
         array("id_kotama", ""),
         array("id_pangkat", ""),
         array("jumlah_secata", ""),
@@ -50,7 +50,7 @@ class tr_f125t_detail extends LWS_Model {
         array("jumlah_selapa_setingkat", ""),
         array("jumlah_sesko_angkatan_setingkat", ""),
         array("jumlah_sesko_tni", ""),
-        array("jumlah_subtotal", ""),
+//        array("jumlah_subtotal", ""),
         array("created_date", ""),
         array("created_by", ""),
         array("modified_date", ""),
@@ -77,10 +77,10 @@ class tr_f125t_detail extends LWS_Model {
             ),
             "referenced" => "LEFT"
         ),
-        "tr_125t" => array(
-            "fkey" => "id_f125t",
+        "tr_formulir" => array(
+            "fkey" => "id_formulir",
             "columns" => array(
-                "id_triwulan",
+                "id_bulan",
                 "id_kabupaten_kota",
                 "path_excel",
                 "tanggal_upload",
@@ -93,24 +93,24 @@ class tr_f125t_detail extends LWS_Model {
            ),
             "referenced" => "LEFT"
         ),
-        "master_triwulan" => array(
-            "fkey" => "id_triwulan",
-            "reference_to" => "tr_125t",
+        "master_bulan" => array(
+            "fkey" => "id_bulan",
+            "reference_to" => "tr_formulir",
             "columns" => array(
-                "nama_triwulan",
-                "kode_triwulan",
+                "nama_bulan",
+                "kode_bulan",
            ),
             "referenced" => "LEFT"
         ),
-        "master_kotama" => array(
-            "fkey" => "id_kotama",
-            "reference_to" => "tr_125t",
-            "columns" => array(
-                "kode_kotama",
-                "ur_kotama",
-            ),
-            "referenced" => "LEFT"
-        ),
+//        "master_kotama" => array(
+//            "fkey" => "id_kotama",
+//            "reference_to" => "tr_formulir",
+//            "columns" => array(
+//                "kode_kotama",
+//                "ur_kotama",
+//            ),
+//            "referenced" => "LEFT"
+//        ),
     );
     protected $attribute_types = array();
     public $col_map = array(
@@ -120,7 +120,7 @@ class tr_f125t_detail extends LWS_Model {
         "F" => "jumlah_selapa_setingkat",
         "G" => "jumlah_sesko_angkatan_setingkat",
         "H" => "jumlah_sesko_tni",
-        "I" => "jumlah_subtotal",
+//        "I" => "jumlah_subtotal",
     );
 
 }

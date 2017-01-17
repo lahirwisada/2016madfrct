@@ -31,10 +31,25 @@ class Model_master_kotama extends Master_kotama {
         }
         return $result;
     }
-    
-    public function get_id_by_uraian($uraian = ''){
-        if($uraian != ''){
-            return $this->get_detail("ur_kotama LIKE '%".$uraian."%'");
+
+    public function check_id_by_uraian_and_insert($uraian = NULL) {
+        $id_kotama = FALSE;
+        if ($uraian) {
+            $kotama_found = $this->get_detail("lower(ur_kotama) LIKE lower('%" . $uraian . "%')");
+            if ($kotama_found) {
+                $id_kotama = $kotama_found->id_kotama;
+            } else {
+                $this->ur_kotama = $uraian;
+                $id_kotama = $this->save();
+            }
+            unset($kotama_found);
+        }
+        return $id_kotama;
+    }
+
+    public function get_id_by_uraian($uraian = '') {
+        if ($uraian != '') {
+            return $this->get_detail("lower(ur_kotama) LIKE lower('%" . $uraian . "%')");
         }
         return FALSE;
     }

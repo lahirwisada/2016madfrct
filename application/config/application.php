@@ -70,13 +70,18 @@ $config['keyword_key_param'] = 'keyword';
  * modul configuration
  * array("nama_modul"=>array("nama_aksi"=>array("nama_aksi_dikontroller")))
  */
- 
- $config['modul_action_configuration'] = array(
-     "rekap" => array(
+$config['modul_action_configuration'] = array(
+    "rekap" => array(
         "read" => array("index", "detail_125t"),
     ),
- );
- /**
+    "lp125t" => array(
+        "read" => array("index", "detail"),
+    ),
+    "lp126t" => array(
+        "read" => array("index", "detail"),
+    ),
+);
+/**
 $config['modul_action_configuration'] = array(
     "cdaftar_diklat" => array(
         "insert" => array("cetak_sttpp", "cetak_sttpp_peserta", "cetak_spt", "detail"),

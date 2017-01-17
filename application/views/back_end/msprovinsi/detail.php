@@ -32,7 +32,7 @@ $detail = isset($detail) ? $detail : FALSE;
                             <div class="input-group">
                                 <input type="text" name="nama_provinsi" class="form-control" value="<?php echo $detail ? $detail->nama_provinsi : ""; ?>">
                             </div>                                            
-                            <span class="help-block">Isikan sesuai dengan kode provinsi yang tertera pada Ketetapan Kementerian Dalam Negeri tentang Wilayah Indonesia.</span>
+                            <span class="help-block">Isikan sesuai dengan nama provinsi yang tertera pada Ketetapan Kementerian Dalam Negeri tentang Wilayah Indonesia.</span>
                         </div>
                     </div>
                 </div>

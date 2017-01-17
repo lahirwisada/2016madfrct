@@ -15,12 +15,12 @@ if (!defined('BASEPATH'))
  */
 class Rekap extends Base_rekap {
 
-    public $model = 'model_tr_125t';
+    public $model = 'model_tr_formulir';
     public $jenis_formulir_rekap = '125t';
     
     //put your code here
     public function __construct() {
-        parent::__construct('modul_rekap', 'Rekap 125 T');
+        parent::__construct('modul_rekap', 'Rekap Formulir');
         $this->load->model('model_tr_125t_detail');
     }
 
@@ -33,7 +33,8 @@ class Rekap extends Base_rekap {
 
     public function detail($id = FALSE) {
         parent::detail($id, array(
-            "id_triwulan",
+            "id_bulan",
+            "id_tahun",
             "tanggal_upload",
             "tanggal_ttd",
             "uraian_atas_ttd",
@@ -54,7 +55,7 @@ class Rekap extends Base_rekap {
 //        $this->add_jsfiles(array("avant/plugins/form-jasnyupload/fileinput.min.js"));
     }
     
-    public function detail_125t($id_125t = FALSE){
+    public function detail_125t($id_formulir = FALSE){
         $records = $this->model_tr_125t_detail->all();
         $this->set('records', $records->record_set);
     }

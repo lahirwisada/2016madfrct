@@ -102,9 +102,9 @@ class Base_rekap extends Back_end {
          */
         $nama_kotama = trim($this->get_nama_kotama($active_sheet, $start_row));
         $is_not_jumlah = trim(substr(strtolower($nama_kotama), 0, 6)) !== 'jumlah';
-        if ($is_not_jumlah) {
-            $id_kotama = $this->model_master_kotama->check_id_by_uraian_and_insert($nama_kotama);
-        }
+//        if ($is_not_jumlah) {
+//            $this->model_master_kotama->check_id_by_uraian_and_insert($nama_kotama);
+//        }
         $start_row +=5;
 
         $col_map = $this->model_tr_125t_detail->col_map;
@@ -123,7 +123,7 @@ class Base_rekap extends Back_end {
             $is_jumlah_row = trim($active_sheet->getCell($cell_index)->getValue());
 
             if ($is_not_jumlah && $is_not_null_row !== NULL) {
-                $id_pangkat = $this->model_master_pangkat->check_id_by_kode_pangkat_and_insert($is_jumlah_row);
+//                $this->model_master_pangkat->check_id_by_kode_pangkat_and_insert($is_jumlah_row);
                 $records[$is_jumlah_row] = $this->collect_row_data($active_sheet, $slash_index_min, $slash_index_max, $start_row, $col_map);
             }
             $start_row++;
@@ -331,9 +331,9 @@ class Base_rekap extends Back_end {
          */
         $nama_kotama = trim($this->get_nama_kotama($active_sheet, $start_row));
         $is_not_jumlah = trim(substr(strtolower($nama_kotama), 0, 6)) !== 'jumlah';
-        if ($is_not_jumlah) {
-            $id_kotama = $this->model_master_kotama->check_id_by_uraian_and_insert($nama_kotama);
-        }
+//        if ($is_not_jumlah) {
+//            $this->model_master_kotama->check_id_by_uraian_and_insert($nama_kotama);
+//        }
         $start_row +=5;
 
         $col_map = $this->model_tr_126t_detail->col_map;
@@ -352,7 +352,7 @@ class Base_rekap extends Back_end {
             $is_jumlah_row = trim($active_sheet->getCell($cell_index)->getValue());
 
             if ($is_not_jumlah && $is_not_null_row !== NULL) {
-                $id_pangkat = $this->model_master_pangkat->check_id_by_kode_pangkat_and_insert($is_jumlah_row);
+//                $this->model_master_pangkat->check_id_by_kode_pangkat_and_insert($is_jumlah_row);
                 $records[$is_jumlah_row] = $this->collect_row_data($active_sheet, $slash_index_min, $slash_index_max, $start_row, $col_map);
             }
             $start_row++;
@@ -458,7 +458,10 @@ class Base_rekap extends Back_end {
          * Baca Matrix tabel F102E1 per Kotama
          */
         $nama_kotama = $this->get_nama_kotama($active_sheet, $start_row);
-        $is_writing = trim(substr(strtolower($nama_kotama), 0, 6)) !== 'jumlah';
+        $is_not_jumlah = trim(substr(strtolower($nama_kotama), 0, 6)) !== 'jumlah';
+//        if ($is_not_jumlah) {
+//            $this->model_master_kotama->check_id_by_uraian_and_insert($nama_kotama);
+//        }
         $start_row +=3;
 
         $col_map = $this->model_tr_102E1_detail->col_map;
@@ -478,12 +481,13 @@ class Base_rekap extends Back_end {
             if ($is_not_null_row !== NULL && $is_jumlah_row !== NULL) {
                 $category = $is_jumlah_row;
             } elseif ($is_jumlah_row !== NULL) {
-                if ($is_writing && trim(strtolower($is_jumlah_row)) !== 'jumlah') {
+                if ($is_not_jumlah && trim(strtolower($is_jumlah_row)) !== 'jumlah') {
+//                    $this->model_master_pangkat->check_id_by_kode_pangkat_and_insert(trim(substr($is_jumlah_row, 3)));
                     $records[$category][trim(substr($is_jumlah_row, 3))] = $this->collect_row_data($active_sheet, $slash_index_min, $slash_index_max, $start_row, $col_map);
                 }
             } else {
                 $catch_jumlah_row = TRUE;
-                $start_row--;
+//                $start_row--;
             }
             $start_row++;
         }
@@ -569,7 +573,7 @@ class Base_rekap extends Back_end {
                     if ($start_row >= $last_row) {
                         $reach_last_row = TRUE;
                     } else {
-                        list($start_row, $records) = $this->collect_matrix_data_f126t($active_sheet, $readed_first_row, $start_row, $last_row);
+                        list($start_row, $records) = $this->collect_matrix_data_f102E1($active_sheet, $readed_first_row, $start_row, $last_row);
                         $record_found[$records["nama_kotama"]] = $records["records"];
                     }
                 }
@@ -616,7 +620,8 @@ class Base_rekap extends Back_end {
 
 
             $response_form102E1 = $this->read_excel_data_102E1();
-//            var_dump($response_form102E1);exit;
+            var_dump($response_form102E1);
+            exit;
             $this->model_tr_102E1_detail->save_records($id_form_detail, $response_form102E1);
         }
         return TRUE;

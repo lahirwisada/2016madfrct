@@ -20,7 +20,10 @@ class Mspangkat extends Back_end {
 
     public function detail($id = FALSE) {
         parent::detail($id, array(
-            "kode_pangkat","ur_pangkat",
+            "kode_pangkat",
+            "ur_pangkat",
+            "kategori_pangkat",
+            "tingkat_pangkat",
         ));
 
         $this->set("bread_crumb", array(
@@ -33,7 +36,7 @@ class Mspangkat extends Back_end {
     public function get_like() {
         $keyword = $this->input->post("keyword");
 
-        $pangkat_found = $this->model_ref_pangkat->get_like($keyword);
+        $pangkat_found = $this->model_master_pangkat->get_like($keyword);
         
         $this->to_json($pangkat_found);
     }

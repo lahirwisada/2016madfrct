@@ -5,6 +5,37 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  * and open the template in the editor.
  */
 
+$config["atlant_paging"] = array(
+    'use_page_numbers' => TRUE,
+    'page_query_string' => TRUE,
+    
+    'next_link' => '&gt;',
+    'next_tag_open' => '<li>',
+    'next_tag_close' => '</li>',
+    
+    'prev_link' => '&lt;',
+    'prev_tag_open' => '<li>',
+    'prev_tag_close' => '</li>',
+    
+    'first_link' => '&laquo;',
+    'first_tag_open' => '<li>',
+    'first_tag_close' => '</li>',
+    
+    'last_link' => '&raquo;',
+    'last_tag_open' => '<li>',
+    'last_tag_close' => '</li>',
+    
+    'cur_tag_open' => '<li class="active"><a class="paginate_button current" tabindex="0" onclick="javascript:void();">',
+    'cur_tag_close' => '</a></li>',
+    
+    'num_tag_open' => '<li>',
+    'num_tag_close' => '</li>',
+    
+    'query_string_segment' => 'currpage',
+    'full_tag_open' => '<ul class="pagination pagination-sm pull-right push-down-20 push-up-20">',
+    'full_tag_close' => '</ul>',
+);
+
 $config["frontend_paging"] = array(
     'next_link' => '&gt;',
     'prev_link' => '&lt;',

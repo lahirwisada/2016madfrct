@@ -19,9 +19,7 @@ class Mskotama extends Back_end {
     }
 
     public function detail($id = FALSE) {
-        parent::detail($id, array(
-            "kode_kotama","ur_kotama",
-        ));
+        parent::detail($id, array("kode_kotama", "ur_kotama", "struktur_kotama"));
 
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => $this->_header_title,
@@ -29,12 +27,13 @@ class Mskotama extends Back_end {
         ));
 //        $this->add_jsfiles(array("avant/plugins/form-jasnyupload/fileinput.min.js"));
     }
-    
+
     public function get_like() {
         $keyword = $this->input->post("keyword");
 
         $kotama_found = $this->model_master_kotama->get_like($keyword);
-        
+
         $this->to_json($kotama_found);
     }
+
 }

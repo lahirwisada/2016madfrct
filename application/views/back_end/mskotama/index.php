@@ -51,10 +51,13 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                             No
                                         </th>
                                         <th>
-                                            Kode Kotama
+                                            Kode
                                         </th>
                                         <th>
-                                            UR Kotama
+                                            Uraian
+                                        </th>
+                                        <th>
+                                            Struktur
                                         </th>
                                         <th width="15%">Aksi</th>
                                     </tr>
@@ -62,6 +65,17 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                 <tbody>
                                     <?php if ($records != FALSE): ?>
                                         <?php foreach ($records as $key => $record): ?>
+                                            <?php
+                                            $struktur = "";
+                                            switch ($record->struktur_kotama) {
+                                                case 1:
+                                                    $struktur = "DALAM STRUKTUR";
+                                                    break;
+                                                case 2:
+                                                    $struktur = "LUAR STRUKTUR";
+                                                    break;
+                                            }
+                                            ?>
                                             <tr>
                                                 <td>
                                                     <?php echo $next_list_number; ?>
@@ -71,6 +85,9 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                 </td>
                                                 <td>
                                                     <?php echo beautify_str($record->ur_kotama) ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo beautify_str($struktur) ?>
                                                 </td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm">

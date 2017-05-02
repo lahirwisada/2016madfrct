@@ -19,18 +19,28 @@ $detail = isset($detail) ? $detail : FALSE;
                 <div class="panel-body">
 
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Nama Agama *</label>
+                        <label class="col-md-3 col-xs-12 control-label">Kode Kesatuan *</label>
                         <div class="col-md-6 col-xs-12">                                            
                             <div class="input-group">
-                                <input type="text" name="nama_agama" class="form-control" value="<?php echo $detail ? $detail->nama_agama : ""; ?>">
+                                <input type="text" name="kode_kesatuan" class="form-control" value="<?php echo $detail ? $detail->kode_kesatuan : ""; ?>">
                             </div>                                            
-                            <span class="help-block">Isikan sesuai dengan nama agama.</span>
+                            <span class="help-block">Isikan sesuai dengan kode kesatuan.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Nama Kesatuan *</label>
+                        <div class="col-md-6 col-xs-12">                                            
+                            <div class="input-group">
+                                <input type="text" name="nama_kesatuan" class="form-control" value="<?php echo $detail ? $detail->nama_kesatuan : ""; ?>">
+                            </div>                                            
+                            <span class="help-block">Isikan sesuai dengan nama kesatuan.</span>
                         </div>
                     </div>
                 </div>
                 <div class="panel-footer">
                     <button type="submit" class="btn-primary btn pull-right">Submit</button>
-                    <a href="<?php echo base_url("back_end/".$active_modul."/index"); ?>" class="btn-default btn">Batal / Kembali</a>
+                    <a href="<?php echo base_url("back_end/" . $active_modul . "/index"); ?>" class="btn-default btn">Batal / Kembali</a>
                 </div>
             </div>
         </form>

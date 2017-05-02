@@ -46,7 +46,21 @@ $detail = isset($detail) ? $detail : FALSE;
                         </div>
                     </div>
                     
-                         
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Kesatuan *</label>
+                        <div class="col-md-6 col-xs-12">                                            
+                            <select id="slc-kesatuan" class="form-control select2-basic" name="id_kesatuan">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Corps *</label>
+                        <div class="col-md-6 col-xs-12">                                            
+                            <select id="slc-corps" class="form-control select2-basic" name="id_corps">
+                            </select>
+                        </div>
+                    </div>
 
                 </div>
                 <div class="panel-footer">

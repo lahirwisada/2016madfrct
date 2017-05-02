@@ -59,6 +59,9 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                         <th>
                                             Satminkal
                                         </th>
+                                        <th>
+                                            Informasi
+                                        </th>
                                         <th width="15%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -77,6 +80,9 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                 </td>
                                                 <td>
                                                     <?php echo beautify_str($record->ur_satminkal) ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo beautify_str($record->kode_kesatuan) . " / " . beautify_str($record->init_corps) ?>
                                                 </td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm">

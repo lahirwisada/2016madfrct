@@ -3,12 +3,12 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Mssatuan extends Back_end {
+class Mskesatuan extends Back_end {
 
-    public $model = 'model_master_satuan';
+    public $model = 'model_master_kesatuan';
 
     public function __construct() {
-        parent::__construct('kelola_pusataka_satuan', 'Pustaka Satuan');
+        parent::__construct('kelola_pustaka_kesatuan', 'Pustaka Kesatuan');
     }
 
     public function index() {
@@ -20,8 +20,8 @@ class Mssatuan extends Back_end {
 
     public function detail($id = FALSE) {
         parent::detail($id, array(
-            "kode_satuan",
-            "nama_satuan"
+            "kode_kesatuan",
+            "nama_kesatuan",
         ));
 
         $this->set("bread_crumb", array(
@@ -34,8 +34,8 @@ class Mssatuan extends Back_end {
     public function get_like() {
         $keyword = $this->input->post("keyword");
 
-        $provinsi_found = $this->model_ref_provinsi->get_like($keyword);
+        $kesatuan_found = $this->model_master_kesatuan->get_like($keyword);
         
-        $this->to_json($provinsi_found);
+        $this->to_json($kesatuan_found);
     }
 }

@@ -15,9 +15,10 @@ class Master_kotama extends LWS_model {
     }
 
     protected $attribute_labels = array(
-        "id_kotama" => array("id_kotama", "Id Modul"),
-        "kode_kotama" => array("kode_kotama", "kode_modul"),
-        "ur_kotama" => array("ur_kotama", "ur_modul"),
+        "id_kotama" => array("id_kotama", "ID Kotama"),
+        "kode_kotama" => array("kode_kotama", "Kode Kotama"),
+        "ur_kotama" => array("ur_kotama", "Uraian Kotama"),
+        "struktur_kotama" => array("struktur_kotama", "Struktur Kotama"),
 //        "created_date" => array("created_date", "created_date"),
 //        "created_by" => array("created_by", "created_by"),
 //        "modified_date" => array("modified_date", "modified_date"),
@@ -28,6 +29,7 @@ class Master_kotama extends LWS_model {
         array("id_kotama", ""),
         array("kode_kotama", ""),
         array("ur_kotama", ""),
+        array("struktur_kotama", ""),
 //        array("created_date", ""),
 //        array("created_by", ""),
 //        array("modified_date", ""),

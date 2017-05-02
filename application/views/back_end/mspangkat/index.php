@@ -51,10 +51,10 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                             No
                                         </th>
                                         <th>
-                                            Kode Pangkat
+                                            Kode
                                         </th>
                                         <th>
-                                            UR Pangkat
+                                            Uraian
                                         </th>
                                         <th>
                                             Kategori
@@ -68,6 +68,44 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                 <tbody>
                                     <?php if ($records != FALSE): ?>
                                         <?php foreach ($records as $key => $record): ?>
+                                            <?php
+                                            $kategori = "";
+                                            switch ($record->kategori_pangkat) {
+                                                case 1:
+                                                    $kategori = "Tamtama";
+                                                    break;
+                                                case 2:
+                                                    $kategori = "Bintara";
+                                                    break;
+                                                case 3:
+                                                    $kategori = "Perwira";
+                                                    break;
+                                                case 4:
+                                                    $kategori = "PNS";
+                                                    break;
+                                            }
+                                            $tingkat = "";
+                                            switch ($record->tingkat_pangkat) {
+                                                case 1:
+                                                    $tingkat = "Tamtama";
+                                                    break;
+                                                case 2:
+                                                    $tingkat = "Bintara";
+                                                    break;
+                                                case 3:
+                                                    $tingkat = "Pama";
+                                                    break;
+                                                case 4:
+                                                    $tingkat = "Pamen";
+                                                    break;
+                                                case 5:
+                                                    $tingkat = "Pati";
+                                                    break;
+                                                case 6:
+                                                    $tingkat = "PNS";
+                                                    break;
+                                            }
+                                            ?>
                                             <tr>
                                                 <td>
                                                     <?php echo $next_list_number; ?>
@@ -80,47 +118,11 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                 </td>
                                                 <td>
                                                     <?php
-                                                    $kategori = "";
-                                                    switch ($record->kategori_pangkat) {
-                                                        case 1:
-                                                            $kategori = "Tamtama";
-                                                            break;
-                                                        case 2:
-                                                            $kategori = "Bintara";
-                                                            break;
-                                                        case 3:
-                                                            $kategori = "Perwira";
-                                                            break;
-                                                        case 4:
-                                                            $kategori = "PNS";
-                                                            break;
-                                                    }
                                                     echo beautify_str($kategori)
                                                     ?>
                                                 </td>
                                                 <td>
                                                     <?php
-                                                    $tingkat = "";
-                                                    switch ($record->tingkat_pangkat) {
-                                                        case 1:
-                                                            $tingkat = "Tamtama";
-                                                            break;
-                                                        case 2:
-                                                            $tingkat = "Bintara";
-                                                            break;
-                                                        case 3:
-                                                            $tingkat = "Pama";
-                                                            break;
-                                                        case 4:
-                                                            $tingkat = "Pamen";
-                                                            break;
-                                                        case 5:
-                                                            $tingkat = "Pati";
-                                                            break;
-                                                        case 6:
-                                                            $tingkat = "PNS";
-                                                            break;
-                                                    }
                                                     echo beautify_str($tingkat)
                                                     ?>
                                                 </td>

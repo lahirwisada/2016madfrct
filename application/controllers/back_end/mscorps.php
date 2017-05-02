@@ -19,9 +19,9 @@ class Mscorps extends Back_end {
     }
 
     public function detail($id = FALSE) {
-        parent::detail($id, array(
-            "kode_corps","init_corps","ur_corps",
-        ));
+        parent::detail($id, array("kode_corps",
+            "init_corps",
+            "ur_corps",));
 
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => $this->_header_title,
@@ -29,12 +29,13 @@ class Mscorps extends Back_end {
         ));
 //        $this->add_jsfiles(array("avant/plugins/form-jasnyupload/fileinput.min.js"));
     }
-    
+
     public function get_like() {
         $keyword = $this->input->post("keyword");
 
-        $corps_found = $this->model_ref_corps->get_like($keyword);
-        
+        $corps_found = $this->model_master_corps->get_like($keyword);
+
         $this->to_json($corps_found);
     }
+
 }

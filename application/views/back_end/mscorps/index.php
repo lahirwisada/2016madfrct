@@ -51,13 +51,13 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                             No
                                         </th>
                                         <th>
-                                            Kode Corps
+                                            Kode
                                         </th>
                                         <th>
-                                            Init Corps
+                                            Initial
                                         </th>
                                         <th>
-                                            UR Corps
+                                            Uraian
                                         </th>
                                         <th width="15%">Aksi</th>
                                     </tr>

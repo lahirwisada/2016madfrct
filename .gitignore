@@ -5,3 +5,9 @@
 !*/cache/index.html
 !*/cache/.htaccess
 /PROPOSALMABES.docx
+/nbproject/
+index\.php
+
+application/config/config\.php
+
+\.htaccess

@@ -15,12 +15,12 @@ $menu_item = isset($menu_item) ? build_atlant_menu($menu_item, $active_modul) : 
     </li>
     <li class="xn-profile">
         <?php if ($is_authenticated): ?>
-            <a href="#" class="profile-mini" style="border:none;">
+            <a href="#" class="profile-mini">
                 <img src="<?php echo upload_location("images/users/user_default_avatar.jpg"); ?>" alt="<?php echo $current_user_profil_name; ?>"/>
             </a>
             <div class="profile">
-                <div class="profile-image" style="border:none;">
-                    <img style="border:none;" src="<?php echo upload_location("images/users/user_default_avatar.jpg"); ?>" alt="<?php echo $current_user_profil_name; ?>"/>
+                <div class="profile-image">
+                    <img src="<?php echo upload_location("images/users/user_default_avatar.jpg"); ?>" alt="<?php echo $current_user_profil_name; ?>"/>
                 </div>
                 <div class="profile-data">
                     <div class="profile-data-name"><?php echo $current_user_profil_name; ?></div>

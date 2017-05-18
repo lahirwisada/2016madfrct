@@ -43,21 +43,12 @@ $user_role = isset($user_role) ? $user_role : '';
         <?php echo $view_css_default; ?>
         <!-- EOF CSS INCLUDE -->                                    
     </head>
-    <style>
-
-        </style>
-
-    </style>
     <body>
         
         <div class="login-container">
         
             <div class="login-box animated fadeInDown">
-                <div class="login-logo">
-                <center>
-                        <img src="<?php echo base_url() ?>_assets/css/background/logo.jpg" style="height:100px;">
-                        </center>
-                </div>
+                <div class="login-logo"></div>
                 <div class="login-body">
                     <div class="login-title"><strong>Selamat Datang</strong>, Silahkan melakukan Otentifikasi</div>
                     <?php echo $content_for_layout; ?>

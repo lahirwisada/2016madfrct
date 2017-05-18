@@ -11,3 +11,5 @@ application/config/config\.php
 
 \.htaccess
 CI_Autocomplete\.php
+
+application/config/database\.php

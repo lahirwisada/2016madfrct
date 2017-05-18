@@ -71,14 +71,11 @@ $config['keyword_key_param'] = 'keyword';
  * array("nama_modul"=>array("nama_aksi"=>array("nama_aksi_dikontroller")))
  */
 $config['modul_action_configuration'] = array(
-    "rekap" => array(
-        "read" => array("index", "detail_125t"),
-    ),
-    "lp125t" => array(
-        "read" => array("index", "detail"),
-    ),
-    "lp126t" => array(
-        "read" => array("index", "detail"),
+    "rkpasukan" => array(
+        "insert" => array("detail", "download"),
+        "update" => array("detail", "download"),
+        "delete" => array("delete"),
+        "read" => array("index", "view"),
     ),
 );
 /**

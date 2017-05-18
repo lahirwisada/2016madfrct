@@ -8,7 +8,7 @@ class Mscorps extends Back_end {
     public $model = 'model_master_corps';
 
     public function __construct() {
-        parent::__construct('kelola_pustaka_corps', 'Pustaka corps');
+        parent::__construct('kelola_pustaka_corps', 'Pustaka Corps');
     }
 
     public function index() {

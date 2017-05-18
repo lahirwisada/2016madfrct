@@ -40,9 +40,9 @@ class Model_master_pangkat extends Master_pangkat {
 //        return $id_pangkat;
     }
 
-    public function get_detail_by_kode_pangkat($kode_pangkat = '') {
-        if ($kode_pangkat != '') {
-            return $this->get_detail("lower(kode_pangkat) LIKE lower('%" . $kode_pangkat . "%')");
+    public function get_detail_by_nama_pangkat($nama_pangkat = '') {
+        if ($nama_pangkat != '') {
+            return $this->get_detail("lower(ur_pangkat) LIKE lower('%" . $nama_pangkat . "%')");
         }
         return FALSE;
     }

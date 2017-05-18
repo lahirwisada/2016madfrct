@@ -1,7 +1,6 @@
 */config/development
-*/logs/log-*.php
-!*/logs/index.html
-*/cache/*
+/logs/
+/cache/
 !*/cache/index.html
 !*/cache/.htaccess
 /PROPOSALMABES.docx
@@ -11,3 +10,4 @@ index\.php
 application/config/config\.php
 
 \.htaccess
+CI_Autocomplete\.php

@@ -1,6 +1,6 @@
 */config/development
-/logs/
-/cache/
+application/logs/
+cache/
 !*/cache/index.html
 !*/cache/.htaccess
 /PROPOSALMABES.docx

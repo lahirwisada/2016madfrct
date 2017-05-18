@@ -1,3 +1,93 @@
+-- Table: sc_fcstprsn.tr_pasukan_rekap
+
+DROP TABLE sc_fcstprsn.tr_pasukan_rekap;
+
+CREATE TABLE sc_fcstprsn.tr_pasukan_rekap
+(
+  id_rekap serial NOT NULL,
+  id_bulan integer,
+  id_tahun integer,
+  id_kotama integer,
+  path_excel character varying(1000),
+  tanggal_upload date,
+  tanggal_ttd date,
+  uraian_atas_ttd text,
+  jabatan_ttd text,
+  nama_ttd character varying(200),
+  pangkat_ttd character varying(200),
+  nrp_ttd character varying(200),
+  id_kabupaten_kota integer, -- Kota Tanda Tangan...
+  created_date timestamp without time zone,
+  created_by character varying(200),
+  modified_date timestamp without time zone,
+  modified_by character varying(200),
+  record_active integer DEFAULT 1,
+  CONSTRAINT pk_tr_pasukan_rekap PRIMARY KEY (id_rekap),
+  CONSTRAINT constrains_unique_kotama_bulan_tahun UNIQUE (id_bulan, id_tahun, id_kotama)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE sc_fcstprsn.tr_pasukan_rekap
+  OWNER TO postgres;
+COMMENT ON COLUMN sc_fcstprsn.tr_pasukan_rekap.id_kabupaten_kota IS 'Kota Tanda Tangan
+
+cth:
+
+Surabaya, .... Nov 2016';
+
+
+-- Trigger: tru_tr_pasukan_rekap on sc_fcstprsn.tr_pasukan_rekap
+
+-- DROP TRIGGER tru_tr_pasukan_rekap ON sc_fcstprsn.tr_pasukan_rekap;
+
+CREATE TRIGGER tru_tr_pasukan_rekap
+  BEFORE UPDATE
+  ON sc_fcstprsn.tr_pasukan_rekap
+  FOR EACH ROW
+  EXECUTE PROCEDURE sc_fcstprsn.tru_update_date();
+
+
+-- Table: sc_fcstprsn.tr_pasukan_detail
+
+DROP TABLE sc_fcstprsn.tr_pasukan_detail;
+
+CREATE TABLE sc_fcstprsn.tr_pasukan_detail
+(
+  id_detail serial NOT NULL,
+  id_rekap integer,
+  id_satminkal integer,
+  id_pangkat integer,
+  top integer,
+  dinas integer,
+  mpp integer,
+  lf integer,
+  skorsing integer,
+  created_date timestamp without time zone,
+  created_by character varying(200),
+  modified_date timestamp without time zone,
+  modified_by character varying(200),
+  record_active integer DEFAULT 1,
+  id_triwulan integer,
+  CONSTRAINT pk_tr_pasukan_detail PRIMARY KEY (id_detail)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE sc_fcstprsn.tr_pasukan_detail
+  OWNER TO postgres;
+
+-- Trigger: tru_tr_pasukan_detail on sc_fcstprsn.tr_pasukan_detail
+
+-- DROP TRIGGER tru_tr_pasukan_detail ON sc_fcstprsn.tr_pasukan_detail;
+
+CREATE TRIGGER tru_tr_pasukan_detail
+  BEFORE UPDATE
+  ON sc_fcstprsn.tr_pasukan_detail
+  FOR EACH ROW
+  EXECUTE PROCEDURE sc_fcstprsn.tru_update_date();
+
+
 INSERT INTO "backbone_modul" ("id_modul", "nama_modul", "deskripsi_modul", "turunan_dari", "no_urut", "created_date", "created_by", "modified_date", "modified_by", "record_active", "show_on_menu") VALUES
 (1,	'sistem',	'Sistem',	'',	9900,	'2017-05-16 00:00:00',	'',	'2017-05-16 00:00:00',	'',	1,	1),
 (2,	'modul',	'Modul',	'sistem',	9901,	'2017-05-16 00:00:00',	'',	'2017-05-16 00:00:00',	'',	1,	1),

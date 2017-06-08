@@ -13,6 +13,10 @@ class Back_end extends Lwpustaka_data {
         $this->_layout = "atlant";
         $this->my_location = "back_end/";
         $this->init_back_end();
+        if (!$this->is_authenticated()) {
+            redirect('login');
+        }
+
     }
 
 //    public function access_rules() {

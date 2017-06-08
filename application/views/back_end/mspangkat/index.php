@@ -47,65 +47,18 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                             <table class="table no-footer" id="DataTables_Table_0">
                                 <thead>
                                     <tr role="row">
-                                        <th>
-                                            No
-                                        </th>
-                                        <th>
-                                            Kode
-                                        </th>
-                                        <th>
-                                            Uraian
-                                        </th>
-                                        <th>
-                                            Kategori
-                                        </th>
-                                        <th>
-                                            Tingkat
-                                        </th>
-                                        <th width="15%">Aksi</th>
+                                        <th>NO</th>
+                                        <th>KODE</th>
+                                        <th>URAIAN</th>
+                                        <th>KELOMPOK</th>
+                                        <th>GOLONGAN</th>
+                                        <th>TINGKAT</th>
+                                        <th width="15%">AKSI</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php if ($records != FALSE): ?>
                                         <?php foreach ($records as $key => $record): ?>
-                                            <?php
-                                            $kategori = "";
-                                            switch ($record->kategori_pangkat) {
-                                                case 1:
-                                                    $kategori = "Tamtama";
-                                                    break;
-                                                case 2:
-                                                    $kategori = "Bintara";
-                                                    break;
-                                                case 3:
-                                                    $kategori = "Perwira";
-                                                    break;
-                                                case 4:
-                                                    $kategori = "PNS";
-                                                    break;
-                                            }
-                                            $tingkat = "";
-                                            switch ($record->tingkat_pangkat) {
-                                                case 1:
-                                                    $tingkat = "Tamtama";
-                                                    break;
-                                                case 2:
-                                                    $tingkat = "Bintara";
-                                                    break;
-                                                case 3:
-                                                    $tingkat = "Pama";
-                                                    break;
-                                                case 4:
-                                                    $tingkat = "Pamen";
-                                                    break;
-                                                case 5:
-                                                    $tingkat = "Pati";
-                                                    break;
-                                                case 6:
-                                                    $tingkat = "PNS";
-                                                    break;
-                                            }
-                                            ?>
                                             <tr>
                                                 <td>
                                                     <?php echo $next_list_number; ?>
@@ -117,14 +70,13 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                     <?php echo beautify_str($record->ur_pangkat) ?>
                                                 </td>
                                                 <td>
-                                                    <?php
-                                                    echo beautify_str($kategori)
-                                                    ?>
+                                                    <?php echo beautify_str($record->kode_kelompok) ?>
                                                 </td>
                                                 <td>
-                                                    <?php
-                                                    echo beautify_str($tingkat)
-                                                    ?>
+                                                    <?php echo beautify_str($record->kode_golongan) ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo beautify_str($record->kode_tingkat) ?>
                                                 </td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm">

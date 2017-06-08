@@ -19,25 +19,22 @@ class Mspangkat extends Back_end {
     }
 
     public function detail($id = FALSE) {
-        parent::detail($id, array(
-            "kode_pangkat",
-            "ur_pangkat",
-            "kategori_pangkat",
-            "tingkat_pangkat",
-        ));
-
+        parent::detail($id, array("kode_pangkat", "ur_pangkat", "id_kelompok", "id_golongan", "tingkat_pangkat",));
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => $this->_header_title,
-            "#" => 'Pendaftaran ' . $this->_header_title
+            "#" => 'Formulir ' . $this->_header_title
         ));
-//        $this->add_jsfiles(array("avant/plugins/form-jasnyupload/fileinput.min.js"));
+        $this->set("additional_js", "back_end/" . $this->_name . "/js/detail_js");
+        $this->add_cssfiles(array("plugins/select2/select2.min.css"));
+        $this->add_jsfiles(array("plugins/select2/select2.full.min.js"));
     }
-    
+
     public function get_like() {
         $keyword = $this->input->post("keyword");
 
         $pangkat_found = $this->model_master_pangkat->get_like($keyword);
-        
+
         $this->to_json($pangkat_found);
     }
+
 }

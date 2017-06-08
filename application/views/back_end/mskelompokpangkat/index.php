@@ -47,16 +47,10 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                             <table class="table no-footer" id="DataTables_Table_0">
                                 <thead>
                                     <tr role="row">
-                                        <th>
-                                            No
-                                        </th>
-                                        <th>
-                                            Kode Kategori
-                                        </th>
-                                        <th>
-                                            Nama Kategori
-                                        </th>
-                                        <th width="15%">Aksi</th>
+                                        <th>NO</th>
+                                        <th>KODE</th>
+                                        <th>URAIAN</th>
+                                        <th width="15%">AKSI</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,15 +61,15 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                     <?php echo $next_list_number; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo beautify_str($record->kode_kategori) ?>
+                                                    <?php echo beautify_str($record->kode_kelompok) ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo beautify_str($record->nama_kategori) ?>
+                                                    <?php echo beautify_str($record->ur_kelompok) ?>
                                                 </td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm">
-                                                        <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->id_kategori; ?>">Ubah</a>
-                                                        <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->id_kategori; ?>">Hapus</a>
+                                                        <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->id_kelompok; ?>">Ubah</a>
+                                                        <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->id_kelompok; ?>">Hapus</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -83,7 +77,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                         <?php endforeach; ?>
                                     <?php else: ?>
                                         <tr>
-                                            <td colspan="5"> Kosong / Data tidak ditemukan. </td>
+                                            <td colspan="4"> Kosong / Data tidak ditemukan. </td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>

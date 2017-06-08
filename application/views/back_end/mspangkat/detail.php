@@ -25,38 +25,34 @@ $detail = isset($detail) ? $detail : FALSE;
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">UR Pangkat *</label>
+                        <label class="col-md-3 col-xs-12 control-label">Uraian Pangkat *</label>
                         <div class="col-md-6 col-xs-12">                                            
                             <input type="text" name="ur_pangkat" class="form-control" value="<?php echo $detail ? $detail->ur_pangkat : ""; ?>">
-                            <span class="help-block">Isikan sesuai dengan UR pangkat.</span>
+                            <span class="help-block">Isikan sesuai dengan uraian pangkat.</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Kategori *</label>
+                        <label class="col-md-3 col-xs-12 control-label">Kelompok *</label>
                         <div class="col-md-6 col-xs-12">        
-                            <select name="kategori_pangkat" class="form-control">
-                                <option value="">Pilih Kategori</option>
-                                <option value="1"<?php echo $detail && $detail->kategori_pangkat == 1 ? " selected" : ""; ?>>Tamtama</option>
-                                <option value="2"<?php echo $detail && $detail->kategori_pangkat == 2 ? " selected" : ""; ?>>Bintara</option>
-                                <option value="3"<?php echo $detail && $detail->kategori_pangkat == 3 ? " selected" : ""; ?>>Perwira</option>
-                                <option value="3"<?php echo $detail && $detail->kategori_pangkat == 4 ? " selected" : ""; ?>>PNS</option>
+                            <select name="id_kelompok" id="slc-kelompok" class="form-control select2-basic">
                             </select>
-                            <span class="help-block">Isikan sesuai dengan Kategori.</span>
+                            <span class="help-block">Isikan sesuai dengan kelompok.</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Golongan *</label>
+                        <div class="col-md-6 col-xs-12">        
+                            <select name="id_golongan" id="slc-golongan" class="form-control select2-basic">
+                            </select>
+                            <span class="help-block">Isikan sesuai dengan kategori.</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Tingkat *</label>
                         <div class="col-md-6 col-xs-12">        
-                            <select name="tingkat_pangkat" class="form-control">
-                                <option value="">Pilih Kategori</option>
-                                <option value="1"<?php echo $detail && $detail->tingkat_pangkat == 1 ? " selected" : ""; ?>>Tamtama</option>
-                                <option value="2"<?php echo $detail && $detail->tingkat_pangkat == 2 ? " selected" : ""; ?>>Bintara</option>
-                                <option value="3"<?php echo $detail && $detail->tingkat_pangkat == 3 ? " selected" : ""; ?>>Pama</option>
-                                <option value="4"<?php echo $detail && $detail->tingkat_pangkat == 4 ? " selected" : ""; ?>>Pamen</option>
-                                <option value="5"<?php echo $detail && $detail->tingkat_pangkat == 5 ? " selected" : ""; ?>>Pati</option>
-                                <option value="6"<?php echo $detail && $detail->tingkat_pangkat == 6 ? " selected" : ""; ?>>PNS</option>
+                            <select name="id_tingkat" id="slc-tingkat" class="form-control select2-basic">
                             </select>
-                            <span class="help-block">Isikan sesuai dengan Tingkat.</span>
+                            <span class="help-block">Isikan sesuai dengan tingkat.</span>
                         </div>
                     </div>
                 </div>

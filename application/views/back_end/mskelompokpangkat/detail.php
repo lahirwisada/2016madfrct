@@ -18,27 +18,27 @@ $detail = isset($detail) ? $detail : FALSE;
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Kode Tingkat Kategori *</label>
+                        <label class="col-md-3 col-xs-12 control-label">Kode Kelompok *</label>
                         <div class="col-md-6 col-xs-12">                                            
                             <div class="input-group">
-                                <input type="text" name="kode_kategori" class="form-control" value="<?php echo $detail ? $detail->kode_tingkatkategori : ""; ?>">
+                                <input type="text" name="kode_kelompok" class="form-control" value="<?php echo $detail ? $detail->kode_kelompok : ""; ?>">
                             </div>                                            
-                            <span class="help-block">Isikan sesuai dengan kode kategori.</span>
+                            <span class="help-block">Isikan sesuai dengan kode kelompok.</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Nama Tingkat Kategori *</label>
+                        <label class="col-md-3 col-xs-12 control-label">Uraian Kelompok *</label>
                         <div class="col-md-6 col-xs-12">                                            
                             <div class="input-group">
-                                <input type="text" name="nama_kategori" class="form-control" value="<?php echo $detail ? $detail->kode_tingkatkategori : ""; ?>">
+                                <input type="text" name="ur_kelompok" class="form-control" value="<?php echo $detail ? $detail->ur_kelompok : ""; ?>">
                             </div>                                            
-                            <span class="help-block">Isikan sesuai dengan nama kategori.</span>
+                            <span class="help-block">Isikan sesuai dengan uraian kelompok.</span>
                         </div>
                     </div>
                 </div>
                 <div class="panel-footer">
                     <button type="submit" class="btn-primary btn pull-right">Submit</button>
-                    <a href="<?php echo base_url("back_end/".$active_modul."/index"); ?>" class="btn-default btn">Batal / Kembali</a>
+                    <a href="<?php echo base_url("back_end/" . $active_modul . "/index"); ?>" class="btn-default btn">Batal / Kembali</a>
                 </div>
             </div>
         </form>

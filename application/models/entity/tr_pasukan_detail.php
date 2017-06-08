@@ -8,14 +8,13 @@ class tr_pasukan_detail extends LWS_Model {
 
     public function __construct() {
         parent::__construct("tr_pasukan_detail");
-        $this->primary_key = "id_detail";
+        $this->primary_key = array("id_rekap,id_satminkal,id_pangkat");
 
         $this->attribute_labels = array_merge_recursive($this->_continuously_attribute_label, $this->attribute_labels);
         $this->rules = array_merge_recursive($this->_continuously_rules, $this->rules);
     }
 
     protected $attribute_labels = array(
-        "id_detail" => array("id_detail", "ID Detail"),
         "id_rekap" => array("id_rekap", "ID Rekap"),
         "id_satminkal" => array("id_satminkal", "ID Satminkal"),
         "id_pangkat" => array("id_pangkat", "ID Pangkat"),
@@ -31,7 +30,6 @@ class tr_pasukan_detail extends LWS_Model {
         "record_active" => array("record_active", "record_active"),
     );
     protected $rules = array(
-        array("id_detail", ""),
         array("id_rekap", ""),
         array("id_satminkal", ""),
         array("id_pangkat", ""),

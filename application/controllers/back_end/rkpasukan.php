@@ -49,7 +49,7 @@ class Rkpasukan extends Back_end {
         ));
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => $this->_header_title,
-            "#" => 'Upload ' . $this->_header_title
+            "#" => 'Formulir ' . $this->_header_title
         ));
 
         $this->set("additional_js", "back_end/" . $this->_name . "/js/detail_js");
@@ -322,6 +322,10 @@ class Rkpasukan extends Back_end {
     }
 
     public function view($id_rekap = FALSE) {
+        $this->set("bread_crumb", array(
+            "back_end/" . $this->_name => $this->_header_title,
+            "#" => 'Hasil ' . $this->_header_title
+        ));
         $records = $this->model_tr_pasukan_detail->get_data($id_rekap);
         $this->set('records', $records);
     }
@@ -333,7 +337,7 @@ class Rkpasukan extends Back_end {
     public function download($id_kotama = FALSE) {
         if (!$id_kotama) {
             $this->attention_messages = "Data kotama tidak ditemukan.";
-            redirect('back_end/' . $this->_name);
+//            redirect('back_end/' . $this->_name);
         }
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => $this->_header_title,

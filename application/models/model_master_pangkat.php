@@ -43,7 +43,7 @@ class Model_master_pangkat extends Master_pangkat {
 
     public function get_detail_by_nama_pangkat($nama_pangkat = '') {
         if ($nama_pangkat != '') {
-            return $this->get_detail("lower(ur_pangkat) LIKE lower('%" . $nama_pangkat . "%')");
+            return $this->get_detail("lower(ur_pangkat) LIKE lower('" . $nama_pangkat . "')");
         }
         return FALSE;
     }

@@ -11,7 +11,6 @@ class model_tr_pasukan_detail extends tr_pasukan_detail {
     }
 
     protected $rules = array(
-        array("id_detail", ""),
         array("id_rekap", "required"),
         array("id_satminkal", "required"),
         array("id_pangkat", "required"),
@@ -29,6 +28,7 @@ class model_tr_pasukan_detail extends tr_pasukan_detail {
 
     public function save_records($id_rekap, $response_data) {
         if ($response_data["form_format"] && $response_data["read_data"]) {
+            $this->db->delete($this->table_name, "id_rekap = " . $id_rekap);
             if (!empty($response_data["data"])) {
                 foreach ($response_data["data"] as $satuan_satminkal => $array_data_satuan) {
                     $this->save_per_satminkal($id_rekap, $satuan_satminkal, $array_data_satuan);
@@ -52,16 +52,21 @@ class model_tr_pasukan_detail extends tr_pasukan_detail {
     public function save_per_pangkat($id_rekap, $id_satminkal, $nama_pangkat, $array_jumlah) {
         $detail_pangkat = $this->model_master_pangkat->get_detail_by_nama_pangkat(strtolower($nama_pangkat));
         if ($detail_pangkat && !empty($array_jumlah)) {
-            $object_tr_pasukan_detail = new model_tr_pasukan_detail();
-            $object_tr_pasukan_detail->id_rekap = $id_rekap;
-            $object_tr_pasukan_detail->id_satminkal = $id_satminkal;
-            $object_tr_pasukan_detail->id_pangkat = $detail_pangkat->id_pangkat;
-            foreach ($array_jumlah as $key_field => $value) {
-                $object_tr_pasukan_detail->{$key_field} = $value;
-            }
-            $object_tr_pasukan_detail->save();
+            $data = array(
+                "id_rekap" => $id_rekap,
+                "id_satminkal" => $id_satminkal,
+                "id_pangkat" => $detail_pangkat->id_pangkat,
+                "top" => $array_jumlah["top"],
+                "dinas" => $array_jumlah["dinas"],
+                "mpp" => $array_jumlah["mpp"],
+                "lf" => $array_jumlah["lf"],
+                "skorsing" => $array_jumlah["skorsing"],
+                "created_date" => date('Y-m-d'),
+                "created_by" => ""
+            );
+            $this->db->insert($this->table_name, $data);
         }
-        unset($detail_pangkat, $object_tr_pasukan_detail);
+        unset($detail_pangkat);
     }
 
     public function all($force_limit = FALSE, $force_offset = FALSE) {
@@ -93,7 +98,6 @@ class model_tr_pasukan_detail extends tr_pasukan_detail {
                 }
             }
         }
-//        var_dump($result);exit();
         return $result;
     }
 

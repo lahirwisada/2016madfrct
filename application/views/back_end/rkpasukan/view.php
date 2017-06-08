@@ -10,7 +10,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
         <!-- START DEFAULT DATATABLE -->
         <div class="panel panel-default">
             <div class="panel-heading ui-draggable-handle">                                
-                <h3 class="panel-title"><?php echo $header_title; ?></h3>
+                <h3 class="panel-title">Hasil <strong><?php echo $header_title; ?></strong></h3>
             </div>
             <div class="panel-body">
 

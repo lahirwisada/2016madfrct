@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 class Home extends Back_end {
 
     protected $auto_load_model = FALSE;
-    
+
     public function can_access() {
         return TRUE;
     }
@@ -16,7 +16,6 @@ class Home extends Back_end {
     }
 
     public function index() {
-
         $this->set("header_title", 'Home');
 //        echo "eko dipanggil";exit;
 //        $this->load->model(array("model_tr_pembayaran", "model_ref_penghuni"));
@@ -32,15 +31,14 @@ class Home extends Back_end {
 //        ));
     }
 
-    private function month() {
-        $month = array_month(FALSE, TRUE);
-
-        foreach ($month as $key => $val) {
-            $month[$key] = array($key, $val);
-        }
-        return toJsonString($month, FALSE);
-    }
-
+//    private function month() {
+//        $month = array_month(FALSE, TRUE);
+//
+//        foreach ($month as $key => $val) {
+//            $month[$key] = array($key, $val);
+//        }
+//        return toJsonString($month, FALSE);
+//    }
 }
 
 ?>

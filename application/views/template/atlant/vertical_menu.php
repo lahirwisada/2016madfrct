@@ -18,10 +18,10 @@ $is_authenticated = isset($is_authenticated) ? $is_authenticated : FALSE;
     <li class="xn-icon-button pull-right">
         <?php if ($is_authenticated): ?>
             <!-- SIGN OUT -->
-            <a href="<?php echo base_url('back_bone/logout'); ?>" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
+            <a href="<?php echo base_url('logout'); ?>" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
             <!-- END SIGN OUT -->
         <?php else: ?>
-            <a href="<?php echo base_url('back_bone/login'); ?>" data-box="#mb-signout"><span class="fa fa-sign-in"></span></a>
+            <a href="<?php echo base_url('login'); ?>" data-box="#mb-signout"><span class="fa fa-sign-in"></span></a>
             <?php endif; ?>
     </li>
     <?php

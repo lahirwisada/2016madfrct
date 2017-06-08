@@ -3095,6 +3095,7 @@ blockquote.pull-right {
   background: #f1f5f9;
   color: #56688A;
   font-size: 12px;
+  vertical-align: middle;
 }
 .panel-body.panel-body-table {
   padding: 0px;

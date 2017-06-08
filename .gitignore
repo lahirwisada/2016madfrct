@@ -1,15 +1,12 @@
-*/config/development
-application/logs/
-cache/
-!*/cache/index.html
-!*/cache/.htaccess
-/PROPOSALMABES.docx
+/index\.php
+/\.htaccess
+/CI_Autocomplete\.php
+/application/cache/
+/application/config/config\.php
+/application/config/database\.php
+/application/logs/
 /nbproject/
-index\.php
+/_assets/uploads
 
-application/config/config\.php
 
-\.htaccess
-CI_Autocomplete\.php
 
-application/config/database\.php

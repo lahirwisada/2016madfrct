@@ -6,6 +6,7 @@ if (!defined("BASEPATH")) {
 
 class Model_master_kelompok_pangkat extends Master_kelompok_pangkat {
 
+    protected $using_insert_and_update_properties = FALSE;
     protected $rules = array(
         array("kode_kelompok", "required|min_length[1]"),
         array("ur_kelompok", "required|min_length[3]|max_length[300]")

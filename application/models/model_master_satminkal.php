@@ -6,6 +6,7 @@ if (!defined("BASEPATH")) {
 
 class Model_master_satminkal extends master_satminkal {
 
+    protected $using_insert_and_update_properties = FALSE;
     protected $rules = array(
         array("id_kotama", "required|numeric"),
         array("kode_satminkal", "required|min_length[1]|max_length[30]"),

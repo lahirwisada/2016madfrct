@@ -3,13 +3,14 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Lpsatkowil extends Back_end {
+class Lpmulti extends Back_end {
 
     protected $auto_load_model = FALSE;
 
     public function __construct() {
-        parent::__construct('modul_laporan_satbalak', 'Rekapitulasi Satkowil/Satintel');
+        parent::__construct('modul_laporan_multi', 'Kekuatan Multikorps');
         $this->load->model('model_laporan');
+//        $this->load->model(array('model_laporan', 'model_master_kotama', 'model_master_satminkal', 'model_master_pangkat'));
     }
 
     public function index() {
@@ -20,14 +21,11 @@ class Lpsatkowil extends Back_end {
         $tingkat = 5;
         $bulan = 1;
         $tahun = 2014;
-        $records = array(
-            'golongan' => $this->model_laporan->get_satkowil_by_kotama_and_golongan($bulan, $tahun),
-            'detail' => $this->model_laporan->get_satkowil_by_satminkal_and_golongan($bulan, $tahun),
-        );
-//        var_dump($records);
-//        exit();
+        $records["kategori"] = $this->model_laporan->get_multi_by_kotama_and_golongan($bulan, $tahun);
+        $records["tingkat"] = $this->model_laporan->get_multi_by_kotama_and_tingkat($tingkat, $bulan, $tahun);
         $this->set('bulan', $bulan);
         $this->set('tahun', $tahun);
+//        var_dump($records);exit();
         $this->set("records", $records);
     }
 

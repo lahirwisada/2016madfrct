@@ -17,22 +17,12 @@ class Master_golongan_pangkat extends LWS_model {
     protected $attribute_labels = array(
         "id_golongan" => array("id_golongan", "ID Golongan"),
         "kode_golongan" => array("kode_golongan", "Kode Golongan"),
-        "ur_golongan" => array("ur_golongan", "Uraian Golongan"),
-        "created_date" => array("created_date", "created_date"),
-        "created_by" => array("created_by", "created_by"),
-        "modified_date" => array("modified_date", "modified_date"),
-        "modified_by" => array("modified_by", "modified_by"),
-        "record_active" => array("record_active", "record_active")
+        "ur_golongan" => array("ur_golongan", "Uraian Golongan")
     );
     protected $rules = array(
         array("id_golongan", ""),
         array("kode_golongan", ""),
-        array("ur_golongan", ""),
-        array("created_date", ""),
-        array("created_by", ""),
-        array("modified_date", ""),
-        array("modified_by", ""),
-        array("record_active", "")
+        array("ur_golongan", "")
     );
     protected $related_tables = array();
     protected $attribute_types = array();

@@ -8,7 +8,7 @@ class Lpstruktur extends Back_end {
     protected $auto_load_model = FALSE;
 
     public function __construct() {
-        parent::__construct('modul_laporan', 'Rekapitulasi Dalam Dan Luar Struktur');
+        parent::__construct('modul_laporan_struktur', 'Kekuatan Dalam Dan Luar Struktur');
         $this->load->model('model_laporan');
 //        $this->load->model(array('model_laporan', 'model_master_kotama', 'model_master_satminkal', 'model_master_pangkat'));
     }
@@ -18,8 +18,14 @@ class Lpstruktur extends Back_end {
         $this->set("bread_crumb", array(
             "#" => $this->_header_title
         ));
-        $records = $this->model_laporan->get_by_in_structure();
+        $tingkat = 5;
+        $bulan = 1;
+        $tahun = 2014;
+        $records['dalam'] = $this->model_laporan->get_by_in_structure($bulan, $tahun);
+//        $records['luar'] = $this->model_laporan->get_by_out_structure($bulan, $tahun);
 //        var_dump($records);exit();
+        $this->set('bulan', $bulan);
+        $this->set('tahun', $tahun);
         $this->set("records", $records);
     }
 

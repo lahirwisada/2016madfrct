@@ -8,7 +8,7 @@ class Lpkotama extends Back_end {
     protected $auto_load_model = FALSE;
 
     public function __construct() {
-        parent::__construct('modul_laporan', 'Rekapitulasi Pangkat Per Kotama');
+        parent::__construct('modul_laporan_kotama', 'Kekuatan Kotama/Balakpus');
         $this->load->model('model_laporan');
     }
 
@@ -17,8 +17,13 @@ class Lpkotama extends Back_end {
         $this->set("bread_crumb", array(
             "#" => $this->_header_title
         ));
-        $records["kategori"] = $this->model_laporan->get_by_kotama_and_golongan();
-        $records["tingkat"] = $this->model_laporan->get_by_kotama_and_tingkat();
+        $tingkat = 5;
+        $bulan = 1;
+        $tahun = 2014;
+        $records["kategori"] = $this->model_laporan->get_by_kotama_and_golongan($bulan, $tahun);
+        $records["tingkat"] = $this->model_laporan->get_by_kotama_and_tingkat($tingkat, $bulan, $tahun);
+        $this->set('bulan', $bulan);
+        $this->set('tahun', $tahun);
 //        var_dump($records["tingkat"]);
 //        exit();
         $this->set("records", $records);

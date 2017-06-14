@@ -22,7 +22,7 @@ $records = isset($records) ? $records : FALSE;
                 <!--Rekapitulasi Berdasarkan Kategori-->
                 <?php if ($records["kategori"] != FALSE): ?>
                     <div class="block">
-                        <div class="text-center" style="font-weight: bold;">REKAPITULASI PA, BA, TA PER KOTAMA/BALAKPUS</div>
+                        <div class="text-center" style="font-weight: bold;">REKAPITULASI PA, BA, TA MULTI KORPS PER KOTAMA/BALAKPUS</div>
                         <div class="text-center" style="font-weight: bold;">TRIWULAN <?php echo num_to_roman($bulan) ?> TAHUN <?php echo $tahun ?></div>
                     </div>
                     <div class="block">
@@ -81,7 +81,7 @@ $records = isset($records) ? $records : FALSE;
                                         ?>
                                         <?php foreach ($records["kategori"] as $record): ?>
                                             <tr>
-                                                <td align="right"><?php echo $next_list_number ?></td>
+                                                <td align="right"><?php echo $next_list_number++ ?></td>
                                                 <td><?php echo beautify_str($record["kotama"]) ?></td>
                                                 <td align="right"><?php echo number_format($record["perwira_top"], 0, ",", ".") ?></td>
                                                 <td align="right"><?php echo number_format($record["perwira_nyata"], 0, ",", ".") ?></td>
@@ -97,7 +97,6 @@ $records = isset($records) ? $records : FALSE;
                                                 <td align="right"><?php echo number_format(($record["perwira_nyata"] + $record["bintara_nyata"] + $record["tamtama_nyata"]) - ($record["perwira_top"] + $record["bintara_top"] + $record["tamtama_top"]), 0, ",", ".") ?></td>
                                             </tr>
                                             <?php
-                                            $next_list_number++;
                                             $perwira_top += $record["perwira_top"];
                                             $perwira_nyata += $record["perwira_nyata"];
                                             $bintara_top += $record["bintara_top"];
@@ -156,7 +155,7 @@ $records = isset($records) ? $records : FALSE;
                         $total_nyata = 0;
                         ?>
                         <div class="block">
-                            <div class="text-center" style="font-weight: bold;">REKAPITULASI <?php echo strtoupper($tingkat) ?> PER KOTAMA/BALAKPUS</div>
+                            <div class="text-center" style="font-weight: bold;">REKAPITULASI <?php echo strtoupper($tingkat) ?> MULTI KORPS PER KOTAMA/BALAKPUS</div>
                             <div class="text-center" style="font-weight: bold;">TRIWULAN <?php echo num_to_roman($bulan) ?> TAHUN <?php echo $tahun ?></div>
                         </div>
                         <div class="block">

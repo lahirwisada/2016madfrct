@@ -28,7 +28,9 @@ class model_tr_pasukan_detail extends tr_pasukan_detail {
 
     public function save_records($id_rekap, $response_data) {
         if ($response_data["form_format"] && $response_data["read_data"]) {
-            $this->db->delete($this->table_name, "id_rekap = " . $id_rekap);
+            if ($id_rekap !== FALSE) {
+                $this->db->delete($this->table_name, "id_rekap = " . $id_rekap);
+            }
             if (!empty($response_data["data"])) {
                 foreach ($response_data["data"] as $satuan_satminkal => $array_data_satuan) {
                     $this->save_per_satminkal($id_rekap, $satuan_satminkal, $array_data_satuan);

@@ -8,7 +8,7 @@ class Lpsatbalak extends Back_end {
     protected $auto_load_model = FALSE;
 
     public function __construct() {
-        parent::__construct('modul_laporan', 'Rekapitulasi Dalam Dan Luar Struktur');
+        parent::__construct('modul_laporan_satbalak', 'Rekapitulasi Satbalak/Lemdikrah');
         $this->load->model('model_laporan');
     }
 
@@ -17,14 +17,18 @@ class Lpsatbalak extends Back_end {
         $this->set("bread_crumb", array(
             "#" => $this->_header_title
         ));
-        $records = $this->model_laporan->get_by_in_structure();
-//        var_dump($records);exit();
+        $tingkat = 5;
+        $bulan = 1;
+        $tahun = 2014;
+        $records = array(
+            'golongan' => $this->model_laporan->get_satbalak_by_kotama_and_golongan($bulan, $tahun),
+            'detail' => $this->model_laporan->get_satbalak_by_satminkal_and_golongan($bulan, $tahun),
+        );
+//        var_dump($records);
+//        exit();
+        $this->set('bulan', $bulan);
+        $this->set('tahun', $tahun);
         $this->set("records", $records);
-    }
-
-    public function detail($id_rekap = FALSE) {
-//        $records = $this->model_tr_pasukan_detail->get_by_structure($id_rekap);
-//        $this->set('records', $records);
     }
 
 }

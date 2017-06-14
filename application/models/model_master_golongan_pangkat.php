@@ -6,6 +6,7 @@ if (!defined("BASEPATH")) {
 
 class Model_master_golongan_pangkat extends Master_golongan_pangkat {
 
+    protected $using_insert_and_update_properties = FALSE;
     protected $rules = array(
         array("kode_golongan", "required|min_length[1]"),
         array("ur_golongan", "required|min_length[3]|max_length[300]")

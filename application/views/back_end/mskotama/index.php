@@ -6,6 +6,9 @@ $field_id = isset($field_id) ? $field_id : FALSE;
 $paging_set = isset($paging_set) ? $paging_set : FALSE;
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $next_list_number = isset($next_list_number) ? $next_list_number : 1;
+$sort_url_query = isset($sort_url_query) ? $sort_url_query : "";
+$sort_by = isset($sort_by) ? $sort_by : "";
+$sort_mode = isset($sort_mode) ? $sort_mode : "";
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -51,10 +54,10 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                             No
                                         </th>
                                         <th>
-                                            Kode
+                                            <a href="<?php echo base_url('back_end/' . $active_modul).$sort_url_query."&sort_by=kode_kotama"; ?>" >Kode <?php echo get_sort_icon($sort_mode, $sort_by, "kode_kotama"); ?></a>
                                         </th>
                                         <th>
-                                            Uraian
+                                            <a href="<?php echo base_url('back_end/' . $active_modul).$sort_url_query."&sort_by=ur_kotama"; ?>" >Uraian <?php echo get_sort_icon($sort_mode, $sort_by, "ur_kotama"); ?></a>
                                         </th>
                                         <th>
                                             Struktur

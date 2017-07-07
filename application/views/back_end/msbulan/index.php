@@ -51,10 +51,10 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                             No
                                         </th>
                                         <th>
-                                            Kode Bulan
+                                            <a href="<?php echo base_url('back_end/' . $active_modul).$sort_url_query."&sort_by=kode_bulan"; ?>" >Kode Bulan <?php echo get_sort_icon($sort_mode, $sort_by, "kode_bulan"); ?></a>
                                         </th>
                                         <th>
-                                            Nama Bulan
+                                            <a href="<?php echo base_url('back_end/' . $active_modul).$sort_url_query."&sort_by=nama_bulan"; ?>" >Nama Bulan <?php echo get_sort_icon($sort_mode, $sort_by, "nama_bulan"); ?></a>
                                         </th>
 <!--                                        <th>
                                             Keterangan

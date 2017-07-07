@@ -9,20 +9,20 @@ class Main extends LWS_Controller {
         parent::__construct();
     }
 
-//    public function access_rules() {
-//        return parent::access_rules(array(
-//            array(
-//                'allow',
-//                'users' => array('*')
-//            ),
-//            array(
-//                'allow',
-//                'actions' => array("back_end"),
-//                'roles' => array("administrator"),
-//                'users' => array('@')
-//            )
-//        ));
-//    }
+    public function access_rules() {
+        return parent::access_rules(array(
+            array(
+                'allow',
+                'users' => array('*')
+            ),
+            array(
+                'allow',
+                'actions' => array("back_end"),
+                'roles' => array("administrator"),
+                'users' => array('@')
+            )
+        ));
+    }
 
     public function index() {
         show_404();
@@ -34,5 +34,3 @@ class Main extends LWS_Controller {
     
     
 }
-
-?>

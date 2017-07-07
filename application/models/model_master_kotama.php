@@ -22,9 +22,12 @@ class Model_master_kotama extends Master_kotama {
                     "struktur_kotama",
                         ), FALSE, TRUE, FALSE, 1, TRUE, $force_limit, $force_offset);
     }
+    
+    protected function auto_order__get_all() {
+        return FALSE;
+    }
 
     public function get_like($keyword = FALSE) {
-
         $result = FALSE;
         if ($keyword) {
             $this->db->order_by("kode_kotama", "asc");

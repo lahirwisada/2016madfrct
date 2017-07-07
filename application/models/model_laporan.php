@@ -29,6 +29,136 @@ class Model_laporan extends LWS_Model {
         $this->tr_pasukan_detail = $this->get_schema_name("tr_pasukan_detail", TRUE);
     }
 
+    public function get_by_kelompok_for_graph($jenis, $bulan, $tahun) {
+        $this->db->select($this->master_kelompok_pangkat . '.kode_kelompok');
+        $this->db->select_sum($this->tr_pasukan_detail . '.top');
+        $this->db->select_sum($this->tr_pasukan_detail . '.dinas');
+        $this->db->select_sum($this->tr_pasukan_detail . '.mpp');
+        $this->db->select_sum($this->tr_pasukan_detail . '.lf');
+        $this->db->select_sum($this->tr_pasukan_detail . '.skorsing');
+        $this->db->join($this->master_kelompok_pangkat, $this->master_kelompok_pangkat . '.id_kelompok=' . $this->master_pangkat . '.id_kelompok');
+        $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_pangkat=' . $this->master_pangkat . '.id_pangkat');
+        $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
+        $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
+        $this->db->where($this->master_pangkat . '.id_kelompok < 18');
+        $this->db->where($this->master_kotama . '.struktur_kotama = ' . $jenis);
+        $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
+        $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
+        $this->db->group_by($this->master_kelompok_pangkat . '.id_kelompok');
+        $this->db->order_by($this->master_kelompok_pangkat . '.id_kelompok', 'desc');
+        $query = $this->db->get($this->master_pangkat);
+//        echo $this->db->last_query();
+        $result = array();
+        $top = 0;
+        $nyata = 0;
+        foreach ($query->result() as $record) {
+            if ($record->kode_kelompok == "SERMA") {
+                $nyata = $record->dinas + $record->mpp + $record->lf + $record->skorsing;
+                $top = $record->top;
+            } elseif ($record->kode_kelompok == "SERKA") {
+                $result[] = array(
+                    'label' => 'SRK/SRM',
+                    'nyata' => $record->dinas + $record->mpp + $record->lf + $record->skorsing + $nyata,
+                    'top' => $record->top + $top
+                );
+            } elseif ($record->kode_kelompok == "KOPKA") {
+                $nyata = $record->dinas + $record->mpp + $record->lf + $record->skorsing;
+                $top = $record->top;
+            } elseif ($record->kode_kelompok == "KOPRAL") {
+                $result[] = array(
+                    'label' => 'KOPRAL',
+                    'nyata' => $record->dinas + $record->mpp + $record->lf + $record->skorsing + $nyata,
+                    'top' => $record->top + $top
+                );
+            } elseif ($record->kode_kelompok == "PRAKA") {
+                $nyata = $record->dinas + $record->mpp + $record->lf + $record->skorsing;
+                $top = $record->top;
+            } elseif ($record->kode_kelompok == "PRAJURIT") {
+                $result[] = array(
+                    'label' => 'PRAJURIT',
+                    'nyata' => $record->dinas + $record->mpp + $record->lf + $record->skorsing + $nyata,
+                    'top' => $record->top + $top
+                );
+            } else {
+                $result[] = array(
+                    'label' => $record->kode_kelompok,
+                    'nyata' => $record->dinas + $record->mpp + $record->lf + $record->skorsing,
+                    'top' => $record->top
+                );
+            }
+        }
+//        var_dump($result);
+//        var_dump($query->result());
+//        exit();
+        return $result;
+    }
+
+    public function get_by_tingkat_for_graph($jenis, $bulan, $tahun) {
+        $this->db->select($this->master_tingkat_pangkat . '.kode_tingkat');
+        $this->db->select_sum($this->tr_pasukan_detail . '.top');
+        $this->db->select_sum($this->tr_pasukan_detail . '.dinas');
+        $this->db->select_sum($this->tr_pasukan_detail . '.mpp');
+        $this->db->select_sum($this->tr_pasukan_detail . '.lf');
+        $this->db->select_sum($this->tr_pasukan_detail . '.skorsing');
+        $this->db->join($this->master_tingkat_pangkat, $this->master_tingkat_pangkat . '.id_tingkat=' . $this->master_pangkat . '.id_tingkat');
+        $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_pangkat=' . $this->master_pangkat . '.id_pangkat');
+        $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
+        $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
+        $this->db->where($this->master_pangkat . '.id_tingkat < 6');
+        $this->db->where($this->master_kotama . '.struktur_kotama = ' . $jenis);
+        $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
+        $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
+        $this->db->group_by($this->master_tingkat_pangkat . '.id_tingkat');
+        $this->db->order_by($this->master_tingkat_pangkat . '.id_tingkat', 'desc');
+        $query = $this->db->get($this->master_pangkat);
+//        echo $this->db->last_query();
+        $result = array();
+        foreach ($query->result() as $record) {
+            $result[] = array(
+                'label' => $record->kode_tingkat,
+                'nyata' => $record->dinas + $record->mpp + $record->lf + $record->skorsing,
+                'top' => $record->top
+            );
+        }
+//        var_dump($result);
+//        var_dump($query->result());
+//        exit();
+        return $result;
+    }
+
+    public function get_by_golongan_for_graph($jenis, $bulan, $tahun) {
+        $this->db->select($this->master_golongan_pangkat . '.ur_golongan');
+        $this->db->select_sum($this->tr_pasukan_detail . '.top');
+        $this->db->select_sum($this->tr_pasukan_detail . '.dinas');
+        $this->db->select_sum($this->tr_pasukan_detail . '.mpp');
+        $this->db->select_sum($this->tr_pasukan_detail . '.lf');
+        $this->db->select_sum($this->tr_pasukan_detail . '.skorsing');
+        $this->db->join($this->master_golongan_pangkat, $this->master_golongan_pangkat . '.id_golongan=' . $this->master_pangkat . '.id_golongan');
+        $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_pangkat=' . $this->master_pangkat . '.id_pangkat');
+        $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
+        $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
+        $this->db->where($this->master_pangkat . '.id_golongan < 4');
+        $this->db->where($this->master_kotama . '.struktur_kotama = ' . $jenis);
+        $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
+        $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
+        $this->db->group_by($this->master_golongan_pangkat . '.id_golongan');
+        $this->db->order_by($this->master_golongan_pangkat . '.id_golongan', 'desc');
+        $query = $this->db->get($this->master_pangkat);
+//        echo $this->db->last_query();
+        $result = array();
+        foreach ($query->result() as $record) {
+            $result[] = array(
+                'label' => $record->ur_golongan,
+                'nyata' => $record->dinas + $record->mpp + $record->lf + $record->skorsing,
+                'top' => $record->top
+            );
+        }
+//        var_dump($result);
+//        var_dump($query->result());
+//        exit();
+        return $result;
+    }
+
     public function get_by_in_structure($bulan = 1, $tahun = 2014) {
         $this->db->select($this->master_pangkat . '.id_pangkat');
         $this->db->select($this->master_pangkat . '.ur_pangkat');

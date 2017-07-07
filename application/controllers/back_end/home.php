@@ -40,5 +40,3 @@ class Home extends Back_end {
 //        return toJsonString($month, FALSE);
 //    }
 }
-
-?>

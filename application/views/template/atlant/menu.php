@@ -10,7 +10,7 @@ $menu_item = isset($menu_item) ? build_atlant_menu($menu_item, $active_modul) : 
 
 <ul class="x-navigation">
     <li class="xn-logo">
-        <a href="<?php echo base_url(); ?>">BKPP</a>
+        <a href="<?php echo base_url(); ?>">SPERSAD</a>
         <a href="#" class="x-navigation-control"></a>
     </li>
     <li class="xn-profile">
@@ -50,6 +50,6 @@ $menu_item = isset($menu_item) ? build_atlant_menu($menu_item, $active_modul) : 
             </div>
         <?php endif ?>                                                                        
     </li>
-    <li class="xn-title">Menu</li>
+    <li class="xn-title">Menu Utama</li>
         <?php echo $menu_item; ?>
 </ul>

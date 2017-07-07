@@ -53,7 +53,7 @@ $config["pdf_paper_orientation"] = 'L';
  * core/LW_Model.php
  * 
  */
-$config['using_insert_and_update_properties'] = TRUE;
+$config['using_insert_and_update_properties'] = FALSE;
 
 $config['created_date'] = 'created_date';
 $config['modified_date'] = 'modified_date';

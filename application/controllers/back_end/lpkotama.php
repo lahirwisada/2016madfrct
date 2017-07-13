@@ -12,14 +12,14 @@ class Lpkotama extends Back_end {
         $this->load->model('model_laporan');
     }
 
-    public function index() {
+    public function index($bulan=1, $tahun = 2014) {
         $this->get_attention_message_from_session();
         $this->set("bread_crumb", array(
             "#" => $this->_header_title
         ));
         $tingkat = 5;
-        $bulan = 1;
-        $tahun = 2014;
+//        $bulan = 11;
+//        $tahun = 2014;
         $records["kategori"] = $this->model_laporan->get_by_kotama_and_golongan($bulan, $tahun);
         $records["tingkat"] = $this->model_laporan->get_by_kotama_and_tingkat($tingkat, $bulan, $tahun);
         $this->set('bulan', $bulan);

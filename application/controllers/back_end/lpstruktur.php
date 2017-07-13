@@ -13,14 +13,14 @@ class Lpstruktur extends Back_end {
 //        $this->load->model(array('model_laporan', 'model_master_kotama', 'model_master_satminkal', 'model_master_pangkat'));
     }
 
-    public function index() {
+    public function index($bulan=1, $tahun = 2014) {
         $this->get_attention_message_from_session();
         $this->set("bread_crumb", array(
             "#" => $this->_header_title
         ));
         $tingkat = 5;
-        $bulan = 1;
-        $tahun = 2014;
+//        $bulan = 11;
+//        $tahun = 2014;
         $records['dalam'] = $this->model_laporan->get_by_in_structure($bulan, $tahun);
 //        $records['luar'] = $this->model_laporan->get_by_out_structure($bulan, $tahun);
 //        var_dump($records);exit();

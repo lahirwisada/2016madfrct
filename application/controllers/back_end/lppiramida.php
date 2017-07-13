@@ -12,14 +12,14 @@ class Lppiramida extends Back_end {
         $this->load->model('model_laporan');
     }
 
-    public function index() {
+    public function index($bulan=1, $tahun = 2014) {
         parent::index();
         $this->get_attention_message_from_session();
         $this->set("bread_crumb", array(
             "#" => $this->_header_title
         ));
-        $bulan = 1;
-        $tahun = 2014;
+//        $bulan = 11;
+//        $tahun = 2014;
         $records['dalam_pangkat'] = json_encode($this->model_laporan->get_by_kelompok_for_graph(1, $bulan, $tahun));
         $records['dalam_tingkat'] = json_encode($this->model_laporan->get_by_tingkat_for_graph(1, $bulan, $tahun));
         $records['dalam_golongan'] = json_encode($this->model_laporan->get_by_golongan_for_graph(1, $bulan, $tahun));

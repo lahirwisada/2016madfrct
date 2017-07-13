@@ -19,7 +19,7 @@ class Model_master_kotama extends Master_kotama {
     public function all($force_limit = FALSE, $force_offset = FALSE) {
         return parent::get_all(array(
                     "ur_kotama",
-                    "struktur_kotama",
+//                    "struktur_kotama",
                         ), FALSE, TRUE, FALSE, 1, TRUE, $force_limit, $force_offset);
     }
     

@@ -22,7 +22,7 @@ class Model_master_satminkal extends master_satminkal {
     public function all($force_limit = FALSE, $force_offset = FALSE) {
         return parent::get_all(array(
                     "kode_satminkal",
-                    "ur_kotama",
+//                    "ur_kotama",
                     "ur_satminkal",
                         ), FALSE, TRUE, FALSE, 1, TRUE, $force_limit, $force_offset);
     }

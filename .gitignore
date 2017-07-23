@@ -2,8 +2,6 @@
 /\.htaccess
 /CI_Autocomplete\.php
 /application/cache/
-/application/config/config\.php
-/application/config/database\.php
 /application/logs/
 /nbproject/
 /_assets/uploads

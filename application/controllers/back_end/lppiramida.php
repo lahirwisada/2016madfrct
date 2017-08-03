@@ -12,7 +12,7 @@ class Lppiramida extends Back_end {
         $this->load->model('model_laporan');
     }
 
-    public function index($bulan=1, $tahun = 2014) {
+    public function index($bulan = 1, $tahun = 2014) {
         parent::index();
         $this->get_attention_message_from_session();
         $this->set("bread_crumb", array(

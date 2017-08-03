@@ -15,6 +15,11 @@ $records = isset($records) ? $records : FALSE;
             </div>
             <div class="panel-body">
 
+                <div>
+                    <a class="btn btn-primary" href="<?php echo base_url() ?>exportexcel/laporan/satpur"> Export to Excel </a>
+
+                 </div>
+
                 <div class="block">
                     <?php echo load_partial("back_end/shared/attention_message"); ?>
                 </div>

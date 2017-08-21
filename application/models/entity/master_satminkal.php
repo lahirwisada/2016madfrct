@@ -9,6 +9,8 @@ class Master_satminkal extends LWS_model {
     public function __construct() {
         parent::__construct("master_satminkal");
         $this->primary_key = "id_satminkal";
+        $this->sort_by = "kode_satminkal";
+        $this->sort_mode = "asc";
     }
 
     protected $attribute_labels = array(
@@ -41,8 +43,9 @@ class Master_satminkal extends LWS_model {
         "master_kotama" => array(
             "fkey" => "id_kotama",
             "columns" => array(
-                "ur_kotama",
                 "kode_kotama",
+                "nama_kotama",
+                "ur_kotama",
             ),
             "referenced" => "LEFT"
         ),

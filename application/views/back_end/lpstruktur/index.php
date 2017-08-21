@@ -14,6 +14,7 @@ $records = isset($records) ? $records : FALSE;
             </ul>
             <div class="panel-body tab-content">
                 <div class="tab-pane active" id="tab-first">
+                    Under construction...
                 </div>
                 <div class="tab-pane" id="tab-second">
                     <div class="block">

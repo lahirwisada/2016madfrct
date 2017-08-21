@@ -33,9 +33,7 @@ class Mskesatuan extends Back_end {
     
     public function get_like() {
         $keyword = $this->input->post("keyword");
-
         $kesatuan_found = $this->model_master_kesatuan->get_like($keyword);
-        
         $this->to_json($kesatuan_found);
     }
 }

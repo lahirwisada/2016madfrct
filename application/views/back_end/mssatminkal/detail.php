@@ -2,6 +2,7 @@
 $header_title = isset($header_title) ? $header_title : '';
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $detail = isset($detail) ? $detail : FALSE;
+//var_dump($detail);
 ?>
 
 <div class="row">
@@ -21,7 +22,7 @@ $detail = isset($detail) ? $detail : FALSE;
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Kotama *</label>
                         <div class="col-md-6 col-xs-12">                                            
-                            <select id="slc-kotama" class="form-control select2-basic" name="id_kotama">
+                            <select id="slc-kotama" class="form-control select2-basicc" name="id_kotama">
                             </select>
                         </div>
                     </div>

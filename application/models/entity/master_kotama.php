@@ -9,6 +9,8 @@ class Master_kotama extends LWS_model {
     public function __construct() {
         parent::__construct("master_kotama");
         $this->primary_key = "id_kotama";
+        $this->sort_by = "kode_kotama";
+        $this->sort_mode = "asc";
         
         $this->attribute_labels = array_merge_recursive($this->_continuously_attribute_label, $this->attribute_labels);
         $this->rules = array_merge_recursive($this->_continuously_rules, $this->rules);
@@ -17,6 +19,7 @@ class Master_kotama extends LWS_model {
     protected $attribute_labels = array(
         "id_kotama" => array("id_kotama", "ID Kotama"),
         "kode_kotama" => array("kode_kotama", "Kode Kotama"),
+        "nama_kotama" => array("nama_kotama", "Nama Kotama"),
         "ur_kotama" => array("ur_kotama", "Uraian Kotama"),
         "struktur_kotama" => array("struktur_kotama", "Struktur Kotama"),
 //        "created_date" => array("created_date", "created_date"),
@@ -28,6 +31,7 @@ class Master_kotama extends LWS_model {
     protected $rules = array(
         array("id_kotama", ""),
         array("kode_kotama", ""),
+        array("nama_kotama", ""),
         array("ur_kotama", ""),
         array("struktur_kotama", ""),
 //        array("created_date", ""),

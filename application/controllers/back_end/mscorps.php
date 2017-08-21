@@ -32,9 +32,7 @@ class Mscorps extends Back_end {
 
     public function get_like() {
         $keyword = $this->input->post("keyword");
-
         $corps_found = $this->model_master_corps->get_like($keyword);
-
         $this->to_json($corps_found);
     }
 

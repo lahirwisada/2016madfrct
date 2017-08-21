@@ -75,7 +75,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                     <?php if ($records != FALSE): ?>
                                         <?php foreach ($records as $key => $record): ?>
                                             <tr>
-                                                <td>
+                                                <td class="text-right">
                                                     <?php echo $next_list_number; ?>
                                                 </td>
                                                 <td>

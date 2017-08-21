@@ -44,10 +44,10 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                 <div class="block">
                     <div class="dataTables_wrapper no-footer">
                         <div class="table-responsive">
-                            <table class="table no-footer" id="DataTables_Table_0">
+                            <table class="table table-bordered table-condensed table-striped no-footer" id="DataTables_Table_0">
                                 <thead>
                                     <tr role="row">
-                                        <th>
+                                        <th width="60">
                                             No
                                         </th>
                                         <th>
@@ -59,26 +59,26 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                         <th>
                                             Uraian
                                         </th>
-                                        <th width="15%">Aksi</th>
+                                        <th width="130">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php if ($records != FALSE): ?>
                                         <?php foreach ($records as $key => $record): ?>
                                             <tr>
-                                                <td>
+                                                <td class="text-right">
                                                     <?php echo $next_list_number; ?>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <?php echo beautify_str($record->kode_corps) ?>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <?php echo beautify_str($record->init_corps) ?>
                                                 </td>
                                                 <td>
                                                     <?php echo beautify_str($record->ur_corps) ?>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <div class="btn-group btn-group-sm">
                                                         <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->id_corps; ?>">Ubah</a>
                                                         <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->id_corps; ?>">Hapus</a>

@@ -44,7 +44,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                 <div class="block">
                     <div class="dataTables_wrapper no-footer">
                         <div class="table-responsive">
-                            <table class="table no-footer" id="DataTables_Table_0">
+                            <table class="table table-bordered table-condensed table-striped no-footer" id="DataTables_Table_0">
                                 <thead>
                                     <tr role="row">
                                         <th>
@@ -56,7 +56,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                         <th>
                                             Nama Satuan
                                         </th>
-                                        <th width="15%">Aksi</th>
+                                        <th width="150">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -1,31 +1,50 @@
 <?php
 
-class testemplate extends CI_Controller {
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-    function __construct() {
+class Mstemplate extends Back_end {
+
+    protected $auto_load_model = FALSE;
+
+    public function __construct() {
         parent::__construct();
+        $this->load->model(array('model_master_kotama', 'model_master_satminkal', 'model_master_pangkat'));
     }
 
-    function index() {
+    public function index() {
+        show_404();
+    }
+
+    public function download($id_kotama) {
         $this->load->library("PHPExcel/PHPExcel");
-        //exit;
+//        exit;
+//        $kode_kotama = $_GET['kotama'];
+        $kode_kotama = $id_kotama;
+//        $kotama = $this->db->query("SELECT * FROM sc_fcstprsn.master_kotama WHERE id_kotama = '$kode_kotama'")->row_array();
+//        $query_satminkal = $this->db->query("SELECT * FROM sc_fcstprsn.master_satminkal WHERE id_kotama = '$kode_kotama'");
+//
+//        $pangkat = $this->db->query("SELECT * FROM sc_fcstprsn.master_pangkat ORDER BY kode_pangkat DESC")->result_array();
+//
+//        $satminkal = $query_satminkal->result_array();
 
-        $kode_kotama = $_GET['kotama'];
-        $kotama = $this->db->query("SELECT * FROM sc_fcstprsn.master_kotama WHERE id_kotama = '$kode_kotama'")->row_array();
-        $query_satminkal = $this->db->query("SELECT * FROM sc_fcstprsn.master_satminkal WHERE id_kotama = '$kode_kotama'");
+        $kotama = (array) $this->model_master_kotama->get_detail('id_kotama = ' . $kode_kotama);
+        $listsatminkal = $this->model_master_satminkal->get_where('id_kotama = ' . $kode_kotama);
 
-        $pangkat = $this->db->query("SELECT * FROM sc_fcstprsn.master_pangkat ORDER BY kode_pangkat DESC")->result_array();
+        $satminkal = array();
+        foreach ($listsatminkal as $row) {
+            $satminkal[] = (array) $row;
+        }
+
+        $listpangkat = $this->model_master_pangkat->get_all();
+        $pangkat = array();
+        foreach ($listpangkat as $row) {
+            $pangkat[] = (array) $row;
+        }
         $total = count($pangkat);
 
-
-
-        $satminkal = $query_satminkal->result_array();
-
-
-
-        //echo "<pre>";
-        //print_r($a);
-        //exit;
+//        echo "<pre>";
+//        print_r($pangkat);
+//        exit;
 
         $objPHPExcel = new PHPExcel();
         $objPHPExcel->setActiveSheetIndex(0);
@@ -65,7 +84,7 @@ class testemplate extends CI_Controller {
         $objPHPExcel->getActiveSheet()->mergeCells('H10:H11');
 
         // Style
-        
+
         $styleThinBlackBorderOutline = array(
             'alignment' => array(
                 'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,

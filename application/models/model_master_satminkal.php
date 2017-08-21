@@ -4,7 +4,7 @@ if (!defined("BASEPATH")) {
     exit("No direct script access allowed");
 } include_once "entity/master_satminkal.php";
 
-class Model_master_satminkal extends master_satminkal {
+class Model_master_satminkal extends Master_satminkal {
 
     protected $using_insert_and_update_properties = FALSE;
     protected $rules = array(

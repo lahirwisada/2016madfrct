@@ -26,7 +26,6 @@ class Mssatminkal extends Back_end {
         ));
 
         $this->set("additional_js", "back_end/" . $this->_name . "/js/detail_js");
-
         $this->add_cssfiles(array("plugins/select2/select2.min.css"));
         $this->add_jsfiles(array("plugins/select2/select2.full.min.js"));
     }
@@ -34,7 +33,6 @@ class Mssatminkal extends Back_end {
     public function get_like() {
         $keyword = $this->input->post("keyword");
         $satminkal_found = $this->model_master_satminkal->get_like($keyword);
-
         $this->to_json($satminkal_found);
     }
 

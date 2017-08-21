@@ -337,7 +337,7 @@ class Rkpasukan extends Back_end {
     public function download($id_kotama = FALSE) {
         if (!$id_kotama) {
             $this->attention_messages = "Data kotama tidak ditemukan.";
-//            redirect('back_end/' . $this->_name);
+            redirect('back_end/' . $this->_name);
         }
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => $this->_header_title,

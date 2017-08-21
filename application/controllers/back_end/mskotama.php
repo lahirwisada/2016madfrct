@@ -30,9 +30,7 @@ class Mskotama extends Back_end {
 
     public function get_like() {
         $keyword = $this->input->post("keyword");
-
         $kotama_found = $this->model_master_kotama->get_like($keyword);
-
         $this->to_json($kotama_found);
     }
 

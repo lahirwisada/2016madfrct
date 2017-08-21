@@ -3,17 +3,16 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Exportlaporan extends Back_end {
+class Lpsatop extends Back_end {
 
     protected $auto_load_model = FALSE;
 
     public function __construct() {
-        parent::__construct('modul_export_laporan', 'Export Laporan');
+        parent::__construct('modul_laporan_operasi', 'Kekuatan Satop/Satdukop');
         $this->load->model('model_laporan');
-//        $this->load->model(array('model_laporan', 'model_master_kotama', 'model_master_satminkal', 'model_master_pangkat'));
     }
 
-    public function index($bulan = 1, $tahun = 2014) {
+    public function index($bulan=1, $tahun = 2014) {
         $this->get_attention_message_from_session();
         $this->set("bread_crumb", array(
             "#" => $this->_header_title
@@ -21,11 +20,12 @@ class Exportlaporan extends Back_end {
         $tingkat = 5;
 //        $bulan = 11;
 //        $tahun = 2014;
-        $records['dalam'] = $this->model_laporan->get_by_in_structure($bulan, $tahun);
-//        $records['luar'] = $this->model_laporan->get_by_out_structure($bulan, $tahun);
-//        var_dump($records);exit();
+        $records["kategori"] = $this->model_laporan->get_by_kotama_and_golongan($bulan, $tahun);
+        $records["tingkat"] = $this->model_laporan->get_by_kotama_and_tingkat($tingkat, $bulan, $tahun);
         $this->set('bulan', $bulan);
         $this->set('tahun', $tahun);
+//        var_dump($records["tingkat"]);
+//        exit();
         $this->set("records", $records);
     }
 

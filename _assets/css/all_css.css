@@ -11,3 +11,8 @@ and open the template in the editor.
 .panel .panel-body.profile {
     height: 225px;
 }
+
+.table-bordered th {
+    text-align: center;
+    text-transform: uppercase;
+}

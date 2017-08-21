@@ -25,19 +25,26 @@ $detail = isset($detail) ? $detail : FALSE;
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Nama Kotama *</label>
+                        <div class="col-md-6 col-xs-12">
+                            <input type="text" name="nama_kotama" class="form-control" value="<?php echo $detail ? $detail->nama_kotama : ""; ?>">                                        
+                            <span class="help-block">Isikan sesuai dengan Nama Kotama.</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Uraian Kotama *</label>
                         <div class="col-md-6 col-xs-12">
                             <input type="text" name="ur_kotama" class="form-control" value="<?php echo $detail ? $detail->ur_kotama : ""; ?>">                                        
-                            <span class="help-block">Isikan sesuai dengan UR kotama.</span>
+                            <span class="help-block">Isikan sesuai dengan Uraian Kotama.</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Struktur *</label>
                         <div class="col-md-6 col-xs-12">        
-                            <select name="struktur_kotama" class="form-control">
-                                <option value="">Pilih Struktur</option>
-                                <option value="1"<?php echo $detail && $detail->struktur_kotama == 1 ? " selected" : ""; ?>>Dalam Struktur</option>
-                                <option value="2"<?php echo $detail && $detail->struktur_kotama == 2 ? " selected" : ""; ?>>Luar Struktur</option>
+                            <select name="struktur_kotama" class="form-control select">
+                                <option value="">PILIH STRUKTUR</option>
+                                <option value="1"<?php echo $detail && $detail->struktur_kotama == 1 ? " selected" : ""; ?>>DALAM STRUKTUR</option>
+                                <option value="2"<?php echo $detail && $detail->struktur_kotama == 2 ? " selected" : ""; ?>>LUAR STRUKTUR</option>
                             </select>
                             <span class="help-block">Isikan sesuai dengan Struktur.</span>
                         </div>

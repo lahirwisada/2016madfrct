@@ -44,41 +44,41 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                 <div class="block">
                     <div class="dataTables_wrapper no-footer">
                         <div class="table-responsive">
-                            <table class="table no-footer" id="DataTables_Table_0">
+                            <table class="table table-bordered table-condensed table-striped no-footer" id="DataTables_Table_0">
                                 <thead>
                                     <tr role="row">
-                                        <th>NO</th>
+                                        <th width="60">NO</th>
                                         <th>KODE</th>
                                         <th>URAIAN</th>
                                         <th>KELOMPOK</th>
                                         <th>GOLONGAN</th>
                                         <th>TINGKAT</th>
-                                        <th width="15%">AKSI</th>
+                                        <th width="130">AKSI</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php if ($records != FALSE): ?>
                                         <?php foreach ($records as $key => $record): ?>
                                             <tr>
-                                                <td>
+                                                <td class="text-right">
                                                     <?php echo $next_list_number; ?>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <?php echo beautify_str($record->kode_pangkat) ?>
                                                 </td>
                                                 <td>
                                                     <?php echo beautify_str($record->ur_pangkat) ?>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <?php echo beautify_str($record->kode_kelompok) ?>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <?php echo beautify_str($record->kode_golongan) ?>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <?php echo beautify_str($record->kode_tingkat) ?>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <div class="btn-group btn-group-sm">
                                                         <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->id_pangkat; ?>">Ubah</a>
                                                         <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->id_pangkat; ?>">Hapus</a>

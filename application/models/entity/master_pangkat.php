@@ -9,6 +9,8 @@ class Master_pangkat extends LWS_model {
     public function __construct() {
         parent::__construct("master_pangkat");
         $this->primary_key = "id_pangkat";
+        $this->sort_by = "kode_pangkat";
+        $this->sort_mode = "desc";
 
         $this->attribute_labels = array_merge_recursive($this->_continuously_attribute_label, $this->attribute_labels);
         $this->rules = array_merge_recursive($this->_continuously_rules, $this->rules);

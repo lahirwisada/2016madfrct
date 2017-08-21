@@ -19,7 +19,7 @@ class Mspangkat extends Back_end {
     }
 
     public function detail($id = FALSE) {
-        parent::detail($id, array("kode_pangkat", "ur_pangkat", "id_kelompok", "id_golongan", "tingkat_pangkat",));
+        parent::detail($id, array("kode_pangkat", "ur_pangkat", "id_kelompok", "id_golongan", "id_tingkat",));
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => $this->_header_title,
             "#" => 'Formulir ' . $this->_header_title
@@ -31,9 +31,7 @@ class Mspangkat extends Back_end {
 
     public function get_like() {
         $keyword = $this->input->post("keyword");
-
         $pangkat_found = $this->model_master_pangkat->get_like($keyword);
-
         $this->to_json($pangkat_found);
     }
 

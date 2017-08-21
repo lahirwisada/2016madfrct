@@ -32,3 +32,4 @@ $sort_mode = isset($sort_mode) ? $sort_mode : "";
         </div>
     </div>
 </div>
+<div class="clearfix"></div>

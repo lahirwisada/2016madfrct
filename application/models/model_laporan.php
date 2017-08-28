@@ -29,7 +29,7 @@ class Model_laporan extends LWS_Model {
         $this->tr_pasukan_detail = $this->get_schema_name("tr_pasukan_detail", TRUE);
     }
 
-    public function get_by_kelompok_for_graph($jenis, $bulan, $tahun) {
+    public function get_by_kelompok_for_graph($jenis = 0, $bulan = 1, $tahun = 2014) {
         $this->db->select($this->master_kelompok_pangkat . '.kode_kelompok');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
         $this->db->select_sum($this->tr_pasukan_detail . '.dinas');
@@ -41,7 +41,9 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
         $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
         $this->db->where($this->master_pangkat . '.id_kelompok < 18');
-        $this->db->where($this->master_kotama . '.struktur_kotama = ' . $jenis);
+        if ($jenis != 0) {
+            $this->db->where($this->master_kotama . '.struktur_kotama = ' . $jenis);
+        }
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
         $this->db->group_by($this->master_kelompok_pangkat . '.id_kelompok');
@@ -93,7 +95,7 @@ class Model_laporan extends LWS_Model {
         return $result;
     }
 
-    public function get_by_tingkat_for_graph($jenis, $bulan, $tahun) {
+    public function get_by_tingkat_for_graph($jenis = 0, $bulan = 1, $tahun = 2014) {
         $this->db->select($this->master_tingkat_pangkat . '.kode_tingkat');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
         $this->db->select_sum($this->tr_pasukan_detail . '.dinas');
@@ -105,7 +107,9 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
         $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
         $this->db->where($this->master_pangkat . '.id_tingkat < 6');
-        $this->db->where($this->master_kotama . '.struktur_kotama = ' . $jenis);
+        if ($jenis != 0) {
+            $this->db->where($this->master_kotama . '.struktur_kotama = ' . $jenis);
+        }
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
         $this->db->group_by($this->master_tingkat_pangkat . '.id_tingkat');
@@ -126,7 +130,7 @@ class Model_laporan extends LWS_Model {
         return $result;
     }
 
-    public function get_by_golongan_for_graph($jenis, $bulan, $tahun) {
+    public function get_by_golongan_for_graph($jenis = 0, $bulan = 1, $tahun = 2014) {
         $this->db->select($this->master_golongan_pangkat . '.ur_golongan');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
         $this->db->select_sum($this->tr_pasukan_detail . '.dinas');
@@ -138,7 +142,9 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
         $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
         $this->db->where($this->master_pangkat . '.id_golongan < 4');
-        $this->db->where($this->master_kotama . '.struktur_kotama = ' . $jenis);
+        if ($jenis != 0) {
+            $this->db->where($this->master_kotama . '.struktur_kotama = ' . $jenis);
+        }
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
         $this->db->group_by($this->master_golongan_pangkat . '.id_golongan');
@@ -155,6 +161,50 @@ class Model_laporan extends LWS_Model {
         }
 //        var_dump($result);
 //        var_dump($query->result());
+//        exit();
+        return $result;
+    }
+
+    public function get_by_rekap_structure($bulan = 1, $tahun = 2014) {
+        $this->db->select($this->master_pangkat . '.id_pangkat');
+        $this->db->select($this->master_pangkat . '.ur_pangkat');
+        $this->db->select($this->master_tingkat_pangkat . '.kode_tingkat');
+        $this->db->select($this->master_kotama . '.struktur_kotama');
+        $this->db->select_sum($this->tr_pasukan_detail . '.top');
+        $this->db->select_sum($this->tr_pasukan_detail . '.dinas + ' . $this->tr_pasukan_detail . '.mpp + ' . $this->tr_pasukan_detail . '.lf + ' . $this->tr_pasukan_detail . '.skorsing', 'total');
+        $this->db->join($this->master_tingkat_pangkat, $this->master_tingkat_pangkat . '.id_tingkat=' . $this->master_pangkat . '.id_tingkat');
+        $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_pangkat=' . $this->master_pangkat . '.id_pangkat');
+        $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
+        $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
+        $this->db->where($this->master_pangkat . '.id_tingkat < 6');
+        $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
+        $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
+        $this->db->group_by($this->master_kotama . '.struktur_kotama');
+        $this->db->group_by($this->master_pangkat . '.id_pangkat');
+        $this->db->group_by($this->master_tingkat_pangkat . '.kode_tingkat');
+        $this->db->order_by($this->master_pangkat . '.id_pangkat', 'desc');
+        $query = $this->db->get($this->master_pangkat);
+//        echo $this->db->last_query();
+//        var_dump($query->result());
+//        exit();
+        return $this->arrange_rekap_structure_by_tingkat($query->result());
+    }
+
+    public function arrange_rekap_structure_by_tingkat($records = FALSE) {
+        $result = array();
+        if ($records) {
+            foreach ($records as $record) {
+                $result[$record->kode_tingkat][$record->ur_pangkat]['pangkat'] = $record->ur_pangkat;
+                if ($record->struktur_kotama == 1) {
+                    $result[$record->kode_tingkat][$record->ur_pangkat]['dalam_top'] = $record->top;
+                    $result[$record->kode_tingkat][$record->ur_pangkat]['dalam_nyata'] = $record->total;
+                } else {
+                    $result[$record->kode_tingkat][$record->ur_pangkat]['luar_top'] = $record->top;
+                    $result[$record->kode_tingkat][$record->ur_pangkat]['luar_nyata'] = $record->total;
+                }
+            }
+        }
+//        var_dump($result);
 //        exit();
         return $result;
     }
@@ -183,14 +233,68 @@ class Model_laporan extends LWS_Model {
 //        echo $this->db->last_query();
 //        var_dump($query->result());
 //        exit();
-        return $this->arrange_by_tingkat($query->result());
+        return $this->arrange_in_structure_by_tingkat($query->result());
     }
 
-    public function arrange_by_tingkat($records = FALSE) {
+    public function arrange_in_structure_by_tingkat($records = FALSE) {
         $result = array();
         if ($records) {
             foreach ($records as $record) {
                 $result[$record->kode_tingkat][] = $record;
+            }
+        }
+//        var_dump($result);
+//        exit();
+        return $result;
+    }
+
+    public function get_by_out_structure($bulan = 1, $tahun = 2014) {
+        $this->db->select($this->master_kotama . '.id_kotama');
+        $this->db->select($this->master_kotama . '.nama_kotama');
+        $this->db->select($this->master_pangkat . '.id_pangkat');
+        $this->db->select($this->master_pangkat . '.ur_pangkat');
+        $this->db->select($this->master_tingkat_pangkat . '.kode_tingkat');
+        $this->db->select_sum($this->tr_pasukan_detail . '.top');
+        $this->db->select_sum($this->tr_pasukan_detail . '.dinas');
+        $this->db->select_sum($this->tr_pasukan_detail . '.mpp');
+        $this->db->select_sum($this->tr_pasukan_detail . '.lf');
+        $this->db->select_sum($this->tr_pasukan_detail . '.skorsing');
+        $this->db->join($this->master_tingkat_pangkat, $this->master_tingkat_pangkat . '.id_tingkat=' . $this->master_pangkat . '.id_tingkat');
+        $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_pangkat=' . $this->master_pangkat . '.id_pangkat');
+        $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
+        $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
+        $this->db->where($this->master_pangkat . '.id_tingkat < 6');
+        $this->db->where($this->master_kotama . '.struktur_kotama = 2');
+        $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
+        $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
+        $this->db->group_by($this->master_kotama . '.id_kotama');
+        $this->db->group_by($this->master_pangkat . '.id_pangkat');
+        $this->db->group_by($this->master_tingkat_pangkat . '.kode_tingkat');
+        $this->db->order_by($this->master_kotama . '.kode_kotama', 'asc');
+        $this->db->order_by($this->master_pangkat . '.id_pangkat', 'desc');
+        $query = $this->db->get($this->master_pangkat);
+//        echo $this->db->last_query();
+//        var_dump($query->result());
+//        exit();
+        return $this->arrange_out_structure_by_tingkat($query->result());
+    }
+
+    public function arrange_out_structure_by_tingkat($records = FALSE) {
+        $result = array();
+        $pangkat = '';
+        $sumtop = 0;
+        $sumvalue = 0;
+        if ($records) {
+            foreach ($records as $record) {
+                if ($pangkat != $record->ur_pangkat) {
+                    $pangkat = $record->ur_pangkat;
+                    $sumvalue = 0;
+                }
+                $sumtop += $record->top;
+                $result['kotama'][$record->id_kotama] = $record->nama_kotama;
+                $result['data'][$record->kode_tingkat][$record->ur_pangkat]['pangkat'] = $record->ur_pangkat;
+                $result['data'][$record->kode_tingkat][$record->ur_pangkat]['top'] = isset($result['data'][$record->kode_tingkat][$record->ur_pangkat]['top']) ? $result['data'][$record->kode_tingkat][$record->ur_pangkat]['top'] + $record->top : $record->top;
+                $result['data'][$record->kode_tingkat][$record->ur_pangkat]['jml'][$record->id_kotama] = $record->dinas + $record->mpp + $record->lf + $record->skorsing;
             }
         }
 //        var_dump($result);

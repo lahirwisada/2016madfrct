@@ -21,8 +21,9 @@ class Lpstruktur extends Back_end {
         $tingkat = 5;
 //        $bulan = 11;
 //        $tahun = 2014;
+        $records['rekap'] = $this->model_laporan->get_by_rekap_structure($bulan, $tahun);
         $records['dalam'] = $this->model_laporan->get_by_in_structure($bulan, $tahun);
-//        $records['luar'] = $this->model_laporan->get_by_out_structure($bulan, $tahun);
+        $records['luar'] = $this->model_laporan->get_by_out_structure($bulan, $tahun);
 //        var_dump($records);exit();
         $this->set('bulan', $bulan);
         $this->set('tahun', $tahun);

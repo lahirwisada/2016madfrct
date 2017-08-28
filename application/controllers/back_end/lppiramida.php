@@ -18,17 +18,36 @@ class Lppiramida extends Back_end {
         $this->set("bread_crumb", array(
             "#" => $this->_header_title
         ));
-//        $bulan = 11;
-//        $tahun = 2014;
-        $records['dalam_pangkat'] = json_encode($this->model_laporan->get_by_kelompok_for_graph(1, $bulan, $tahun));
-        $records['dalam_tingkat'] = json_encode($this->model_laporan->get_by_tingkat_for_graph(1, $bulan, $tahun));
-        $records['dalam_golongan'] = json_encode($this->model_laporan->get_by_golongan_for_graph(1, $bulan, $tahun));
-        $records['luar_pangkat'] = json_encode($this->model_laporan->get_by_kelompok_for_graph(2, $bulan, $tahun));
-        $records['luar_tingkat'] = json_encode($this->model_laporan->get_by_tingkat_for_graph(2, $bulan, $tahun));
-        $records['luar_golongan'] = json_encode($this->model_laporan->get_by_golongan_for_graph(2, $bulan, $tahun));
-        $records['gabungan_pangkat'] = json_encode($this->model_laporan->get_by_kelompok_for_graph(0, $bulan, $tahun));
-        $records['gabungan_tingkat'] = json_encode($this->model_laporan->get_by_tingkat_for_graph(0, $bulan, $tahun));
-        $records['gabungan_golongan'] = json_encode($this->model_laporan->get_by_golongan_for_graph(0, $bulan, $tahun));
+        $dalam_pangkat = $this->model_laporan->get_by_kelompok_for_graph(1, $bulan, $tahun);
+        $dalam_tingkat = $this->model_laporan->get_by_tingkat_for_graph(1, $bulan, $tahun);
+        $dalam_golongan = $this->model_laporan->get_by_golongan_for_graph(1, $bulan, $tahun);
+        $max_dalam = max(max($dalam_pangkat));
+
+        $records['dalam_pangkat'] = json_encode($dalam_pangkat);
+        $records['dalam_tingkat'] = json_encode($dalam_tingkat);
+        $records['dalam_golongan'] = json_encode($dalam_golongan);
+        $records['max_dalam'] = $max_dalam;
+        
+        $luar_pangkat = $this->model_laporan->get_by_kelompok_for_graph(2, $bulan, $tahun);
+        $luar_tingkat = $this->model_laporan->get_by_tingkat_for_graph(2, $bulan, $tahun);
+        $luar_golongan = $this->model_laporan->get_by_golongan_for_graph(2, $bulan, $tahun);
+        $max_luar = max(max($luar_pangkat));
+
+        $records['luar_pangkat'] = json_encode($luar_pangkat);
+        $records['luar_tingkat'] = json_encode($luar_tingkat);
+        $records['luar_golongan'] = json_encode($luar_golongan);
+        $records['max_luar'] = $max_luar;
+
+        $gabungan_pangkat = $this->model_laporan->get_by_kelompok_for_graph(0, $bulan, $tahun);
+        $gabungan_tingkat = $this->model_laporan->get_by_tingkat_for_graph(0, $bulan, $tahun);
+        $gabungan_golongan = $this->model_laporan->get_by_golongan_for_graph(0, $bulan, $tahun);
+        $max_gabungan = max(max($gabungan_pangkat));
+
+        $records['gabungan_pangkat'] = json_encode($gabungan_pangkat);
+        $records['gabungan_tingkat'] = json_encode($gabungan_tingkat);
+        $records['gabungan_golongan'] = json_encode($gabungan_golongan);
+        $records['max_gabungan'] = $max_gabungan;
+
         $this->set('bulan', $bulan);
         $this->set('tahun', $tahun);
         $this->set("records", $records);

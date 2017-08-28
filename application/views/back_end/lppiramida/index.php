@@ -14,19 +14,21 @@ $sort_mode = isset($sort_mode) ? $sort_mode : "";
     <div class="col-md-12">
 
         <!-- START DEFAULT DATATABLE -->
-        <div class="panel panel-default">
-            <div class="panel-heading ui-draggable-handle">                                
-                <h3 class="panel-title"><?php echo $header_title; ?></h3>
-            </div>
-            <div class="panel-body">
-                <div class="block">
+        <div class="panel panel-default tabs">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Dalam & Luar Struktur</a></li>
+                <li><a href="#tab-second" role="tab" data-toggle="tab">Dalam Struktur</a></li>
+                <li><a href="#tab-third" role="tab" data-toggle="tab">Luar Struktur</a></li>
+            </ul>
+            <div class="panel-body tab-content">
+                <div class="tab-pane active" id="tab-first">
+                    <div id="gabungan"></div>
+                </div>
+                <div class="tab-pane" id="tab-second">
                     <div id="dalam"></div>
                 </div>
-                <div class="block">
+                <div class="tab-pane" id="tab-third">
                     <div id="luar"></div>
-                </div>
-                <div class="block">
-                    <div id="gabungan"></div>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ $header_title = isset($header_title) ? $header_title : '';
 $records = isset($records) ? $records : FALSE;
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $next_list_number = isset($next_list_number) ? $next_list_number : 1;
+//var_dump($records);
 ?>
 <div class="row">
     <div class="col-md-12">

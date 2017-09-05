@@ -15,20 +15,17 @@ $records = isset($records) ? $records : FALSE;
             </div>
             <div class="panel-body">
 
-                <div>
-                    <a class="btn btn-primary" href="<?php echo base_url() ?>exportexcel/laporan/satpur"> Export to Excel </a>
-
-                 </div>
-
-                <div class="block">
-                    <?php echo load_partial("back_end/shared/attention_message"); ?>
-                </div>
-
                 <!--Rekapitulasi Berdasarkan Kategori-->
+
                 <?php if ($records != FALSE): ?>
+
+                    <div>
+                        <a class="btn btn-primary" href="<?php echo base_url() ?>exportexcel/laporan/satpur"> Export to Excel </a>
+                    </div>
+
                     <div class="block">
                         <div class="text-center" style="font-weight: bold;">REKAPITULASI KEKUATAN PERSONEL SATPUR, SATBANPUR DAN SATPASSUS</div>
-                        <div class="text-center" style="font-weight: bold;">TRIWULAN <?php echo num_to_roman($bulan) ?> TAHUN <?php echo $tahun ?></div>
+                        <div class="text-center" style="font-weight: bold;">BULAN <?php echo num_to_roman($bulan) ?> TAHUN <?php echo $tahun ?></div>
                     </div>
                     <div class="block">
                         <div class="dataTables_wrapper no-footer">
@@ -179,6 +176,8 @@ $records = isset($records) ? $records : FALSE;
                             </div>
                         </div>
                     </div>
+                <?php else: ?>
+                    Belum ada data...
                 <?php endif; ?>
             </div>
         </div>

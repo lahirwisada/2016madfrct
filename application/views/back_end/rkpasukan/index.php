@@ -20,33 +20,36 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
 
                 <div class="block">
                     <?php echo load_partial("back_end/shared/attention_message"); ?>
-                    <p>Gunakan Formulir ini untuk melakukan pencarian pada halaman ini.</p>
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-md-8">
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <span class="fa fa-search"></span>
-                                    </div>
-                                    <input type="text" name="keyword" value="<?php echo $keyword; ?>" class="form-control" placeholder="Silahkan masukkan kata kunci disini"/>
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-primary">Cari</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="btn-group">
-                                    <a href="<?php echo base_url('back_end/' . $active_modul . '/download/'); ?>" class="btn btn-success">
-                                        <span class="fa fa-download"></span> Download Template
-                                    </a>
-                                    <a href="<?php echo base_url('back_end/' . $active_modul . '/detail'); ?>" class="btn btn-success">
-                                        <span class="fa fa-plus"></span> Tambah Baru
-                                    </a>
-                                </div>
-                            </div>
+                    <!--<p>Gunakan Formulir ini untuk melakukan pencarian pada halaman ini.</p>-->
+                    <!--<form class="form-horizontal">-->
+                    <!--<div class="form-group">-->
+                    <!--<div class="col-md-12">-->
+                    <!--                            <div class="col-md-8">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <span class="fa fa-search"></span>
+                                                        </div>
+                                                        <input type="text" name="keyword" value="<?php echo $keyword; ?>" class="form-control" placeholder="Silahkan masukkan kata kunci disini"/>
+                                                        <div class="input-group-btn">
+                                                            <button class="btn btn-primary">Cari</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">-->
+                    <?php if ($id_kotama > 0): ?>
+                        <div class="btn-group">
+                            <a href="<?php echo base_url('testemplate?kotama=' . $id_kotama); ?>" class="btn btn-success">
+                                <span class="fa fa-download"></span> Download Template
+                            </a>
+                            <a href="<?php echo base_url('back_end/' . $active_modul . '/detail'); ?>" class="btn btn-success">
+                                <span class="fa fa-plus"></span> Tambah Baru
+                            </a>
                         </div>
-                    </form>
+                    <?php endif; ?>
                 </div>
+                <!--</div>-->
+                <!--</form>-->
+                <!--</div>-->
                 <div class="block">
                     <div class="dataTables_wrapper no-footer">
                         <div class="table-responsive">
@@ -90,11 +93,13 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                 <td>
                                                     <?php echo beautify_str($record->nama_ttd) . " (NRP. " . $record->nrp_ttd . ")"; ?>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <div class="btn-group btn-group-sm">
                                                         <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/view") . "/" . $record->id_rekap; ?>">Lihat</a>
-                                                        <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->id_rekap; ?>">Ubah</a>
-                                                        <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->id_rekap; ?>">Hapus</a>
+                                                        <?php if ($id_kotama > 0): ?>
+                                                            <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->id_rekap; ?>">Ubah</a>
+                                                            <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->id_rekap; ?>">Hapus</a>
+                                                        <?php endif; ?>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -2,16 +2,14 @@
 $header_title = isset($header_title) ? $header_title : '';
 $message_error = isset($message_error) ? $message_error : '';
 $records = isset($records) ? $records : FALSE;
-//var_dump($records['rekap']);
-//exit();
 ?>
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default tabs">
             <ul class="nav nav-tabs" role="tablist">
-                <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Rekapitulasi</a></li>
-                <li><a href="#tab-second" role="tab" data-toggle="tab">Dalam Struktur</a></li>
-                <li><a href="#tab-third" role="tab" data-toggle="tab">Luar Struktur</a></li>
+                <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">REKAPITULASI</a></li>
+                <li><a href="#tab-second" role="tab" data-toggle="tab">DALAM STRUKTUR</a></li>
+                <li><a href="#tab-third" role="tab" data-toggle="tab">LUAR STRUKTUR</a></li>
             </ul>
             <div class="panel-body tab-content">
                 <div class="tab-pane active" id="tab-first">
@@ -48,22 +46,6 @@ $records = isset($records) ? $records : FALSE;
                                             </tr>
                                         </thead>
                                         <tbody>
-<!--                                            <tr>
-                                                <td class="text-center">(1)</td>
-                                                <td class="text-center">(2)</td>
-                                                <td class="text-center">(3)</td>
-                                                <td class="text-center">(4)</td>
-                                                <td class="text-center">(5)</td>
-                                                <td class="text-center">(6)</td>
-                                                <td class="text-center">(7)</td>
-                                                <td class="text-center">(8)</td>
-                                                <td class="text-center">(9)</td>
-                                                <td class="text-center">(10)</td>
-                                                <td class="text-center">(11)</td>
-                                                <td class="text-center">(12)</td>
-                                                <td class="text-center">(13)</td>
-                                                <td class="text-center">(14)</td>
-                                            </tr>-->
                                             <tr>
                                                 <td colspan="14">&nbsp;</td>
                                             </tr>
@@ -105,8 +87,8 @@ $records = isset($records) ? $records : FALSE;
                                                         <?php
                                                         $dalam_top = $row['dalam_top'];
                                                         $dalam_nyata = $row['dalam_nyata'];
-                                                        $luar_top = $row['luar_top'];
-                                                        $luar_nyata = $row['luar_nyata'];
+                                                        $luar_top = array_key_exists('luar_top', $row) ? $row['luar_top'] : 0;
+                                                        $luar_nyata = array_key_exists('luar_nyata', $row) ? $row['luar_nyata'] : 0;
                                                         $total_top = $dalam_top + $luar_top;
                                                         $total_nyata = $dalam_nyata + $luar_nyata;
 
@@ -142,7 +124,7 @@ $records = isset($records) ? $records : FALSE;
                                                     $total_total_top += $sub_total_top;
                                                     $total_total_nyata += $sub_total_nyata;
                                                     ?>
-                                                        <tr style="font-weight: bold;">
+                                                    <tr style="font-weight: bold;">
                                                         <td><b>JUMLAH <?php echo beautify_str($key) ?></b></td>
                                                         <td align="right"><?php echo number_format($sub_dalam_top, 0, ",", ".") ?></td>
                                                         <td align="right"><?php echo number_format($sub_dalam_nyata, 0, ",", ".") ?></td>
@@ -162,7 +144,7 @@ $records = isset($records) ? $records : FALSE;
                                                         <td colspan="14">&nbsp;</td>
                                                     </tr>
                                                 <?php endforeach; ?>
-                                                    <tr style="font-weight: bold;">
+                                                <tr style="font-weight: bold;">
                                                     <td><b>JUMLAH BESAR</b></td>
                                                     <td align="right"><?php echo number_format($total_dalam_top, 0, ",", ".") ?></td>
                                                     <td align="right"><?php echo number_format($total_dalam_nyata, 0, ",", ".") ?></td>
@@ -219,7 +201,7 @@ $records = isset($records) ? $records : FALSE;
                                             </tr>
                                         </thead>
                                         <tbody>
-<!--                                            <tr>
+    <!--                                            <tr>
                                                 <td class="text-center">(1)</td>
                                                 <td class="text-center">(2)</td>
                                                 <td class="text-center">(3)</td>
@@ -359,10 +341,10 @@ $records = isset($records) ? $records : FALSE;
                                             </tr>
                                         </thead>
                                         <tbody>
-<!--                                            <tr>
-                                                <?php for ($i = 1; $i <= $jml_kotama + 5; $i++): ?>
-                                                    <td class="text-center">(<?php echo $i; ?>)</td>
-                                                <?php endfor; ?>
+    <!--                                            <tr>
+                                            <?php for ($i = 1; $i <= $jml_kotama + 5; $i++): ?>
+                                                            <td class="text-center">(<?php echo $i; ?>)</td>
+                                            <?php endfor; ?>
                                             </tr>-->
                                             <tr>
                                                 <td colspan="<?php echo $jml_kotama + 5; ?>">&nbsp;</td>

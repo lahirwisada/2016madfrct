@@ -303,7 +303,7 @@ class Model_laporan extends LWS_Model {
     }
 
     public function get_by_kotama_and_golongan($bulan = 1, $tahun = 2014) {
-        $this->db->select($this->master_kotama . '.ur_kotama');
+        $this->db->select($this->master_kotama . '.nama_kotama');
         $this->db->select($this->master_golongan_pangkat . '.ur_golongan');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
         $this->db->select_sum($this->tr_pasukan_detail . '.dinas + ' . $this->tr_pasukan_detail . '.mpp + ' . $this->tr_pasukan_detail . '.lf + ' . $this->tr_pasukan_detail . '.skorsing', 'nyata');
@@ -330,11 +330,11 @@ class Model_laporan extends LWS_Model {
             $i = -1;
             $kotama = '';
             foreach ($records as $record) {
-                if ($kotama <> $record->ur_kotama) {
-                    $kotama = $record->ur_kotama;
+                if ($kotama <> $record->nama_kotama) {
+                    $kotama = $record->nama_kotama;
                     $i++;
                 }
-                $result[$i]["kotama"] = $record->ur_kotama;
+                $result[$i]["kotama"] = $record->nama_kotama;
                 $result[$i][strtolower($record->ur_golongan) . "_top"] = $record->top;
                 $result[$i][strtolower($record->ur_golongan) . "_nyata"] = $record->nyata;
             }
@@ -344,7 +344,7 @@ class Model_laporan extends LWS_Model {
     }
 
     public function get_by_kotama_and_tingkat($tingkat = 5, $bulan = 1, $tahun = 2014) {
-        $this->db->select($this->master_kotama . '.ur_kotama');
+        $this->db->select($this->master_kotama . '.nama_kotama');
         $this->db->select($this->master_kelompok_pangkat . '.kode_kelompok');
         $this->db->select($this->master_tingkat_pangkat . '.kode_tingkat');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
@@ -375,12 +375,12 @@ class Model_laporan extends LWS_Model {
             $i = -1;
             $kotama = '';
             foreach ($records as $record) {
-                if ($kotama <> $record->ur_kotama) {
-                    $kotama = $record->ur_kotama;
+                if ($kotama <> $record->nama_kotama) {
+                    $kotama = $record->nama_kotama;
                     $i++;
                 }
                 $result[$record->kode_tingkat]["pangkat"][$record->kode_kelompok] = $record->kode_kelompok;
-                $result[$record->kode_tingkat]["data"][$i]["kotama"] = $record->ur_kotama;
+                $result[$record->kode_tingkat]["data"][$i]["kotama"] = $record->nama_kotama;
                 $result[$record->kode_tingkat]["data"][$i][strtolower($record->kode_kelompok) . "_top"] = $record->top;
                 $result[$record->kode_tingkat]["data"][$i][strtolower($record->kode_kelompok) . "_nyata"] = $record->nyata;
             }
@@ -485,7 +485,7 @@ class Model_laporan extends LWS_Model {
     }
 
     public function get_multi_by_kotama_and_golongan($bulan = 1, $tahun = 2014) {
-        $this->db->select($this->master_kotama . '.ur_kotama');
+        $this->db->select($this->master_kotama . '.nama_kotama');
         $this->db->select($this->master_golongan_pangkat . '.ur_golongan');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
         $this->db->select_sum($this->tr_pasukan_detail . '.dinas + ' . $this->tr_pasukan_detail . '.mpp + ' . $this->tr_pasukan_detail . '.lf + ' . $this->tr_pasukan_detail . '.skorsing', 'nyata');
@@ -514,11 +514,11 @@ class Model_laporan extends LWS_Model {
             $i = -1;
             $kotama = '';
             foreach ($records as $record) {
-                if ($kotama <> $record->ur_kotama) {
-                    $kotama = $record->ur_kotama;
+                if ($kotama <> $record->nama_kotama) {
+                    $kotama = $record->nama_kotama;
                     $i++;
                 }
-                $result[$i]["kotama"] = $record->ur_kotama;
+                $result[$i]["kotama"] = $record->nama_kotama;
                 $result[$i][strtolower($record->ur_golongan) . "_top"] = $record->top;
                 $result[$i][strtolower($record->ur_golongan) . "_nyata"] = $record->nyata;
             }
@@ -528,7 +528,7 @@ class Model_laporan extends LWS_Model {
     }
 
     public function get_multi_by_kotama_and_tingkat($tingkat = 5, $bulan = 1, $tahun = 2014) {
-        $this->db->select($this->master_kotama . '.ur_kotama');
+        $this->db->select($this->master_kotama . '.nama_kotama');
         $this->db->select($this->master_kelompok_pangkat . '.kode_kelompok');
         $this->db->select($this->master_tingkat_pangkat . '.kode_tingkat');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
@@ -561,12 +561,12 @@ class Model_laporan extends LWS_Model {
             $i = -1;
             $kotama = '';
             foreach ($records as $record) {
-                if ($kotama <> $record->ur_kotama) {
-                    $kotama = $record->ur_kotama;
+                if ($kotama <> $record->nama_kotama) {
+                    $kotama = $record->nama_kotama;
                     $i++;
                 }
                 $result[$record->kode_tingkat]["pangkat"][$record->kode_kelompok] = $record->kode_kelompok;
-                $result[$record->kode_tingkat]["data"][$i]["kotama"] = $record->ur_kotama;
+                $result[$record->kode_tingkat]["data"][$i]["kotama"] = $record->nama_kotama;
                 $result[$record->kode_tingkat]["data"][$i][strtolower($record->kode_kelompok) . "_top"] = $record->top;
                 $result[$record->kode_tingkat]["data"][$i][strtolower($record->kode_kelompok) . "_nyata"] = $record->nyata;
             }
@@ -577,7 +577,7 @@ class Model_laporan extends LWS_Model {
     }
 
     public function get_tempur_by_kotama_and_golongan($bulan = 1, $tahun = 2014) {
-        $this->db->select($this->master_kotama . '.ur_kotama');
+        $this->db->select($this->master_kotama . '.nama_kotama');
         $this->db->select($this->master_golongan_pangkat . '.kode_golongan');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
         $this->db->select_sum($this->tr_pasukan_detail . '.dinas + ' . $this->tr_pasukan_detail . '.mpp + ' . $this->tr_pasukan_detail . '.lf + ' . $this->tr_pasukan_detail . '.skorsing', 'nyata');
@@ -605,7 +605,7 @@ class Model_laporan extends LWS_Model {
         $result = array();
         if ($records) {
             foreach ($records as $record) {
-                $result[$record->ur_kotama][$record->kode_golongan] = array(
+                $result[$record->nama_kotama][$record->kode_golongan] = array(
                     'top' => $record->top,
                     'nyata' => $record->nyata
                 );
@@ -617,7 +617,7 @@ class Model_laporan extends LWS_Model {
     }
 
     public function get_satbalak_by_kotama_and_golongan($bulan = 1, $tahun = 2014) {
-        $this->db->select($this->master_kotama . '.ur_kotama');
+        $this->db->select($this->master_kotama . '.nama_kotama');
         $this->db->select($this->master_golongan_pangkat . '.kode_golongan');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
         $this->db->select_sum($this->tr_pasukan_detail . '.dinas + ' . $this->tr_pasukan_detail . '.mpp + ' . $this->tr_pasukan_detail . '.lf + ' . $this->tr_pasukan_detail . '.skorsing', 'nyata');
@@ -645,7 +645,7 @@ class Model_laporan extends LWS_Model {
         $result = array();
         if ($records) {
             foreach ($records as $record) {
-                $result[$record->ur_kotama][] = array(
+                $result[$record->nama_kotama][] = array(
                     'golongan' => $record->kode_golongan,
                     'top' => $record->top,
                     'nyata' => $record->nyata
@@ -658,7 +658,7 @@ class Model_laporan extends LWS_Model {
     }
 
     public function get_satbalak_by_satminkal_and_golongan($bulan = 1, $tahun = 2014) {
-        $this->db->select($this->master_kotama . '.ur_kotama');
+        $this->db->select($this->master_kotama . '.nama_kotama');
         $this->db->select($this->master_satminkal . '.ur_satminkal');
         $this->db->select($this->master_golongan_pangkat . '.kode_golongan');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
@@ -688,7 +688,7 @@ class Model_laporan extends LWS_Model {
         $result = array();
         if ($records) {
             foreach ($records as $record) {
-                $result[$record->ur_kotama][$record->ur_satminkal][] = array(
+                $result[$record->nama_kotama][$record->ur_satminkal][] = array(
                     'golongan' => $record->kode_golongan,
                     'top' => $record->top,
                     'nyata' => $record->nyata
@@ -701,7 +701,7 @@ class Model_laporan extends LWS_Model {
     }
 
     public function get_satkowil_by_kotama_and_golongan($bulan = 1, $tahun = 2014) {
-        $this->db->select($this->master_kotama . '.ur_kotama');
+        $this->db->select($this->master_kotama . '.nama_kotama');
         $this->db->select($this->master_golongan_pangkat . '.kode_golongan');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
         $this->db->select_sum($this->tr_pasukan_detail . '.dinas + ' . $this->tr_pasukan_detail . '.mpp + ' . $this->tr_pasukan_detail . '.lf + ' . $this->tr_pasukan_detail . '.skorsing', 'nyata');
@@ -729,7 +729,7 @@ class Model_laporan extends LWS_Model {
         $result = array();
         if ($records) {
             foreach ($records as $record) {
-                $result[$record->ur_kotama][] = array(
+                $result[$record->nama_kotama][] = array(
                     'golongan' => $record->kode_golongan,
                     'top' => $record->top,
                     'nyata' => $record->nyata
@@ -742,7 +742,7 @@ class Model_laporan extends LWS_Model {
     }
 
     public function get_satkowil_by_satminkal_and_golongan($bulan = 1, $tahun = 2014) {
-        $this->db->select($this->master_kotama . '.ur_kotama');
+        $this->db->select($this->master_kotama . '.nama_kotama');
         $this->db->select($this->master_satminkal . '.ur_satminkal');
         $this->db->select($this->master_golongan_pangkat . '.kode_golongan');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
@@ -772,7 +772,7 @@ class Model_laporan extends LWS_Model {
         $result = array();
         if ($records) {
             foreach ($records as $record) {
-                $result[$record->ur_kotama][$record->ur_satminkal][] = array(
+                $result[$record->nama_kotama][$record->ur_satminkal][] = array(
                     'golongan' => $record->kode_golongan,
                     'top' => $record->top,
                     'nyata' => $record->nyata
@@ -782,6 +782,14 @@ class Model_laporan extends LWS_Model {
 //        var_dump($result);
 //        exit();
         return $result;
+    }
+
+    public function get_satop_by_kotama_and_golongan($bulan = 1, $tahun = 2014) {
+        return FALSE;
+    }
+
+    public function get_satop_by_kotama_and_tingkat($tingkat = 5, $bulan = 1, $tahun = 2014) {
+        return FALSE;
     }
 
 }

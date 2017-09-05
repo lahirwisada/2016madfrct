@@ -79,15 +79,28 @@ if (!function_exists('convert_bool_to_word')) {
 }
 
 
-if(!function_exists('read_fasilitas_inti_petak')){
-    function read_fasilitas_inti_petak($array_fasilitas=array("tidak_ada"=>"1"), $implode_glue = ", "){
+if (!function_exists('read_fasilitas_inti_petak')) {
+
+    function read_fasilitas_inti_petak($array_fasilitas = array("tidak_ada" => "1"), $implode_glue = ", ") {
         $fasilitas = array();
-        foreach($array_fasilitas as $nama_fasilitas => $bool_ada){
-            if($bool_ada){
+        foreach ($array_fasilitas as $nama_fasilitas => $bool_ada) {
+            if ($bool_ada) {
                 $fasilitas[] = beautify_str($nama_fasilitas);
             }
         }
-        return implode($implode_glue,$fasilitas);
+        return implode($implode_glue, $fasilitas);
     }
+
 }
-?>
+
+if (!function_exists('validate_number')) {
+
+    function validate_number() {
+        $response = TRUE;
+        foreach(func_get_args() as $parameter){
+            $response = is_numeric($parameter) && $response;
+        }
+        return $response;
+    }
+
+}

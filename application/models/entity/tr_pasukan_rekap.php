@@ -4,7 +4,7 @@ if (!defined("BASEPATH")) {
     exit("No direct script access allowed");
 }
 
-class tr_pasukan_rekap extends LWS_Model {
+class tr_pasukan_rekap extends MY_Model {
 
     public function __construct() {
         parent::__construct("tr_pasukan_rekap");

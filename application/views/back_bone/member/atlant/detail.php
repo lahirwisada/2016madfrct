@@ -6,9 +6,9 @@ $model_user_attributes = isset($model_user_attributes) && array_have_value($mode
 ?>
 
 <div class="container">
-    <div class="panel panel-midnightblue">
+    <div class="panel panel-default">
         <div class="panel-heading">
-            <h4>Detil</h4>
+            <h4 class="panel-title">Detil Pengguna</h4>
         </div>
         <div class="panel-body collapse in">
             <?php echo load_partial("back_bone/shared/attention_message"); ?>
@@ -32,8 +32,6 @@ $model_user_attributes = isset($model_user_attributes) && array_have_value($mode
                     </div>
                 </div>
                 
-                <?php echo $partial_form_view ? load_partial($partial_form_view) : ''; ?>
-                
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Nama *</label>
                     <div class="col-sm-6">
@@ -41,6 +39,8 @@ $model_user_attributes = isset($model_user_attributes) && array_have_value($mode
                     </div>
                 </div>
 
+                <?php echo $partial_form_view ? load_partial($partial_form_view) : ''; ?>
+                
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">

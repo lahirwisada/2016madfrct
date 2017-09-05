@@ -32,13 +32,17 @@ class model_tr_pasukan_rekap extends tr_pasukan_rekap {
     );
 
     public function all($force_limit = FALSE, $force_offset = FALSE) {
+        $where = FALSE;
+        if (!empty($this->user_detail['id_kotama'])) {
+            $where = 'sc_fcstprsn.tr_pasukan_rekap.id_kotama = ' . $this->user_detail['id_kotama'];
+        }
         return parent::get_all(array(
                     "tanggal_upload",
                     "tanggal_ttd",
                     "nama_ttd",
                     "pangkat_ttd",
                     "nrp_ttd",
-                        ), FALSE, TRUE, FALSE, 1, TRUE, $force_limit, $force_offset);
+                        ), $where, TRUE, FALSE, 1, TRUE, $force_limit, $force_offset);
     }
 
 }

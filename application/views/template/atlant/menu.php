@@ -28,8 +28,8 @@ $menu_item = isset($menu_item) ? build_atlant_menu($menu_item, $active_modul) : 
                 </div>
                 <div class="profile-controls">
                     <?php /*
-                    <a href="pages-profile.html" class="profile-control-left"><span class="fa fa-info"></span></a>
-                    <a href="pages-messages.html" class="profile-control-right"><span class="fa fa-envelope"></span></a>
+                      <a href="pages-profile.html" class="profile-control-left"><span class="fa fa-info"></span></a>
+                      <a href="pages-messages.html" class="profile-control-right"><span class="fa fa-envelope"></span></a>
                      * 
                      */
                     ?>

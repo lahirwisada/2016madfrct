@@ -28,6 +28,7 @@ class Rkpasukan extends Back_end {
         $this->set("bread_crumb", array(
             "#" => $this->_header_title
         ));
+        $this->set('id_kotama', $this->user_detail['id_kotama']);
     }
 
     /**
@@ -144,7 +145,8 @@ class Rkpasukan extends Back_end {
                 "model_tr_pasukan_detail"
             ));
             $response_pasukan = $this->read_excel_data_pasukan();
-//            var_dump($response_pasukan);exit();
+//            var_dump($response_pasukan);
+//            exit();
             $this->model_tr_pasukan_detail->save_records($id_rekap, $response_pasukan);
         }
         return TRUE;
@@ -166,31 +168,33 @@ class Rkpasukan extends Back_end {
             "data" => array()
         );
 
-        $active_sheet = $this->excel->setActiveSheetIndexByName('Data');
+        $active_sheet = $this->excel->setActiveSheetIndexByName('Laporan');
         if ($active_sheet !== FALSE) {
 
             $last_row = $active_sheet->getHighestRow();
-            $start_row = 70;
+            $start_row = 67;
             $kotama_kesatuan_awal_row = 1;
             $readed_first_row = FALSE;
 
-            $known_bentuk_formulir_column = $active_sheet->getCell('I8')->getValue();
+//            $known_bentuk_formulir_column = $active_sheet->getCell('I8')->getValue();
             $known_judul_tni_column = $active_sheet->getCell('A1')->getValue();
-            $known_kesatuan_column = $active_sheet->getCell('A2')->getValue();
-            $known_judul_column = $active_sheet->getCell('A5')->getValue();
-            $known_bulan_tahun_column = $active_sheet->getCell('A6')->getValue();
-            $known_null_column = $active_sheet->getCell('B63')->getValue();
-            $known_nama_penandatangan_column = $active_sheet->getCell('F65')->getValue();
-            $known_nrp_penandatangan_column = $active_sheet->getCell('F66')->getValue();
+//            $known_kesatuan_column = $active_sheet->getCell('A2')->getValue();
+//            $known_judul_column = $active_sheet->getCell('A5')->getValue();
+//            $known_bulan_tahun_column = $active_sheet->getCell('A6')->getValue();
+//            $known_null_column = $active_sheet->getCell('B63')->getValue();
+//            $known_nama_penandatangan_column = $active_sheet->getCell('F65')->getValue();
+//            $known_nrp_penandatangan_column = $active_sheet->getCell('F66')->getValue();
 
-            if (!(strtolower($known_bentuk_formulir_column) == 'bentuk : pers-001*)' &&
-                    strtolower($known_judul_tni_column) == 'tentara nasional indonesia angkatan darat' &&
-                    strtolower($known_kesatuan_column) != '' &&
-                    strtolower($known_judul_column) != '' &&
-                    strtolower($known_bulan_tahun_column) != '' &&
-                    strtolower($known_nama_penandatangan_column) != '' &&
-                    strtolower($known_nrp_penandatangan_column) != '' &&
-                    $known_null_column === NULL)) {
+            if (!(
+//                    strtolower($known_bentuk_formulir_column) == 'bentuk : pers-001*)' &&
+                    strtolower($known_judul_tni_column) == 'tentara nasional indonesia angkatan darat'
+//                    strtolower($known_kesatuan_column) != '' &&
+//                    strtolower($known_judul_column) != '' &&
+//                    strtolower($known_bulan_tahun_column) != '' &&
+//                    strtolower($known_nama_penandatangan_column) != '' &&
+//                    strtolower($known_nrp_penandatangan_column) != '' &&
+//                    $known_null_column === NULL
+                    )) {
 
                 /**
                  * WRONG TEMPLATE

@@ -12,7 +12,7 @@ class testemplate extends CI_Controller {
 
         $kode_kotama = $_GET['kotama'];
         $kotama = $this->db->query("SELECT * FROM sc_fcstprsn.master_kotama WHERE id_kotama = '$kode_kotama'")->row_array();
-        $query_satminkal = $this->db->query("SELECT * FROM sc_fcstprsn.master_satminkal WHERE id_kotama = '$kode_kotama'");
+        $query_satminkal = $this->db->query("SELECT * FROM sc_fcstprsn.master_satminkal WHERE id_kotama = '$kode_kotama' ORDER BY kode_satminkal ASC");
 
         $pangkat = $this->db->query("SELECT * FROM sc_fcstprsn.master_pangkat ORDER BY kode_pangkat DESC")->result_array();
         $total = count($pangkat);

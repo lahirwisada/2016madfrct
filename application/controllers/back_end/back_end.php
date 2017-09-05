@@ -16,7 +16,6 @@ class Back_end extends Lwpustaka_data {
         if (!$this->is_authenticated()) {
             redirect('login');
         }
-
     }
 
 //    public function access_rules() {

@@ -12,6 +12,7 @@ class Model_laporan extends LWS_Model {
     protected $master_tingkat_pangkat = '';
     protected $master_kotama = '';
     protected $master_satminkal = '';
+    protected $master_kesatuan = '';
     protected $master_corps = '';
     protected $tr_pasukan_rekap = '';
     protected $tr_pasukan_detail = '';
@@ -24,6 +25,7 @@ class Model_laporan extends LWS_Model {
         $this->master_tingkat_pangkat = $this->get_schema_name("master_tingkat_pangkat", TRUE);
         $this->master_kotama = $this->get_schema_name("master_kotama", TRUE);
         $this->master_satminkal = $this->get_schema_name("master_satminkal", TRUE);
+        $this->master_kesatuan = $this->get_schema_name("master_kesatuan", TRUE);
         $this->master_corps = $this->get_schema_name("master_corps", TRUE);
         $this->tr_pasukan_rekap = $this->get_schema_name("tr_pasukan_rekap", TRUE);
         $this->tr_pasukan_detail = $this->get_schema_name("tr_pasukan_detail", TRUE);
@@ -676,6 +678,7 @@ class Model_laporan extends LWS_Model {
         $this->db->group_by($this->master_satminkal . '.id_satminkal');
         $this->db->group_by($this->master_golongan_pangkat . '.id_golongan');
         $this->db->order_by($this->master_kotama . '.kode_kotama', 'asc');
+        $this->db->order_by($this->master_satminkal . '.kode_satminkal', 'asc');
         $this->db->order_by($this->master_golongan_pangkat . '.id_golongan', 'desc');
         $query = $this->db->get($this->master_kotama);
 //        echo $this->db->last_query();
@@ -744,10 +747,12 @@ class Model_laporan extends LWS_Model {
     public function get_satkowil_by_satminkal_and_golongan($bulan = 1, $tahun = 2014) {
         $this->db->select($this->master_kotama . '.nama_kotama');
         $this->db->select($this->master_satminkal . '.ur_satminkal');
+        $this->db->select($this->master_kesatuan . '.kode_kesatuan');
         $this->db->select($this->master_golongan_pangkat . '.kode_golongan');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
         $this->db->select_sum($this->tr_pasukan_detail . '.dinas + ' . $this->tr_pasukan_detail . '.mpp + ' . $this->tr_pasukan_detail . '.lf + ' . $this->tr_pasukan_detail . '.skorsing', 'nyata');
         $this->db->join($this->master_satminkal, $this->master_satminkal . '.id_kotama=' . $this->master_kotama . '.id_kotama');
+        $this->db->join($this->master_kesatuan, $this->master_kesatuan . '.id_kesatuan=' . $this->master_satminkal . '.id_kesatuan');
         $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_satminkal=' . $this->master_satminkal . '.id_satminkal');
         $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
         $this->db->join($this->master_pangkat, $this->master_pangkat . '.id_pangkat=' . $this->tr_pasukan_detail . '.id_pangkat');
@@ -758,8 +763,10 @@ class Model_laporan extends LWS_Model {
         $this->db->where_in($this->master_satminkal . '.id_kesatuan', array(6, 7));
         $this->db->group_by($this->master_kotama . '.id_kotama');
         $this->db->group_by($this->master_satminkal . '.id_satminkal');
+        $this->db->group_by($this->master_kesatuan . '.id_kesatuan');
         $this->db->group_by($this->master_golongan_pangkat . '.id_golongan');
         $this->db->order_by($this->master_kotama . '.kode_kotama', 'asc');
+        $this->db->order_by($this->master_satminkal . '.kode_satminkal', 'asc');
         $this->db->order_by($this->master_golongan_pangkat . '.id_golongan', 'desc');
         $query = $this->db->get($this->master_kotama);
 //        echo $this->db->last_query();
@@ -772,7 +779,7 @@ class Model_laporan extends LWS_Model {
         $result = array();
         if ($records) {
             foreach ($records as $record) {
-                $result[$record->nama_kotama][$record->ur_satminkal][] = array(
+                $result[$record->nama_kotama][$record->kode_kesatuan][$record->ur_satminkal][] = array(
                     'golongan' => $record->kode_golongan,
                     'top' => $record->top,
                     'nyata' => $record->nyata

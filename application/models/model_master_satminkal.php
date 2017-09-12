@@ -40,7 +40,7 @@ class Model_master_satminkal extends Master_satminkal {
 
     public function get_id_by_uraian($uraian = '') {
         if ($uraian != '') {
-            return $this->get_detail("lower(ur_satminkal) LIKE lower('%" . $uraian . "%')");
+            return $this->get_detail("lower(ur_satminkal) LIKE lower('" . $uraian . "')");
         }
         return FALSE;
     }

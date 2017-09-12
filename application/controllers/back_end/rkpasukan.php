@@ -24,11 +24,17 @@ class Rkpasukan extends Back_end {
      * Melihat daftar rekap
      */
     public function index() {
+        $kotama = $this->input->post('kotama');
+        if ($this->user_detail['id_kotama'] == 0) {
+            $this->set('list_kotama', $this->model_master_kotama->get_all());
+            $this->set('kotama', $kotama);
+            $this->set('keyword', $kotama);
+        }
+        $this->set('id_kotama', $this->user_detail['id_kotama']);
         parent::index();
         $this->set("bread_crumb", array(
             "#" => $this->_header_title
         ));
-        $this->set('id_kotama', $this->user_detail['id_kotama']);
     }
 
     /**
@@ -145,6 +151,7 @@ class Rkpasukan extends Back_end {
                 "model_tr_pasukan_detail"
             ));
             $response_pasukan = $this->read_excel_data_pasukan();
+//            var_dump($id_rekap);
 //            var_dump($response_pasukan);
 //            exit();
             $this->model_tr_pasukan_detail->save_records($id_rekap, $response_pasukan);

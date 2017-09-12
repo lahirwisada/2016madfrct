@@ -36,12 +36,14 @@ class model_tr_pasukan_detail extends tr_pasukan_detail {
                     $this->save_per_satminkal($id_rekap, $satuan_satminkal, $array_data_satuan);
                 }
             }
+//            exit();
         }
     }
 
     public function save_per_satminkal($id_rekap, $satuan_satminkal, $array_data_satuan) {
         if (is_array($array_data_satuan) && !empty($array_data_satuan)) {
             $detail_satminkal = $this->model_master_satminkal->get_id_by_uraian(strtolower($satuan_satminkal));
+//            var_dump($satuan_satminkal, $detail_satminkal);
             if ($detail_satminkal) {
                 foreach ($array_data_satuan as $nama_pangkat => $array_jumlah) {
                     $this->save_per_pangkat($id_rekap, $detail_satminkal->id_satminkal, $nama_pangkat, $array_jumlah);
@@ -66,6 +68,7 @@ class model_tr_pasukan_detail extends tr_pasukan_detail {
                 "created_date" => date('Y-m-d'),
                 "created_by" => ""
             );
+//            var_dump($data);
             $this->db->insert($this->table_name, $data);
         }
         unset($detail_pangkat);

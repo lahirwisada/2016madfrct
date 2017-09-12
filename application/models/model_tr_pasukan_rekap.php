@@ -37,6 +37,7 @@ class model_tr_pasukan_rekap extends tr_pasukan_rekap {
             $where = 'sc_fcstprsn.tr_pasukan_rekap.id_kotama = ' . $this->user_detail['id_kotama'];
         }
         return parent::get_all(array(
+                    "id_kotama",
                     "tanggal_upload",
                     "tanggal_ttd",
                     "nama_ttd",

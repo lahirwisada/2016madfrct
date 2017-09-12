@@ -9,6 +9,8 @@ class Master_corps extends LWS_model {
     public function __construct() {
         parent::__construct("master_corps");
         $this->primary_key = "id_corps";
+        $this->sort_by = "kode_corps";
+        $this->sort_mode = "asc";
         
         $this->attribute_labels = array_merge_recursive($this->_continuously_attribute_label, $this->attribute_labels);
         $this->rules = array_merge_recursive($this->_continuously_rules, $this->rules);

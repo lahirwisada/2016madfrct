@@ -38,12 +38,49 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                 <div class="col-md-4">-->
                     <?php if ($id_kotama > 0): ?>
                         <div class="btn-group">
-                            <a href="<?php echo base_url('testemplate?kotama=' . $id_kotama); ?>" class="btn btn-success">
+                            <a href="<?php echo base_url('testemplate?kotama=' . $id_kotama); ?>" class="btn btn-primary">
                                 <span class="fa fa-download"></span> Download Template
                             </a>
-                            <a href="<?php echo base_url('back_end/' . $active_modul . '/detail'); ?>" class="btn btn-success">
-                                <span class="fa fa-plus"></span> Tambah Baru
+                            <a href="<?php echo base_url('back_end/' . $active_modul . '/detail'); ?>" class="btn btn-primary">
+                                <span class="fa fa-plus"></span> Rekap Baru
                             </a>
+                        </div>
+                    <?php else: ?>
+                        <div class="col-md-12">
+                            <form class="form-horizontal" method="post">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-search"></span>
+                                        </div>
+                                        <?php
+                                        $options = array();
+                                        $options[''] = 'Semua Kotama';
+                                        foreach ($list_kotama as $row) {
+                                            $options[$row->id_kotama] = $row->nama_kotama;
+                                        }
+
+                                        echo form_dropdown('kotama', $options, set_value('kotama', $kotama), 'class="form-control"');
+                                        ?>
+    <!--                                        <select id="slc-kotama" name="kotama" class="form-control">
+                                            <option value="">Semua Kotama</option>
+                                        </select>-->
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-primary">Pilih Kotama</button>
+                                            <?php if ($kotama != NULL): ?>
+                                                <a href="<?php echo base_url('testemplate?kotama=' . $kotama); ?>" class="btn btn-primary">
+                                                    <span class="fa fa-download"></span> Download Template
+                                                </a>
+                                            <?php else: ?>
+                                                <button class="btn btn-primary"<?php echo $kotama != NULL ? '' : "disabled" ?>><span class="fa fa-download"></span> Download Template</button>
+                                            <?php endif; ?>
+                                            <a href="<?php echo base_url('back_end/' . $active_modul . '/detail'); ?>" class="btn btn-primary">
+                                                <span class="fa fa-plus"></span> Rekap Baru
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -96,10 +133,8 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                 <td class="text-center">
                                                     <div class="btn-group btn-group-sm">
                                                         <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/view") . "/" . $record->id_rekap; ?>">Lihat</a>
-                                                        <?php if ($id_kotama > 0): ?>
-                                                            <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->id_rekap; ?>">Ubah</a>
-                                                            <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->id_rekap; ?>">Hapus</a>
-                                                        <?php endif; ?>
+                                                        <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->id_rekap; ?>">Ubah</a>
+                                                        <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->id_rekap; ?>">Hapus</a>
                                                     </div>
                                                 </td>
                                             </tr>

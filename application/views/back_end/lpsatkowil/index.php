@@ -2,8 +2,8 @@
 $header_title = isset($header_title) ? $header_title : '';
 $message_error = isset($message_error) ? $message_error : '';
 $records = isset($records) ? $records : FALSE;
-//$next_list_number = isset($next_list_number) ? $next_list_number : 1;
 //var_dump($records['detail']);
+//exit();
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -171,7 +171,7 @@ $records = isset($records) ? $records : FALSE;
                     </div>
                 <?php endif; ?>
                 <?php if ($records['detail'] != FALSE): ?>
-                    <?php foreach ($records['detail'] as $kotama => $data): ?>
+                    <?php foreach ($records['detail'] as $kotama => $datas): ?>
                         <div class="tab-pane" id="tab-<?php echo strtolower(str_replace('/', '', str_replace(' ', '_', $kotama))) ?>">
                             <div class="block">
                                 <div class="text-center" style="font-weight: bold;">DATA KEKUATAN PERSONEL SATKOWIL DAN SATINTEL <?php echo beautify_str($kotama) ?></div>
@@ -225,57 +225,89 @@ $records = isset($records) ? $records : FALSE;
                                                 $total_top = 0;
                                                 $total_nyata = 0;
                                                 ?>
-                                                <?php foreach ($data as $satminkal => $record): ?>
-                                                    <?php
-                                                    $mulai = TRUE;
-                                                    $sub_top = 0;
-                                                    $sub_nyata = 0;
-                                                    foreach ($record as $row) :
+                                                <?php foreach ($datas as $kesatuan => $data): ?>
+                                                    <tr style="font-weight: bold;">
+                                                        <td>&nbsp;</td>
+                                                        <td><?php echo $kesatuan; ?></td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                    </tr>
+                                                    <?php foreach ($data as $satminkal => $record): ?>
+                                                        <?php
+                                                        $mulai = TRUE;
+                                                        $is_korem = substr(strtolower($satminkal), 0, 5) == 'korem';
+                                                        $under_korem = strpos(strtolower($satminkal), 'rem') != FALSE ? TRUE : FALSE;
+                                                        $sub_top = 0;
+                                                        $sub_nyata = 0;
                                                         ?>
-                                                        <tr>
-                                                            <td align = "right"><?php echo $mulai ? $next_list_number : '' ?></td>
-                                                            <td><?php echo $mulai ? beautify_str($satminkal) : '' ?></td>
-                                                            <td><?php echo beautify_str($row['golongan']) ?></td>
-                                                            <td align="right"><?php echo number_format($row["top"], 0, ",", ".") ?></td>
-                                                            <td align="right"><?php echo number_format($row["nyata"], 0, ",", ".") ?></td>
-                                                            <td align="right"><?php echo number_format($row["nyata"] - $row["top"], 0, ",", ".") ?></td>
-                                                            <td align="right"><?php echo $row["top"] > 0 ? number_format($row["nyata"] / $row["top"] * 100, 1, ",", ".") : 0 ?>%</td>
+                                                        <?php foreach ($record as $row) : ?>
+                                                            <?php if ($is_korem != FALSE && $mulai): ?>
+                                                                <tr>
+                                                                    <td align = "right"><?php echo $next_list_number++ ?></td>
+                                                                    <td><?php echo beautify_str($satminkal) ?></td>
+                                                                    <td>&nbsp;</td>
+                                                                    <td>&nbsp;</td>
+                                                                    <td>&nbsp;</td>
+                                                                    <td>&nbsp;</td>
+                                                                    <td>&nbsp;</td>
+                                                                    <td>&nbsp;</td>
+                                                                </tr>
+                                                            <?php endif; ?>
+                                                            <tr>
+                                                                <td align = "right"><?php echo $mulai && $under_korem == FALSE ? $next_list_number++ : '' ?></td>
+                                                                <td><?php echo $mulai ? $is_korem != FALSE ? 'MAKOREM' : beautify_str($satminkal) : '' ?></td>
+                                                                <td><?php echo beautify_str($row['golongan']) ?></td>
+                                                                <td align="right"><?php echo number_format($row["top"], 0, ",", ".") ?></td>
+                                                                <td align="right"><?php echo number_format($row["nyata"], 0, ",", ".") ?></td>
+                                                                <td align="right"><?php echo number_format($row["nyata"] - $row["top"], 0, ",", ".") ?></td>
+                                                                <td align="right"><?php echo $row["top"] > 0 ? number_format($row["nyata"] / $row["top"] * 100, 1, ",", ".") : 0 ?>%</td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>
+                                                            <?php
+                                                            $mulai = FALSE;
+                                                            $sub_top += $row["top"];
+                                                            $sub_nyata += $row["nyata"];
+                                                            ${strtolower($row['golongan']) . "_top"} += $row["top"];
+                                                            ${strtolower($row['golongan']) . "_nyata"} += $row["nyata"];
+                                                            ?>
+                                                        <?php endforeach; ?>
+                                                        <tr style="font-weight: bold;">
+                                                            <td>&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                            <td><?php echo beautify_str('JML') ?></td>
+                                                            <td align="right"><?php echo number_format($sub_top, 0, ",", ".") ?></td>
+                                                            <td align="right"><?php echo number_format($sub_nyata, 0, ",", ".") ?></td>
+                                                            <td align="right"><?php echo number_format($sub_nyata - $sub_top, 0, ",", ".") ?></td>
+                                                            <td align="right"><?php echo $sub_top > 0 ? number_format($sub_nyata / $sub_top * 100, 1, ",", ".") : 0 ?>%</td>
                                                             <td>&nbsp;</td>
                                                         </tr>
                                                         <?php
-                                                        $mulai = FALSE;
-                                                        $sub_top += $row["top"];
-                                                        $sub_nyata += $row["nyata"];
-                                                        ${strtolower($row['golongan']) . "_top"} += $row["top"];
-                                                        ${strtolower($row['golongan']) . "_nyata"} += $row["nyata"];
+                                                        $total_top += $sub_top;
+                                                        $total_nyata += $sub_nyata;
                                                         ?>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
                                                     <?php endforeach; ?>
-                                                    <tr style="font-weight: bold;">
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td><?php echo beautify_str('JML') ?></td>
-                                                        <td align="right"><?php echo number_format($sub_top, 0, ",", ".") ?></td>
-                                                        <td align="right"><?php echo number_format($sub_nyata, 0, ",", ".") ?></td>
-                                                        <td align="right"><?php echo number_format($sub_nyata - $sub_top, 0, ",", ".") ?></td>
-                                                        <td align="right"><?php echo $sub_top > 0 ? number_format($sub_nyata / $sub_top * 100, 1, ",", ".") : 0 ?>%</td>
-                                                        <td>&nbsp;</td>
-                                                    </tr>
-                                                    <?php
-                                                    $total_top += $sub_top;
-                                                    $total_nyata += $sub_nyata;
-                                                    $next_list_number++;
-                                                    ?>
-                                                    <tr>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                    </tr>
                                                 <?php endforeach; ?>
+
+
+
+
+
+
+
                                                 <tr style="font-weight: bold;">
                                                     <td>&nbsp;</td>
                                                     <td>JUMLAH BESAR</td>

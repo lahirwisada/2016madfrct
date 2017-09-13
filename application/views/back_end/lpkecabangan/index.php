@@ -24,8 +24,6 @@ $records = isset($records) ? $records : FALSE;
                         <div class="block">
                             <div class="text-center" style="font-weight: bold;">REKAPITULASI PA, BA, TA PERKECABANGAN</div>
                             <div class="text-center" style="font-weight: bold;">BULAN <?php echo num_to_roman($bulan) ?> TAHUN <?php echo $tahun ?></div>
-
-                            <a class="btn btn-primary" href="<?php echo base_url() ?>back_end/lpkecabangan/export/rekap/<?php echo $bulan ?>/<?php echo $tahun ?>" target="_blank"> Export </a>
                         </div>
                         <div class="block">
                             <div class="dataTables_wrapper no-footer">

@@ -32,6 +32,16 @@ class Lpkecabangan extends Mslaporan {
         $this->set("records", $records);
     }
 
+        function test($tipe = "rekap",$bulan = 1, $tahun = 2014){
+               $tingkat = 5;
+
+        $records["kategori"] = $this->model_laporan->get_by_corps_and_golongan($bulan, $tahun);
+        $records["tingkat"] = $this->model_laporan->get_by_corps_and_tingkat($tingkat, $bulan, $tahun);
+
+        echo "<pre>";
+        print_r($records);
+        }
+
     function export($tipe = "rekap",$bulan = 1, $tahun = 2014){
        $this->load->library("PHPExcel/PHPExcel");
 
@@ -123,11 +133,170 @@ class Lpkecabangan extends Mslaporan {
         $objPHPExcel->getActiveSheet()->setCellValue('J'.$cell,$tamtama_nyata);
         $objPHPExcel->getActiveSheet()->setCellValue('K'.$cell,$tamtama_nyata - $tamtama_top);
         $objPHPExcel->getActiveSheet()->setCellValue('L'.$cell,$perwira_top + $bintara_top + $tamtama_top);
-        $objPHPExcel->getActiveSheet()->setCellValue('K'.$cell,$perwira_nyata + $bintara_nyata + $tamtama_nyata);
-        $objPHPExcel->getActiveSheet()->setCellValue('K'.$cell,($perwira_nyata + $bintara_nyata + $tamtama_nyata) - ($perwira_top + $bintara_top + $tamtama_top));
+        $objPHPExcel->getActiveSheet()->setCellValue('M'.$cell,$perwira_nyata + $bintara_nyata + $tamtama_nyata);
+        $objPHPExcel->getActiveSheet()->setCellValue('N'.$cell,($perwira_nyata + $bintara_nyata + $tamtama_nyata) - ($perwira_top + $bintara_top + $tamtama_top));
 
 
         $objPHPExcel->getActiveSheet()->setTitle('REKAPITULASI');
+        $angka = 1;
+        if($records['tingkat'] != FALSE){
+        foreach ($records["tingkat"] as $tingkat => $data) : 
+
+             $next_list_number = 1;
+                            $jumlah_pangkat = count($data["pangkat"]);
+                            $lebar = round(70 / $jumlah_pangkat / 3);
+                            $total_top = 0;
+                            $total_nyata = 0;
+
+
+                    $objPHPExcel->createSheet();
+                $objPHPExcel->setActiveSheetIndex($angka);
+                $angka++;
+          $objPHPExcel->getActiveSheet()->mergeCells('A1:G1');
+        $objPHPExcel->getActiveSheet()->mergeCells('A2:G2');
+        $objPHPExcel->getActiveSheet()->setCellValue('A1', 'REKAPITULASI '.$tingkat.' PERKECABANGAN TNI AD')->setCellValue('A2', 'Bulan ' . $bulan . ' Tahun ' . $tahun);
+
+        $objPHPExcel->getActiveSheet()->mergeCells('A4:A5');
+        $objPHPExcel->getActiveSheet()->mergeCells('B4:B5');
+        $objPHPExcel->getActiveSheet()->mergeCells('C4:E4');
+        $objPHPExcel->getActiveSheet()->mergeCells('F4:H4');
+        $objPHPExcel->getActiveSheet()->mergeCells('I4:K4');
+        $objPHPExcel->getActiveSheet()->mergeCells('L4:N4');
+
+        $objPHPExcel->getActiveSheet()->setCellValue('A4','NO');
+        $objPHPExcel->getActiveSheet()->setCellValue('B4','KECAB');
+        $ha = "C";
+        $habawah = "C";
+        $i = 0;
+        foreach($data['pangkat'] as $pangkat):
+            $objPHPExcel->getActiveSheet()->setCellValue($ha.'4',strtoupper($pangkat));
+
+        $objPHPExcel->getActiveSheet()->setCellValue($habawah.'5','TOP');
+                            $habawah = chr(ord($habawah) + 1);
+
+        $objPHPExcel->getActiveSheet()->setCellValue($habawah.'5','NYATA');
+                    $habawah = chr(ord($habawah) + 1);
+
+        $objPHPExcel->getActiveSheet()->setCellValue($habawah.'5','+/-');
+                    $habawah = chr(ord($habawah) + 1);
+
+
+            $ha = chr(ord($ha) + 3);
+
+             ${"col" . (2 * $i + 1)} = strtolower($pangkat . "_top");
+                                                            ${"col" . (2 * $i + 2)} = strtolower($pangkat . "_nyata");
+                                                            ${"sub" . (2 * $i + 1)} = 0;
+                                                            ${"sub" . (2 * $i + 2)} = 0;
+
+                                                            $i++;
+
+
+        endforeach;
+          $objPHPExcel->getActiveSheet()->setCellValue($ha.'4','JUMLAH');
+
+        $objPHPExcel->getActiveSheet()->setCellValue($habawah.'5','TOP');
+                    $habawah = chr(ord($habawah) + 1);
+
+        $objPHPExcel->getActiveSheet()->setCellValue($habawah.'5','NYATA');
+                    $habawah = chr(ord($habawah) + 1);
+
+        $objPHPExcel->getActiveSheet()->setCellValue($habawah.'5','+/-');
+            $habawah = chr(ord($habawah) + 1);
+
+            $cell = 7;
+            foreach($data['data'] as $record):
+                $sub_top = 0;
+                $sub_nyata = 0;
+
+
+                $objPHPExcel->getActiveSheet()->setCellValue('A'.$cell,$next_list_number);
+                $objPHPExcel->getActiveSheet()->setCellValue('B'.$cell,beautify_str($record["corps"]));
+                $ha = "c";
+
+                for ($i = 1; $i <= ($jumlah_pangkat * 2); $i++){
+
+                    $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,number_format($record[${"col" . $i}], 0, ",", "."));
+                     if (($i % 2) == 0) {
+                                            $ha = chr(ord($ha)+1);
+
+                     $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,number_format($record[${"col" . $i}] - $record[${"col" . ($i - 1)}], 0, ",", "."));
+                       $sub_nyata += $record[${"col" . $i}];
+
+                                                                 $ha = chr(ord($ha)+1);
+
+                    }else{
+                                            $ha = chr(ord($ha)+1);
+                                            $sub_top += $record[${"col" . $i}];
+                    }
+
+
+                    ${"sub" . $i} += $record[${"col" . $i}]; 
+
+
+
+                }
+
+                 $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,$sub_top);
+                                                     $ha = chr(ord($ha) + 1);
+
+                 $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,$sub_nyata);
+                                                     $ha = chr(ord($ha) + 1);
+
+                 $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,$sub_nyata - $sub_top);
+
+                                                     $ha = chr(ord($ha) + 1);
+
+                     $total_top += $sub_top;
+                     $total_nyata += $sub_nyata;
+
+
+                    $cell = $cell + 1;
+
+            endforeach;
+
+            $cell = $cell + 1;
+
+            $objPHPExcel->getActiveSheet()->setCellValue('B'.$cell,'JUMLAH');
+            $ha = "C";
+               for ($i = 1; $i <= ($jumlah_pangkat * 2); $i++):
+            $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,number_format(${"sub" . $i}, 0, ",", "."));
+                 if (($i % 2) == 0) {
+                    $ha = chr(ord($ha) + 1);
+                    $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,number_format(${"sub" . $i} - ${"sub" . ($i - 1)}, 0, ",", "."));
+                    $ha = chr(ord($ha) + 1);
+                   }else{
+                    $ha = chr(ord($ha) + 1);
+
+                   }
+                endfor;
+                $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,$total_top);
+                                    $ha = chr(ord($ha) + 1);
+
+                $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,$total_nyata);
+                                    $ha = chr(ord($ha) + 1);
+
+                $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,$total_nyata - $total_top);
+                                    $ha = chr(ord($ha) + 1);
+
+
+        $objPHPExcel->getActiveSheet()->setTitle($tingkat);
+
+           
+
+
+
+
+
+
+
+
+        endforeach;
+        
+
+        }else{
+
+
+        }
 
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
         header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");

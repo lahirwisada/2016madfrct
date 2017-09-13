@@ -168,7 +168,11 @@ class Lpstruktur extends Mslaporan {
                     $objPHPExcel->getActiveSheet()->setCellValue('M'.$cell,$total_total_nyata);
                     $objPHPExcel->getActiveSheet()->setCellValue('N'.$cell,$total_total_nyata - $total_total_top);
                     $objPHPExcel->getActiveSheet()->setCellValue('O'.$cell,$total_total_top < 1 ? 0 : $total_total_nyata / $total_total_top * 100);
-        
+        }else{
+
+        }
+
+
         $objPHPExcel->getActiveSheet()->setTitle('REKAPITULASI');
 
     $objPHPExcel->createSheet();
@@ -274,8 +278,127 @@ class Lpstruktur extends Mslaporan {
                         $objPHPExcel->getActiveSheet(1)->setCellValue('I'.$cell,$total_total - $total_top);
                         $objPHPExcel->getActiveSheet(1)->setCellValue('J'.$cell,$total_top == 0 ? 0 : $total_total / $total_top * 100);
 
+                    }else{
+
+                    }
+
 
                             $objPHPExcel->getActiveSheet(1)->setTitle('DALAM STRUKTUR');
+
+
+                                $objPHPExcel->createSheet();
+
+        $objPHPExcel->setActiveSheetIndex(2);
+        $objPHPExcel->getActiveSheet(2)->mergeCells('A1:G1');
+        $objPHPExcel->getActiveSheet(2)->mergeCells('A2:G2');
+        $objPHPExcel->getActiveSheet(2)->setCellValue('A1', 'REKAPITULASI KEKUATAN PERSONEL LUAR STRUKTUR TNI AD
+')->setCellValue('A2', 'Bulan ' . $bulan . ' Tahun ' . $tahun);
+if ($records['luar']){
+ $jml_kotama = count($records['luar']['kotama']);
+        }else{
+        $jml_kotama = 5;
+        }
+
+    $ha = "D";
+    $next = chr(ord($ha) + $jml_kotama + 1);
+        $objPHPExcel->getActiveSheet(2)->mergeCells('A4:A5');
+        $objPHPExcel->getActiveSheet(2)->mergeCells('B4:B5');
+        $objPHPExcel->getActiveSheet(2)->mergeCells('C4:C5');
+        $objPHPExcel->getActiveSheet(2)->mergeCells('D4:'.$next.'4');
+        $objPHPExcel->getActiveSheet(2)->setCellValue('A4', "NO");
+        $objPHPExcel->getActiveSheet(2)->setCellValue('B4', "GOLONGAN/PANGKAT");
+         $objPHPExcel->getActiveSheet(2)->setCellValue('C4', "TOP");
+        $objPHPExcel->getActiveSheet(2)->setCellValue('D4', "KEKUATAN NYATA");
+        $objPHPExcel->getActiveSheet(2)->setCellValue('I4', "+/-");
+        $objPHPExcel->getActiveSheet(2)->setCellValue('J4', "%");
+
+        foreach($records['luar']['kotama'] as $row):
+            $objPHPExcel->getActiveSheet($ha.'5',$row);
+            $ha = chr(ord($ha) + 1);
+            endforeach;   
+        $objPHPExcel->getActiveSheet(2)->setCellValue($ha.'5', "JUMLAH");   
+        $cell = 7;
+
+        if($records != FALSE){
+
+              $total_top = 0;
+              $total_dinas = 0;
+              $total_mpp = 0;
+               $total_lf = 0;
+               $total_skorsing = 0;
+               $total_total = 0;
+
+                foreach ($records['luar'] as $key => $record):
+                                                    $sub_top = 0;
+                                                    $sub_dinas = 0;
+                                                    $sub_mpp = 0;
+                                                    $sub_lf = 0;
+                                                    $sub_skorsing = 0;
+                                                    $sub_total = 0;
+
+                                $objPHPExcel->getActiveSheet()->setCellValue('B'.$cell,beautify_str($key));
+
+                                $cell = $cell + 1;
+                                foreach($record as $row):
+
+                                    $total = $row->dinas + $row->mpp + $row->lf + $row->skorsing;
+                                                        $sub_top += $row->top;
+                                                        $sub_dinas += $row->dinas;
+                                                        $sub_mpp += $row->mpp;
+                                                        $sub_lf += $row->lf;
+                                                        $sub_skorsing += $row->skorsing;
+                                                        $sub_total += $total;
+
+                                    $objPHPExcel->getActiveSheet(1)->setCellValue('B'.$cell,beautify_str($row->ur_pangkat));
+                                    $objPHPExcel->getActiveSheet(1)->setCellValue('C'.$cell,$row->top);
+
+                                    $objPHPExcel->getActiveSheet(1)->setCellValue('D'.$cell,$row->dinas);
+                                    $objPHPExcel->getActiveSheet(1)->setCellValue('E'.$cell,$row->mpp);
+                                    $objPHPExcel->getActiveSheet(1)->setCellValue('F'.$cell,$row->lf);
+                                    $objPHPExcel->getActiveSheet(1)->setCellValue('G'.$cell,$row->skorsing);
+                                    $objPHPExcel->getActiveSheet(1)->setCellValue('H'.$cell,$total);
+                                    $objPHPExcel->getActiveSheet(1)->setCellValue('I'.$cell,$total - $row->top);
+                                    $objPHPExcel->getActiveSheet(1)->setCellValue('J'.$cell,$row->top == 0 ? 0 : $total / $row->top * 100);
+                                    $cell = $cell + 1;
+
+                                endforeach;
+                                 $total_top += $sub_top;
+                                                    $total_dinas += $sub_dinas;
+                                                    $total_mpp += $sub_mpp;
+                                                    $total_lf += $sub_lf;
+                                                    $total_skorsing += $sub_skorsing;
+                                                    $total_total += $sub_total;
+                    
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('B'.$cell,'JUMLAH '.beautify_str($key));
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('C'.$cell,$sub_top);
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('D'.$cell,$sub_dinas);
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('E'.$cell,$sub_mpp);
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('F'.$cell,$sub_lf);
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('G'.$cell,$sub_skorsing);
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('H'.$cell,$sub_total);
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('I'.$cell,$sub_total - $sub_top);
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('J'.$cell,$sub_top == 0 ? 0 : $sub_total / $sub_top * 100);
+
+                        $cell = $cell + 2;
+                        endforeach;
+
+
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('B'.$cell,'JUMLAH BESAR');
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('C'.$cell,$total_top);
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('D'.$cell,$total_dinas);
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('E'.$cell,$total_mpp);
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('F'.$cell,$total_lf);
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('G'.$cell,$total_skorsing);
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('H'.$cell,$total_total);
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('I'.$cell,$total_total - $total_top);
+                        $objPHPExcel->getActiveSheet(1)->setCellValue('J'.$cell,$total_top == 0 ? 0 : $total_total / $total_top * 100);
+
+                    }else{
+
+                    }
+
+
+                            $objPHPExcel->getActiveSheet(1)->setTitle('LUAR STRUKTUR');
 
 
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
@@ -291,9 +414,4 @@ class Lpstruktur extends Mslaporan {
 
         }
 
-
-
-    }
-
-}
 }

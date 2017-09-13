@@ -24,6 +24,7 @@ $records = isset($records) ? $records : FALSE;
                         <div class="block">
                             <div class="text-center" style="font-weight: bold;">REKAPITULASI KEKUATAN PERSONEL SATKOWIL DAN SATINTEL</div>
                             <div class="text-center" style="font-weight: bold;">BULAN <?php echo num_to_roman($bulan) ?> TAHUN <?php echo $tahun ?></div>
+                            <a class="btn btn-primary" href="<?php echo base_url() ?>back_end/lpsatkowil/export/rekap/<?php echo $bulan.'/'.$tahun; ?>"> <i class="fa fa-print"> </i> Export </a>
                         </div>
                         <div class="block">
                             <div class="dataTables_wrapper no-footer">
@@ -81,13 +82,13 @@ $records = isset($records) ? $records : FALSE;
                                                 foreach ($record as $row) :
                                                     ?>
                                                     <tr>
-                <td align = "right"><?php echo $mulai ? $next_list_number++ : '' ?></td>
-                   <td><?php echo $mulai ? beautify_str($kotama) : '' ?></td>
-                   <td><?php echo beautify_str($row['golongan']) ?></td>
-                   <td align="right"><?php echo number_format($row["top"], 0, ",", ".") ?></td>
-                     <td align="right"><?php echo number_format($row["nyata"], 0, ",", ".") ?></td>
-                 <td align="right"><?php echo number_format($row["nyata"] - $row["top"], 0, ",", ".") ?></td>
-                    <td align="right"><?php echo $row["top"] > 0 ? number_format($row["nyata"] / $row["top"] * 100, 1, ",", ".") : 0 ?>%</td>
+                                                        <td align = "right"><?php echo $mulai ? $next_list_number++ : '' ?></td>
+                                                        <td><?php echo $mulai ? beautify_str($kotama) : '' ?></td>
+                                                        <td><?php echo beautify_str($row['golongan']) ?></td>
+                                                        <td align="right"><?php echo number_format($row["top"], 0, ",", ".") ?></td>
+                                                        <td align="right"><?php echo number_format($row["nyata"], 0, ",", ".") ?></td>
+                                                        <td align="right"><?php echo number_format($row["nyata"] - $row["top"], 0, ",", ".") ?></td>
+                                                        <td align="right"><?php echo $row["top"] > 0 ? number_format($row["nyata"] / $row["top"] * 100, 1, ",", ".") : 0 ?>%</td>
                                                         <td>&nbsp;</td>
                                                     </tr>
                                                     <?php

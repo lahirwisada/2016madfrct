@@ -34,4 +34,18 @@ class Lpsatbalak extends Mslaporan {
         $this->set("records", $records);
     }
 
+
+    function export($bulan = 1, $tahun = 2014){
+
+         $records = array(
+            'golongan' => $this->model_laporan->get_satbalak_by_kotama_and_golongan($bulan, $tahun),
+            'detail' => $this->model_laporan->get_satbalak_by_satminkal_and_golongan($bulan, $tahun),
+        );
+
+         echo "<pre>";
+         print_r($records);
+         exit;
+
+    }
+
 }

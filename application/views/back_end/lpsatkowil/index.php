@@ -81,13 +81,13 @@ $records = isset($records) ? $records : FALSE;
                                                 foreach ($record as $row) :
                                                     ?>
                                                     <tr>
-                                                        <td align = "right"><?php echo $mulai ? $next_list_number++ : '' ?></td>
-                                                        <td><?php echo $mulai ? beautify_str($kotama) : '' ?></td>
-                                                        <td><?php echo beautify_str($row['golongan']) ?></td>
-                                                        <td align="right"><?php echo number_format($row["top"], 0, ",", ".") ?></td>
-                                                        <td align="right"><?php echo number_format($row["nyata"], 0, ",", ".") ?></td>
-                                                        <td align="right"><?php echo number_format($row["nyata"] - $row["top"], 0, ",", ".") ?></td>
-                                                        <td align="right"><?php echo $row["top"] > 0 ? number_format($row["nyata"] / $row["top"] * 100, 1, ",", ".") : 0 ?>%</td>
+                <td align = "right"><?php echo $mulai ? $next_list_number++ : '' ?></td>
+                   <td><?php echo $mulai ? beautify_str($kotama) : '' ?></td>
+                   <td><?php echo beautify_str($row['golongan']) ?></td>
+                   <td align="right"><?php echo number_format($row["top"], 0, ",", ".") ?></td>
+                     <td align="right"><?php echo number_format($row["nyata"], 0, ",", ".") ?></td>
+                 <td align="right"><?php echo number_format($row["nyata"] - $row["top"], 0, ",", ".") ?></td>
+                    <td align="right"><?php echo $row["top"] > 0 ? number_format($row["nyata"] / $row["top"] * 100, 1, ",", ".") : 0 ?>%</td>
                                                         <td>&nbsp;</td>
                                                     </tr>
                                                     <?php

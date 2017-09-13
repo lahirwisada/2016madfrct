@@ -25,7 +25,7 @@ $records = isset($records) ? $records : FALSE;
                             <div class="text-center" style="font-weight: bold;">REKAPITULASI PA, BA, TA PER KOTAMA/BALAKPUS</div>
                             <div class="text-center" style="font-weight: bold;">BULAN <?php echo num_to_roman($bulan) ?> TAHUN <?php echo $tahun ?></div>
 
-                            <a class="btn btn-primary" href="<?php echo base_url() ?>back_end/lpkotama/export/rekap/<?php echo $bulan.'/'.$tahun;?>"> Export </a>
+                            <a class="btn btn-primary" href="<?php echo base_url() ?>back_end/lpkotama/export/rekap/<?php echo $bulan.'/'.$tahun;?>"><i class="fa fa-print"></i> Export </a>
                         </div>
                         <div class="block">
                             <div class="dataTables_wrapper no-footer">

@@ -15,10 +15,10 @@ $records = isset($records) ? $records : FALSE;
                 <div class="tab-pane active" id="tab-first">
                     <?php if ($records['rekap']): ?>
                         <div class="block">
+                            <a href="<?php echo base_url() ?>exportexcel/struktur/<?= $bulan ?>/<?= $tahun ?>" class="btn btn-primary" target="_blank"> Print </a>
                             <div class="text-center" style="font-weight: bold;">REKAPITULASI KEKUATAN PERSONEL DALAM DAN LUAR STRUKTUR TNI AD</div>
-                            <div class="text-center" style="font-weight: bold;">BULAN <?php echo num_to_roman($bulan) ?> TAHUN <?php echo $tahun ?></div>
+                            <div class="text-center" style="font-weight: bold;">BULAN <?php echo strtoupper(array_month($bulan)) ?> TAHUN <?php echo $tahun ?></div>
 
-                            <a href="<?php echo base_url() ?>back_end/lpstruktur/export/rekap/<?=$bulan ?>/<?=$tahun ?>" class="btn btn-primary" target="_blank"> Print </a>
                         </div>
                         <div class="block">
                             <div class="dataTables_wrapper no-footer">
@@ -105,15 +105,15 @@ $records = isset($records) ? $records : FALSE;
                                                             <td><?php echo beautify_str($row['pangkat']) ?></td>
                                                             <td align="right"><?php echo number_format($dalam_top, 0, ",", ".") ?></td>
                                                             <td align="right"><?php echo number_format($dalam_nyata, 0, ",", ".") ?></td>
-                                                            <td align="right"><?php echo number_format($dalam_nyata - $dalam_top, 0, ",", ".") ?></td>
+                                                            <td align="right"><?php echo ($dalam_nyata > $dalam_top ? '+' : '') . number_format($dalam_nyata - $dalam_top, 0, ",", ".") ?></td>
                                                             <td align="right"><?php echo number_format($dalam_top < 1 ? 0 : $dalam_nyata / $dalam_top * 100, 2, ",", ".") ?>%</td>
                                                             <td align="right"><?php echo number_format($luar_top, 0, ",", ".") ?></td>
                                                             <td align="right"><?php echo number_format($luar_nyata, 0, ",", ".") ?></td>
-                                                            <td align="right"><?php echo number_format($luar_nyata - $luar_top, 0, ",", ".") ?></td>
+                                                            <td align="right"><?php echo ($luar_nyata > $luar_top ? '+' : '') . number_format($luar_nyata - $luar_top, 0, ",", ".") ?></td>
                                                             <td align="right"><?php echo number_format($luar_top < 1 ? 0 : $luar_nyata / $luar_top * 100, 2, ",", ".") ?>%</td>
                                                             <td align="right"><?php echo number_format($total_top, 0, ",", ".") ?></td>
                                                             <td align="right"><?php echo number_format($total_nyata, 0, ",", ".") ?></td>
-                                                            <td align="right"><?php echo number_format($total_nyata - $total_top, 0, ",", ".") ?></td>
+                                                            <td align="right"><?php echo ($total_nyata > $total_top ? '+' : '') . number_format($total_nyata - $total_top, 0, ",", ".") ?></td>
                                                             <td align="right"><?php echo number_format($total_top < 1 ? 0 : $total_nyata / $total_top * 100, 2, ",", ".") ?>%</td>
                                                             <td>&nbsp;</td>
                                                         </tr>
@@ -130,15 +130,15 @@ $records = isset($records) ? $records : FALSE;
                                                         <td><b>JUMLAH <?php echo beautify_str($key) ?></b></td>
                                                         <td align="right"><?php echo number_format($sub_dalam_top, 0, ",", ".") ?></td>
                                                         <td align="right"><?php echo number_format($sub_dalam_nyata, 0, ",", ".") ?></td>
-                                                        <td align="right"><?php echo number_format($sub_dalam_nyata - $sub_dalam_top, 0, ",", ".") ?></td>
+                                                        <td align="right"><?php echo ($sub_dalam_nyata > $sub_dalam_top ? '+' : '') . number_format($sub_dalam_nyata - $sub_dalam_top, 0, ",", ".") ?></td>
                                                         <td align="right"><?php echo number_format($sub_dalam_top < 1 ? 0 : $sub_dalam_nyata / $sub_dalam_top * 100, 2, ",", ".") ?>%</td>
                                                         <td align="right"><?php echo number_format($sub_luar_top, 0, ",", ".") ?></td>
                                                         <td align="right"><?php echo number_format($sub_luar_nyata, 0, ",", ".") ?></td>
-                                                        <td align="right"><?php echo number_format($sub_luar_nyata - $sub_luar_top, 0, ",", ".") ?></td>
+                                                        <td align="right"><?php echo ($sub_luar_nyata > $sub_luar_top ? '+' : '') . number_format($sub_luar_nyata - $sub_luar_top, 0, ",", ".") ?></td>
                                                         <td align="right"><?php echo number_format($sub_luar_top < 1 ? 0 : $sub_luar_nyata / $sub_luar_top * 100, 2, ",", ".") ?>%</td>
                                                         <td align="right"><?php echo number_format($sub_total_top, 0, ",", ".") ?></td>
                                                         <td align="right"><?php echo number_format($sub_total_nyata, 0, ",", ".") ?></td>
-                                                        <td align="right"><?php echo number_format($sub_total_nyata - $sub_total_top, 0, ",", ".") ?></td>
+                                                        <td align="right"><?php echo ($sub_total_nyata > $sub_total_top ? '+' : '') . number_format($sub_total_nyata - $sub_total_top, 0, ",", ".") ?></td>
                                                         <td align="right"><?php echo number_format($sub_total_top < 1 ? 0 : $sub_total_nyata / $sub_total_top * 100, 2, ",", ".") ?>%</td>
                                                         <td>&nbsp;</td>
                                                     </tr>
@@ -150,15 +150,15 @@ $records = isset($records) ? $records : FALSE;
                                                     <td><b>JUMLAH BESAR</b></td>
                                                     <td align="right"><?php echo number_format($total_dalam_top, 0, ",", ".") ?></td>
                                                     <td align="right"><?php echo number_format($total_dalam_nyata, 0, ",", ".") ?></td>
-                                                    <td align="right"><?php echo number_format($total_dalam_nyata - $total_dalam_top, 0, ",", ".") ?></td>
+                                                    <td align="right"><?php echo ($total_dalam_nyata > $total_dalam_top ? '+' : '') . number_format($total_dalam_nyata - $total_dalam_top, 0, ",", ".") ?></td>
                                                     <td align="right"><?php echo number_format($total_dalam_top < 1 ? 0 : $total_dalam_nyata / $total_dalam_top * 100, 2, ",", ".") ?>%</td>
                                                     <td align="right"><?php echo number_format($total_luar_top, 0, ",", ".") ?></td>
                                                     <td align="right"><?php echo number_format($total_luar_nyata, 0, ",", ".") ?></td>
-                                                    <td align="right"><?php echo number_format($total_luar_nyata - $total_luar_top, 0, ",", ".") ?></td>
+                                                    <td align="right"><?php echo ($total_luar_nyata > $total_luar_top ? '+' : '') . number_format($total_luar_nyata - $total_luar_top, 0, ",", ".") ?></td>
                                                     <td align="right"><?php echo number_format($total_luar_top < 1 ? 0 : $total_luar_nyata / $total_luar_top * 100, 2, ",", ".") ?>%</td>
                                                     <td align="right"><?php echo number_format($total_total_top, 0, ",", ".") ?></td>
                                                     <td align="right"><?php echo number_format($total_total_nyata, 0, ",", ".") ?></td>
-                                                    <td align="right"><?php echo number_format($total_total_nyata - $total_total_top, 0, ",", ".") ?></td>
+                                                    <td align="right"><?php echo ($total_total_nyata > $total_total_top ? '+' : '') . number_format($total_total_nyata - $total_total_top, 0, ",", ".") ?></td>
                                                     <td align="right"><?php echo number_format($total_total_top < 1 ? 0 : $total_total_nyata / $total_total_top * 100, 2, ",", ".") ?>%</td>
                                                     <td>&nbsp;</td>
                                                 </tr>
@@ -180,7 +180,7 @@ $records = isset($records) ? $records : FALSE;
                     <?php if ($records['dalam']): ?>
                         <div class="block">
                             <div class="text-center" style="font-weight: bold;">REKAPITULASI KEKUATAN PERSONEL DALAM STRUKTUR TNI AD</div>
-                            <div class="text-center" style="font-weight: bold;">BULAN <?php echo num_to_roman($bulan) ?> TAHUN <?php echo $tahun ?></div>
+                            <div class="text-center" style="font-weight: bold;">BULAN <?php echo strtoupper(array_month($bulan)) ?> TAHUN <?php echo $tahun ?></div>
                         </div>
                         <div class="block">
                             <div class="dataTables_wrapper no-footer">
@@ -248,24 +248,24 @@ $records = isset($records) ? $records : FALSE;
                                                     </tr>
                                                     <?php foreach ($record as $row): ?>
                                                         <?php
-                                                        $total = $row->dinas + $row->mpp + $row->lf + $row->skorsing;
-                                                        $sub_top += $row->top;
-                                                        $sub_dinas += $row->dinas;
-                                                        $sub_mpp += $row->mpp;
-                                                        $sub_lf += $row->lf;
-                                                        $sub_skorsing += $row->skorsing;
+                                                        $total = $row['dinas'] + $row['mpp'] + $row['lf'] + $row['skorsing'];
+                                                        $sub_top += $row['top'];
+                                                        $sub_dinas += $row['dinas'];
+                                                        $sub_mpp += $row['mpp'];
+                                                        $sub_lf += $row['lf'];
+                                                        $sub_skorsing += $row['skorsing'];
                                                         $sub_total += $total;
                                                         ?>
                                                         <tr>
-                                                            <td><?php echo beautify_str($row->ur_pangkat) ?></td>
-                                                            <td align="right"><?php echo number_format($row->top, 0, ",", ".") ?></td>
-                                                            <td align="right"><?php echo number_format($row->dinas, 0, ",", ".") ?></td>
-                                                            <td align="right"><?php echo number_format($row->mpp, 0, ",", ".") ?></td>
-                                                            <td align="right"><?php echo number_format($row->lf, 0, ",", ".") ?></td>
-                                                            <td align="right"><?php echo number_format($row->skorsing, 0, ",", ".") ?></td>
+                                                            <td><?php echo beautify_str($row['pangkat']) ?></td>
+                                                            <td align="right"><?php echo number_format($row['top'], 0, ",", ".") ?></td>
+                                                            <td align="right"><?php echo number_format($row['dinas'], 0, ",", ".") ?></td>
+                                                            <td align="right"><?php echo number_format($row['mpp'], 0, ",", ".") ?></td>
+                                                            <td align="right"><?php echo number_format($row['lf'], 0, ",", ".") ?></td>
+                                                            <td align="right"><?php echo number_format($row['skorsing'], 0, ",", ".") ?></td>
                                                             <td align="right"><?php echo number_format($total, 0, ",", ".") ?></td>
-                                                            <td align="right"><?php echo number_format($total - $row->top, 0, ",", ".") ?></td>
-                                                            <td align="right"><?php echo number_format($row->top == 0 ? 0 : $total / $row->top * 100, 2, ",", ".") ?>%</td>
+                                                            <td align="right"><?php echo ($total > $row['top'] ? '+' : '') . number_format($total - $row['top'], 0, ",", ".") ?></td>
+                                                            <td align="right"><?php echo number_format($row['top'] == 0 ? 0 : $total / $row['top'] * 100, 2, ",", ".") ?>%</td>
                                                         </tr>
                                                         <?php
                                                     endforeach;
@@ -284,7 +284,7 @@ $records = isset($records) ? $records : FALSE;
                                                         <td align="right"><b><?php echo number_format($sub_lf, 0, ",", ".") ?></b></td>
                                                         <td align="right"><b><?php echo number_format($sub_skorsing, 0, ",", ".") ?></b></td>
                                                         <td align="right"><b><?php echo number_format($sub_total, 0, ",", ".") ?></b></td>
-                                                        <td align="right"><b><?php echo number_format($sub_total - $sub_top, 0, ",", ".") ?></b></td>
+                                                        <td align="right"><b><?php echo ($sub_total > $sub_top ? '+' : '') . number_format($sub_total - $sub_top, 0, ",", ".") ?></b></td>
                                                         <td align="right"><b><?php echo number_format($sub_top == 0 ? 0 : $sub_total / $sub_top * 100, 2, ",", ".") ?>%</b></td>
                                                     </tr>
                                                     <tr>
@@ -299,7 +299,7 @@ $records = isset($records) ? $records : FALSE;
                                                     <td align="right"><b><?php echo number_format($total_lf, 0, ",", ".") ?></b></td>
                                                     <td align="right"><b><?php echo number_format($total_skorsing, 0, ",", ".") ?></b></td>
                                                     <td align="right"><b><?php echo number_format($total_total, 0, ",", ".") ?></b></td>
-                                                    <td align="right"><b><?php echo number_format($total_total - $total_top, 0, ",", ".") ?></b></td>
+                                                    <td align="right"><b><?php echo ($total_total > $total_top ? '+' : '') . number_format($total_total - $total_top, 0, ",", ".") ?></b></td>
                                                     <td align="right"><b><?php echo number_format($total_top == 0 ? 0 : $total_total / $total_top * 100, 2, ",", ".") ?>%</b></td>
                                                 </tr>
                                             <?php else: ?>
@@ -321,7 +321,7 @@ $records = isset($records) ? $records : FALSE;
                         <?php $jml_kotama = count($records['luar']['kotama']); ?>
                         <div class="block">
                             <div class="text-center" style="font-weight: bold;">REKAPITULASI KEKUATAN PERSONEL LUAR STRUKTUR TNI AD</div>
-                            <div class="text-center" style="font-weight: bold;">BULAN <?php echo num_to_roman($bulan) ?> TAHUN <?php echo $tahun ?></div>
+                            <div class="text-center" style="font-weight: bold;">BULAN <?php echo strtoupper(array_month($bulan)) ?> TAHUN <?php echo $tahun ?></div>
                         </div>
                         <div class="block">
                             <div class="dataTables_wrapper no-footer">
@@ -345,7 +345,7 @@ $records = isset($records) ? $records : FALSE;
                                         <tbody>
     <!--                                            <tr>
                                             <?php for ($i = 1; $i <= $jml_kotama + 5; $i++): ?>
-                                                            <td class="text-center">(<?php echo $i; ?>)</td>
+                                                                                            <td class="text-center">(<?php echo $i; ?>)</td>
                                             <?php endfor; ?>
                                             </tr>-->
                                             <tr>
@@ -383,7 +383,7 @@ $records = isset($records) ? $records : FALSE;
                                                                 ?>
                                                             <?php endforeach; ?>
                                                             <td align="right"><?php echo number_format($sumrow, 0, ",", ".") ?></td>
-                                                            <td align="right"><?php echo number_format($sumrow - $row['top'], 0, ",", ".") ?></td>
+                                                            <td align="right"><?php echo ($sumrow > $row['top'] ? '+' : '') . number_format($sumrow - $row['top'], 0, ",", ".") ?></td>
                                                             <td align="right"><?php echo number_format($row['top'] == 0 ? 0 : $sumrow / $row['top'] * 100, 2, ",", ".") ?>%</td>
                                                         </tr>
                                                         <?php
@@ -402,7 +402,7 @@ $records = isset($records) ? $records : FALSE;
                                                             <td align="right"><b><?php echo number_format($value, 0, ",", ".") ?></b></td>
                                                         <?php endforeach; ?>
                                                         <td align="right"><b><?php echo number_format($sub_total, 0, ",", ".") ?></b></td>
-                                                        <td align="right"><b><?php echo number_format($sub_total - $sub_top, 0, ",", ".") ?></b></td>
+                                                        <td align="right"><b><?php echo ($sub_total > $sub_top ? '+' : '') . number_format($sub_total - $sub_top, 0, ",", ".") ?></b></td>
                                                         <td align="right"><b><?php echo number_format($sub_top == 0 ? 0 : $sub_total / $sub_top * 100, 2, ",", ".") ?>%</b></td>
                                                     </tr>
                                                     <tr>
@@ -416,7 +416,7 @@ $records = isset($records) ? $records : FALSE;
                                                         <td align="right"><b><?php echo number_format($value, 0, ",", ".") ?></b></td>
                                                     <?php endforeach; ?>
                                                     <td align="right"><b><?php echo number_format($total_total, 0, ",", ".") ?></b></td>
-                                                    <td align="right"><b><?php echo number_format($total_total - $total_top, 0, ",", ".") ?></b></td>
+                                                    <td align="right"><b><?php echo ($total_total > $total_top ? '+' : '') . number_format($total_total - $total_top, 0, ",", ".") ?></b></td>
                                                     <td align="right"><b><?php echo number_format($total_top == 0 ? 0 : $total_total / $total_top * 100, 2, ",", ".") ?>%</b></td>
                                                 </tr>
                                             <?php else: ?>

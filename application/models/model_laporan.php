@@ -168,13 +168,13 @@ class Model_laporan extends LWS_Model {
     }
 
     public function get_by_rekap_structure($bulan = 1, $tahun = 2014) {
-        $this->db->select($this->master_pangkat . '.id_pangkat');
-        $this->db->select($this->master_pangkat . '.ur_pangkat');
+        $this->db->select($this->master_kelompok_pangkat . '.kode_kelompok');
         $this->db->select($this->master_tingkat_pangkat . '.kode_tingkat');
         $this->db->select($this->master_kotama . '.struktur_kotama');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
         $this->db->select_sum($this->tr_pasukan_detail . '.dinas + ' . $this->tr_pasukan_detail . '.mpp + ' . $this->tr_pasukan_detail . '.lf + ' . $this->tr_pasukan_detail . '.skorsing', 'total');
         $this->db->join($this->master_tingkat_pangkat, $this->master_tingkat_pangkat . '.id_tingkat=' . $this->master_pangkat . '.id_tingkat');
+        $this->db->join($this->master_kelompok_pangkat, $this->master_kelompok_pangkat . '.id_kelompok=' . $this->master_pangkat . '.id_kelompok');
         $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_pangkat=' . $this->master_pangkat . '.id_pangkat');
         $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
         $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
@@ -182,38 +182,41 @@ class Model_laporan extends LWS_Model {
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
         $this->db->group_by($this->master_kotama . '.struktur_kotama');
-        $this->db->group_by($this->master_pangkat . '.id_pangkat');
-        $this->db->group_by($this->master_tingkat_pangkat . '.kode_tingkat');
-        $this->db->order_by($this->master_pangkat . '.id_pangkat', 'desc');
+        $this->db->group_by($this->master_kelompok_pangkat . '.id_kelompok');
+        $this->db->group_by($this->master_tingkat_pangkat . '.id_tingkat');
+        $this->db->order_by($this->master_kelompok_pangkat . '.id_kelompok', 'desc');
         $query = $this->db->get($this->master_pangkat);
 //        echo $this->db->last_query();
-//        var_dump($query->result());
+//        var_dump($records);
 //        exit();
-        return $this->arrange_rekap_structure_by_tingkat($query->result());
-    }
 
-    public function arrange_rekap_structure_by_tingkat($records = FALSE) {
-        $result = array();
-        if ($records) {
-            foreach ($records as $record) {
-                $result[$record->kode_tingkat][$record->ur_pangkat]['pangkat'] = $record->ur_pangkat;
-                if ($record->struktur_kotama == 1) {
-                    $result[$record->kode_tingkat][$record->ur_pangkat]['dalam_top'] = $record->top;
-                    $result[$record->kode_tingkat][$record->ur_pangkat]['dalam_nyata'] = $record->total;
+        if ($query->num_rows() > 0) {
+            $result = array();
+            foreach ($query->result() as $record) {
+                $tingkat = $record->kode_tingkat;
+                if (in_array(strtolower($record->kode_kelompok), array('serma', 'serka'))) {
+                    $kelompok = 'SRM/SRK';
                 } else {
-                    $result[$record->kode_tingkat][$record->ur_pangkat]['luar_top'] = $record->top;
-                    $result[$record->kode_tingkat][$record->ur_pangkat]['luar_nyata'] = $record->total;
+                    $kelompok = $record->kode_kelompok;
+                }
+                $result[$tingkat][$kelompok]['pangkat'] = $kelompok;
+                if ($record->struktur_kotama == 1) {
+                    $result[$tingkat][$kelompok]['dalam_top'] = isset($result[$tingkat][$kelompok]['dalam_top']) ? $result[$tingkat][$kelompok]['dalam_top'] + intval($record->top) : intval($record->top);
+                    $result[$tingkat][$kelompok]['dalam_nyata'] = isset($result[$tingkat][$kelompok]['dalam_nyata']) ? $result[$tingkat][$kelompok]['dalam_nyata'] + intval($record->total) : intval($record->total);
+                } else {
+                    $result[$tingkat][$kelompok]['luar_top'] = isset($result[$tingkat][$kelompok]['luar_top']) ? $result[$tingkat][$kelompok]['luar_top'] + intval($record->top) : intval($record->top);
+                    $result[$tingkat][$kelompok]['luar_nyata'] = isset($result[$tingkat][$kelompok]['luar_nyata']) ? $result[$tingkat][$kelompok]['luar_nyata'] + intval($record->total) : intval($record->total);
                 }
             }
-        }
 //        var_dump($result);
 //        exit();
-        return $result;
+            return $result;
+        }
+        return FALSE;
     }
 
     public function get_by_in_structure($bulan = 1, $tahun = 2014) {
-        $this->db->select($this->master_pangkat . '.id_pangkat');
-        $this->db->select($this->master_pangkat . '.ur_pangkat');
+        $this->db->select($this->master_kelompok_pangkat . '.kode_kelompok');
         $this->db->select($this->master_tingkat_pangkat . '.kode_tingkat');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
         $this->db->select_sum($this->tr_pasukan_detail . '.dinas');
@@ -221,6 +224,7 @@ class Model_laporan extends LWS_Model {
         $this->db->select_sum($this->tr_pasukan_detail . '.lf');
         $this->db->select_sum($this->tr_pasukan_detail . '.skorsing');
         $this->db->join($this->master_tingkat_pangkat, $this->master_tingkat_pangkat . '.id_tingkat=' . $this->master_pangkat . '.id_tingkat');
+        $this->db->join($this->master_kelompok_pangkat, $this->master_kelompok_pangkat . '.id_kelompok=' . $this->master_pangkat . '.id_kelompok');
         $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_pangkat=' . $this->master_pangkat . '.id_pangkat');
         $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
         $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
@@ -228,33 +232,41 @@ class Model_laporan extends LWS_Model {
         $this->db->where($this->master_kotama . '.struktur_kotama = 1');
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
-        $this->db->group_by($this->master_pangkat . '.id_pangkat');
-        $this->db->group_by($this->master_tingkat_pangkat . '.kode_tingkat');
-        $this->db->order_by($this->master_pangkat . '.id_pangkat', 'desc');
+        $this->db->group_by($this->master_tingkat_pangkat . '.id_tingkat');
+        $this->db->group_by($this->master_kelompok_pangkat . '.id_kelompok');
+        $this->db->order_by($this->master_kelompok_pangkat . '.id_kelompok', 'desc');
         $query = $this->db->get($this->master_pangkat);
 //        echo $this->db->last_query();
-//        var_dump($query->result());
+//        var_dump($records);
 //        exit();
-        return $this->arrange_in_structure_by_tingkat($query->result());
-    }
 
-    public function arrange_in_structure_by_tingkat($records = FALSE) {
-        $result = array();
-        if ($records) {
-            foreach ($records as $record) {
-                $result[$record->kode_tingkat][] = $record;
+        if ($query->num_rows() > 0) {
+            $result = array();
+            foreach ($query->result() as $record) {
+                $tingkat = $record->kode_tingkat;
+                if (in_array(strtolower($record->kode_kelompok), array('serma', 'serka'))) {
+                    $kelompok = 'SRM/SRK';
+                } else {
+                    $kelompok = $record->kode_kelompok;
+                }
+                $result[$tingkat][$kelompok]['pangkat'] = $kelompok;
+                $result[$tingkat][$kelompok]['top'] = isset($result[$tingkat][$kelompok]['top']) ? $result[$tingkat][$kelompok]['top'] + intval($record->top) : intval($record->top);
+                $result[$tingkat][$kelompok]['dinas'] = isset($result[$tingkat][$kelompok]['dinas']) ? $result[$tingkat][$kelompok]['dinas'] + intval($record->dinas) : intval($record->dinas);
+                $result[$tingkat][$kelompok]['mpp'] = isset($result[$tingkat][$kelompok]['mpp']) ? $result[$tingkat][$kelompok]['mpp'] + intval($record->mpp) : intval($record->mpp);
+                $result[$tingkat][$kelompok]['lf'] = isset($result[$tingkat][$kelompok]['lf']) ? $result[$tingkat][$kelompok]['lf'] + intval($record->lf) : intval($record->lf);
+                $result[$tingkat][$kelompok]['skorsing'] = isset($result[$tingkat][$kelompok]['skorsing']) ? $result[$tingkat][$kelompok]['skorsing'] + intval($record->skorsing) : intval($record->skorsing);
             }
-        }
 //        var_dump($result);
 //        exit();
-        return $result;
+            return $result;
+        }
+        return FALSE;
     }
 
     public function get_by_out_structure($bulan = 1, $tahun = 2014) {
         $this->db->select($this->master_kotama . '.id_kotama');
         $this->db->select($this->master_kotama . '.nama_kotama');
-        $this->db->select($this->master_pangkat . '.id_pangkat');
-        $this->db->select($this->master_pangkat . '.ur_pangkat');
+        $this->db->select($this->master_kelompok_pangkat . '.kode_kelompok');
         $this->db->select($this->master_tingkat_pangkat . '.kode_tingkat');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
         $this->db->select_sum($this->tr_pasukan_detail . '.dinas');
@@ -262,6 +274,7 @@ class Model_laporan extends LWS_Model {
         $this->db->select_sum($this->tr_pasukan_detail . '.lf');
         $this->db->select_sum($this->tr_pasukan_detail . '.skorsing');
         $this->db->join($this->master_tingkat_pangkat, $this->master_tingkat_pangkat . '.id_tingkat=' . $this->master_pangkat . '.id_tingkat');
+        $this->db->join($this->master_kelompok_pangkat, $this->master_kelompok_pangkat . '.id_kelompok=' . $this->master_pangkat . '.id_kelompok');
         $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_pangkat=' . $this->master_pangkat . '.id_pangkat');
         $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
         $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
@@ -270,38 +283,42 @@ class Model_laporan extends LWS_Model {
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
         $this->db->group_by($this->master_kotama . '.id_kotama');
-        $this->db->group_by($this->master_pangkat . '.id_pangkat');
-        $this->db->group_by($this->master_tingkat_pangkat . '.kode_tingkat');
+        $this->db->group_by($this->master_tingkat_pangkat . '.id_tingkat');
+        $this->db->group_by($this->master_kelompok_pangkat . '.id_kelompok');
         $this->db->order_by($this->master_kotama . '.kode_kotama', 'asc');
-        $this->db->order_by($this->master_pangkat . '.id_pangkat', 'desc');
+        $this->db->order_by($this->master_kelompok_pangkat . '.id_kelompok', 'desc');
         $query = $this->db->get($this->master_pangkat);
 //        echo $this->db->last_query();
-//        var_dump($query->result());
+//        var_dump($records);
 //        exit();
-        return $this->arrange_out_structure_by_tingkat($query->result());
-    }
 
-    public function arrange_out_structure_by_tingkat($records = FALSE) {
-        $result = array();
-        $pangkat = '';
-        $sumtop = 0;
-        $sumvalue = 0;
-        if ($records) {
-            foreach ($records as $record) {
-                if ($pangkat != $record->ur_pangkat) {
-                    $pangkat = $record->ur_pangkat;
+        if ($query->num_rows() > 0) {
+            $result = array();
+            $pangkat = '';
+            $sumtop = 0;
+            $sumvalue = 0;
+            foreach ($query->result() as $record) {
+                if ($pangkat != $record->kode_kelompok) {
+                    $pangkat = $record->kode_kelompok;
                     $sumvalue = 0;
+                }
+                $tingkat = $record->kode_tingkat;
+                if (in_array(strtolower($record->kode_kelompok), array('serma', 'serka'))) {
+                    $kelompok = 'SRM/SRK';
+                } else {
+                    $kelompok = $record->kode_kelompok;
                 }
                 $sumtop += $record->top;
                 $result['kotama'][$record->id_kotama] = $record->nama_kotama;
-                $result['data'][$record->kode_tingkat][$record->ur_pangkat]['pangkat'] = $record->ur_pangkat;
-                $result['data'][$record->kode_tingkat][$record->ur_pangkat]['top'] = isset($result['data'][$record->kode_tingkat][$record->ur_pangkat]['top']) ? $result['data'][$record->kode_tingkat][$record->ur_pangkat]['top'] + $record->top : $record->top;
-                $result['data'][$record->kode_tingkat][$record->ur_pangkat]['jml'][$record->id_kotama] = $record->dinas + $record->mpp + $record->lf + $record->skorsing;
+                $result['data'][$tingkat][$kelompok]['pangkat'] = $kelompok;
+                $result['data'][$tingkat][$kelompok]['top'] = isset($result['data'][$tingkat][$kelompok]['top']) ? $result['data'][$tingkat][$kelompok]['top'] + $record->top : $record->top;
+                $result['data'][$tingkat][$kelompok]['jml'][$record->id_kotama] = isset($result['data'][$tingkat][$kelompok]['jml'][$record->id_kotama]) ? $result['data'][$tingkat][$kelompok]['jml'][$record->id_kotama] + $record->dinas + $record->mpp + $record->lf + $record->skorsing : $record->dinas + $record->mpp + $record->lf + $record->skorsing;
             }
-        }
 //        var_dump($result);
 //        exit();
-        return $result;
+            return $result;
+        }
+        return FALSE;
     }
 
     public function get_by_kotama_and_golongan($bulan = 1, $tahun = 2014) {
@@ -381,7 +398,7 @@ class Model_laporan extends LWS_Model {
                     $kotama = $record->nama_kotama;
                     $i++;
                 }
-                $result[$record->kode_tingkat]["pangkat"][$record->kode_kelompok] = $record->kode_kelompok;
+                $result[$tingkat]["pangkat"][$record->kode_kelompok] = $record->kode_kelompok;
                 $result[$record->kode_tingkat]["data"][$i]["kotama"] = $record->nama_kotama;
                 $result[$record->kode_tingkat]["data"][$i][strtolower($record->kode_kelompok) . "_top"] = $record->top;
                 $result[$record->kode_tingkat]["data"][$i][strtolower($record->kode_kelompok) . "_nyata"] = $record->nyata;

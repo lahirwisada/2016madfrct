@@ -398,14 +398,13 @@ class Model_laporan extends LWS_Model {
                     $kotama = $record->nama_kotama;
                     $i++;
                 }
-                $result[$tingkat]["pangkat"][$record->kode_kelompok] = $record->kode_kelompok;
+                $result[$record->kode_tingkat]["pangkat"][$record->kode_kelompok] = $record->kode_kelompok;
                 $result[$record->kode_tingkat]["data"][$i]["kotama"] = $record->nama_kotama;
                 $result[$record->kode_tingkat]["data"][$i][strtolower($record->kode_kelompok) . "_top"] = $record->top;
                 $result[$record->kode_tingkat]["data"][$i][strtolower($record->kode_kelompok) . "_nyata"] = $record->nyata;
             }
         }
-//        var_dump($result);
-//        exit();
+
         return $result;
     }
 

@@ -427,25 +427,19 @@ class Lpkecabangan extends Mslaporan {
                 
                                 while($hurufawal < $huruf_akhir){
                                     $objPHPExcel->getActiveSheet()->getStyle($hurufawal.'7:'.$hurufawal . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                                    $objPHPExcel->getActiveSheet()->getStyle($hurufawal.'10:'.$hurufawal . $cell)->getNumberFormat()->setFormatCode('#,##0');
+                                    
                                     $hurufawal = chr(ord($hurufawal) + 1);
                                 }
                                     $objPHPExcel->getActiveSheet()->getStyle('A7:'.$ha.'8')->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
                                     $objPHPExcel->getActiveSheet()->getStyle('A' . $cell . ':'.$ha . $cell)->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
                                     $objPHPExcel->getActiveSheet()->getStyle('A7:'.$ha.'7')->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_DOUBLE);
 
-
+                                   
+                                    $objPHPExcel->getActiveSheet()->getStyle($huruf_akhir.'10:'.$huruf_akhir . $cell)->getNumberFormat()->setFormatCode('+#,##0;-#,##0;0');
 
 
         $objPHPExcel->getActiveSheet()->setTitle($tingkat);
-
-           
-
-
-
-
-
-
-
 
         endforeach;
         

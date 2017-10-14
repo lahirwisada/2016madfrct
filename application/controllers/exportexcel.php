@@ -740,6 +740,7 @@ class exportexcel extends CI_Controller {
         $objPHPExcel->getActiveSheet()->getStyle('F10:F' . $cell)->getNumberFormat()->setFormatCode('#,##0.00%');
 
 
+
         //  exit; 
         //    exit;
         $dit = strtotime(date('Y-m-d H:i:s'));

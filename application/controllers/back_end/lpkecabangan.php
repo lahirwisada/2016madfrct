@@ -206,7 +206,7 @@ class Lpkecabangan extends Mslaporan {
         $objPHPExcel->getActiveSheet()->getStyle('A' . $cell . ':O' . $cell)->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
         $objPHPExcel->getActiveSheet()->getStyle('A7:O7')->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_DOUBLE);
 
-        $objPHPExcel->getActiveSheet()->getStyle('C10:C' . $cell)->getNumberFormat()->setFormatCode('#,##0');
+        $objPHPExcel->getActiveSheet()->getStyle('C10:c' . $cell)->getNumberFormat()->setFormatCode('#,##0');
         $objPHPExcel->getActiveSheet()->getStyle('E10:E' . $cell)->getNumberFormat()->setFormatCode('+#,##0;-#,##0;0');
         $objPHPExcel->getActiveSheet()->getStyle('D10:D' . $cell)->getNumberFormat()->setFormatCode('#,##0');                
         $objPHPExcel->getActiveSheet()->getStyle('F10:F' . $cell)->getNumberFormat()->setFormatCode('#,##0');

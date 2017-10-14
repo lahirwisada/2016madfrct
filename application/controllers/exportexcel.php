@@ -77,7 +77,6 @@ class exportexcel extends CI_Controller {
             $objPHPExcel->getActiveSheet()->setCellValue('F7', "LUAR STRUKTUR");
             $objPHPExcel->getActiveSheet()->setCellValue('J7', "REKAPITULASI STRUKTUR");
             $objPHPExcel->getActiveSheet()->setCellValue('N7', "KETERANGAN");
-
             $objPHPExcel->getActiveSheet()->setCellValue('B8', "TOP/DSPP");
             $objPHPExcel->getActiveSheet()->setCellValue('C8', "NYATA");
             $objPHPExcel->getActiveSheet()->setCellValue('D8', "+/-");
@@ -230,35 +229,73 @@ class exportexcel extends CI_Controller {
 //        var_dump($records['dalam']);
 //        exit();
         if ($records['dalam']) {
-
+            $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(12);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(25);
+            // $objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(12);
+            // $objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(12);
+            // $objPHPExcel->getActiveSheet()->getColumnDimension('M')->setWidth(12);
+            // $objPHPExcel->getActiveSheet()->getColumnDimension('N')->setWidth(25);
             $objPHPExcel->getActiveSheet()->mergeCells('A1:C1');
             $objPHPExcel->getActiveSheet()->mergeCells('A2:C2');
             $objPHPExcel->getActiveSheet()
                     ->setCellValue('A1', 'MARKAS BESAR ANGKATAN DARAT')
                     ->setCellValue('A2', 'STAFF UMUM PERSONEL');
 
-            $objPHPExcel->getActiveSheet()->mergeCells('A4:I4');
-            $objPHPExcel->getActiveSheet()->mergeCells('A5:I5');
+            $objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+            $objPHPExcel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+
+            $objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+            $objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+            $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE);
+
+            $objPHPExcel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+            $objPHPExcel->getActiveSheet()->getStyle('A2')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+            $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setBold(TRUE);
+            $objPHPExcel->getActiveSheet()->getStyle('A2:C2')->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+
+            $objPHPExcel->getActiveSheet()->mergeCells('A4:J4');
+            $objPHPExcel->getActiveSheet()->mergeCells('A5:J5');
             $objPHPExcel->getActiveSheet()
-                    ->setCellValue('A4', 'REKAPITULASI KEKUATAN PERSONEL DALAM STRUKTUR TNI AD')
+                    ->setCellValue('A4', 'REKAPITULASI KEKUATAN PERSONEL DALAM DAN LUAR STRUKTUR TNI AD')
                     ->setCellValue('A5', 'BULAN ' . strtoupper(array_month($bulan)) . ' TAHUN ' . $tahun);
+            $objPHPExcel->getActiveSheet()->getStyle('A4')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+            $objPHPExcel->getActiveSheet()->getStyle('A4')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+            $objPHPExcel->getActiveSheet()->getStyle('A4')->getFont()->setBold(TRUE);
+            $objPHPExcel->getActiveSheet()->getStyle('A5')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+            $objPHPExcel->getActiveSheet()->getStyle('A5')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+            $objPHPExcel->getActiveSheet()->getStyle('A5')->getFont()->setBold(TRUE);
+
 
             $objPHPExcel->getActiveSheet()->mergeCells('A7:A8');
             $objPHPExcel->getActiveSheet()->mergeCells('B7:B8');
             $objPHPExcel->getActiveSheet()->mergeCells('C7:G7');
             $objPHPExcel->getActiveSheet()->mergeCells('H7:H8');
             $objPHPExcel->getActiveSheet()->mergeCells('I7:I8');
+            $objPHPExcel->getActiveSheet()->mergeCells('J7:J8');
             $objPHPExcel->getActiveSheet()->setCellValue('A7', "GOLONGAN/PANGKAT");
             $objPHPExcel->getActiveSheet()->setCellValue('B7', "TOP");
             $objPHPExcel->getActiveSheet()->setCellValue('C7', "KEKUATAN NYATA");
             $objPHPExcel->getActiveSheet()->setCellValue('H7', "+/-");
             $objPHPExcel->getActiveSheet()->setCellValue('I7', "%");
-
+            $objPHPExcel->getActiveSheet()->setCellValue('J7','KETERANGAN');
+            
             $objPHPExcel->getActiveSheet()->setCellValue('C8', "DINAS");
             $objPHPExcel->getActiveSheet()->setCellValue('D8', "MPP");
             $objPHPExcel->getActiveSheet()->setCellValue('E8', "LF");
             $objPHPExcel->getActiveSheet()->setCellValue('F8', "SKORSING");
             $objPHPExcel->getActiveSheet()->setCellValue('G8', "JUMLAH");
+
+            $objPHPExcel->getActiveSheet()->getStyle('A7:J8')->getAlignment()->setWrapText(TRUE);
+            $objPHPExcel->getActiveSheet()->getStyle('A7:J8')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+            $objPHPExcel->getActiveSheet()->getStyle('A7:J8')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
 
             $cell = 10;
 
@@ -278,7 +315,9 @@ class exportexcel extends CI_Controller {
                 $sub_total = 0;
 
                 $objPHPExcel->getActiveSheet()->setCellValue('A' . $cell, beautify_str($key));
-
+                
+                $objPHPExcel->getActiveSheet()->getStyle('A' . $cell)->getFont()->setBold(TRUE);
+                $objPHPExcel->getActiveSheet()->getStyle('A' . $cell)->getFont()->setUnderline(TRUE);
                 $cell = $cell + 1;
                 foreach ($record as $row):
 
@@ -309,28 +348,55 @@ class exportexcel extends CI_Controller {
                 $total_skorsing += $sub_skorsing;
                 $total_total += $sub_total;
 
-                $objPHPExcel->getActiveSheet()->setCellValue('A' . $cell, 'JUMLAH ' . beautify_str($key));
-                $objPHPExcel->getActiveSheet()->setCellValue('B' . $cell, $sub_top);
-                $objPHPExcel->getActiveSheet()->setCellValue('C' . $cell, $sub_dinas);
-                $objPHPExcel->getActiveSheet()->setCellValue('D' . $cell, $sub_mpp);
-                $objPHPExcel->getActiveSheet()->setCellValue('E' . $cell, $sub_lf);
-                $objPHPExcel->getActiveSheet()->setCellValue('F' . $cell, $sub_skorsing);
-                $objPHPExcel->getActiveSheet()->setCellValue('G' . $cell, $sub_total);
-                $objPHPExcel->getActiveSheet()->setCellValue('H' . $cell, $sub_total - $sub_top);
-                $objPHPExcel->getActiveSheet()->setCellValue('I' . $cell, $sub_top == 0 ? 0 : $sub_total / $sub_top * 100);
+                $objPHPExcel->getActiveSheet()->setCellValue('A' . $cell, 'JUMLAH ' . beautify_str($key))->getStyle('A' . $cell)->getFont()->setBold(TRUE)->setUnderline(TRUE);
+                $objPHPExcel->getActiveSheet()->setCellValue('B' . $cell, $sub_top)->getStyle('B' . $cell)->getFont()->setBold(TRUE);
+                $objPHPExcel->getActiveSheet()->setCellValue('C' . $cell, $sub_dinas)->getStyle('C' . $cell)->getFont()->setBold(TRUE);
+                $objPHPExcel->getActiveSheet()->setCellValue('D' . $cell, $sub_mpp)->getStyle('D' . $cell)->getFont()->setBold(TRUE);
+                $objPHPExcel->getActiveSheet()->setCellValue('E' . $cell, $sub_lf)->getStyle('E' . $cell)->getFont()->setBold(TRUE);
+                $objPHPExcel->getActiveSheet()->setCellValue('F' . $cell, $sub_skorsing)->getStyle('F' . $cell)->getFont()->setBold(TRUE);
+                $objPHPExcel->getActiveSheet()->setCellValue('G' . $cell, $sub_total)->getStyle('G' . $cell)->getFont()->setBold(TRUE);
+                $objPHPExcel->getActiveSheet()->setCellValue('H' . $cell, $sub_total - $sub_top)->getStyle('H' . $cell)->getFont()->setBold(TRUE);
+                $objPHPExcel->getActiveSheet()->setCellValue('I' . $cell, $sub_top == 0 ? 0 : $sub_total / $sub_top * 100)->getStyle('I' . $cell)->getFont()->setBold(TRUE);
 
                 $cell = $cell + 2;
+                
+                $objPHPExcel->getActiveSheet()->getStyle('A7:J' . $cell)->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+                $objPHPExcel->getActiveSheet()->getStyle('A7:A' . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $objPHPExcel->getActiveSheet()->getStyle('B7:B' . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $objPHPExcel->getActiveSheet()->getStyle('C7:C' . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $objPHPExcel->getActiveSheet()->getStyle('D7:D' . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $objPHPExcel->getActiveSheet()->getStyle('E7:E' . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $objPHPExcel->getActiveSheet()->getStyle('F7:F' . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $objPHPExcel->getActiveSheet()->getStyle('G7:G' . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $objPHPExcel->getActiveSheet()->getStyle('H7:H' . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $objPHPExcel->getActiveSheet()->getStyle('I7:I' . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $objPHPExcel->getActiveSheet()->getStyle('J7:J' . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $objPHPExcel->getActiveSheet()->getStyle('A7:J8')->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $objPHPExcel->getActiveSheet()->getStyle('A' . $cell . ':J' . $cell)->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $objPHPExcel->getActiveSheet()->getStyle('A7:J7')->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_DOUBLE);
+                
+           
+
             endforeach;
 
-            $objPHPExcel->getActiveSheet()->setCellValue('A' . $cell, 'JUMLAH BESAR');
-            $objPHPExcel->getActiveSheet()->setCellValue('B' . $cell, $total_top);
-            $objPHPExcel->getActiveSheet()->setCellValue('C' . $cell, $total_dinas);
-            $objPHPExcel->getActiveSheet()->setCellValue('D' . $cell, $total_mpp);
-            $objPHPExcel->getActiveSheet()->setCellValue('E' . $cell, $total_lf);
-            $objPHPExcel->getActiveSheet()->setCellValue('F' . $cell, $total_skorsing);
-            $objPHPExcel->getActiveSheet()->setCellValue('G' . $cell, $total_total);
-            $objPHPExcel->getActiveSheet()->setCellValue('H' . $cell, $total_total - $total_top);
-            $objPHPExcel->getActiveSheet()->setCellValue('I' . $cell, $total_top == 0 ? 0 : $total_total / $total_top * 100);
+            $objPHPExcel->getActiveSheet()->setCellValue('A' . $cell, 'JUMLAH BESAR')->getStyle('A' . $cell)->getFont()->setBold(TRUE)->setUnderline(TRUE);
+            $objPHPExcel->getActiveSheet()->setCellValue('B' . $cell, $total_top)->getStyle('B' . $cell)->getFont()->setBold(TRUE);
+            $objPHPExcel->getActiveSheet()->setCellValue('C' . $cell, $total_dinas)->getStyle('C' . $cell)->getFont()->setBold(TRUE);
+            $objPHPExcel->getActiveSheet()->setCellValue('D' . $cell, $total_mpp)->getStyle('D' . $cell)->getFont()->setBold(TRUE);
+            $objPHPExcel->getActiveSheet()->setCellValue('E' . $cell, $total_lf)->getStyle('E' . $cell)->getFont()->setBold(TRUE);
+            $objPHPExcel->getActiveSheet()->setCellValue('F' . $cell, $total_skorsing)->getStyle('F' . $cell)->getFont()->setBold(TRUE);
+            $objPHPExcel->getActiveSheet()->setCellValue('G' . $cell, $total_total)->getStyle('G' . $cell)->getFont()->setBold(TRUE);
+            $objPHPExcel->getActiveSheet()->setCellValue('H' . $cell, $total_total - $total_top)->getStyle('H' . $cell)->getFont()->setBold(TRUE);
+            $objPHPExcel->getActiveSheet()->setCellValue('I' . $cell, $total_top == 0 ? 0 : $total_total / $total_top * 100)->getStyle('I' . $cell)->getFont()->setBold(TRUE);
+       
+            $objPHPExcel->getActiveSheet()->getStyle('B10:C' . $cell)->getNumberFormat()->setFormatCode('#,##0');
+            $objPHPExcel->getActiveSheet()->getStyle('D10:D' . $cell)->getNumberFormat()->setFormatCode('+#,##0;-#,##0;0');
+            $objPHPExcel->getActiveSheet()->getStyle('E10:F' . $cell)->getNumberFormat()->setFormatCode('#,##0');                
+            $objPHPExcel->getActiveSheet()->getStyle('F10:G' . $cell)->getNumberFormat()->setFormatCode('#,##0');
+            $objPHPExcel->getActiveSheet()->getStyle('H10:H' . $cell)->getNumberFormat()->setFormatCode('+#,##0;-#,##0;0');
+            $objPHPExcel->getActiveSheet()->getStyle('I10:I' . $cell)->getNumberFormat()->setFormatCode('#,##0.00%');
+          
+       
         } else {
             $objPHPExcel->getActiveSheet()->setCellValue('A1', 'Belum ada data...!');
         }

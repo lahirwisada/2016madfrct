@@ -348,7 +348,7 @@ class exportexcel extends CI_Controller {
                 $total_skorsing += $sub_skorsing;
                 $total_total += $sub_total;
 
-                $objPHPExcel->getActiveSheet()->setCellValue('A' . $cell, 'JUMLAH ' . beautify_str($key))->getStyle('A' . $cell)->getFont()->setBold(TRUE)->setUnderline(TRUE);
+                $objPHPExcel->getActiveSheet()->setCellValue('A' . $cell, 'JUMLAH ' . beautify_str($key))->getStyle('A' . $cell)->getFont()->setBold(TRUE);
                 $objPHPExcel->getActiveSheet()->setCellValue('B' . $cell, $sub_top)->getStyle('B' . $cell)->getFont()->setBold(TRUE);
                 $objPHPExcel->getActiveSheet()->setCellValue('C' . $cell, $sub_dinas)->getStyle('C' . $cell)->getFont()->setBold(TRUE);
                 $objPHPExcel->getActiveSheet()->setCellValue('D' . $cell, $sub_mpp)->getStyle('D' . $cell)->getFont()->setBold(TRUE);
@@ -411,6 +411,26 @@ class exportexcel extends CI_Controller {
         $kotamas = $luar['kotama'];
         $data = $luar['data'];
         if ($luar) {
+
+
+            $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('M')->setWidth(12);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('N')->setWidth(25);
+
+
+
+
             $objPHPExcel->getActiveSheet()->mergeCells('A1:C1');
             $objPHPExcel->getActiveSheet()->mergeCells('A2:C2');
             $objPHPExcel->getActiveSheet()

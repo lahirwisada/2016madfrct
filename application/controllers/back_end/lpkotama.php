@@ -31,7 +31,7 @@ class Lpkotama extends Mslaporan {
         $this->set("records", $records);
     }
 
-    function export($tipe = "rekap", $bulan = 1, $tahun = 2014) {
+    function export($bulan = 1, $tahun = 2014) {
         $this->load->library("PHPExcel/PHPExcel");
 
         $tingkat = 5;
@@ -40,7 +40,6 @@ class Lpkotama extends Mslaporan {
         $records["tingkat"] = $this->model_laporan->get_by_kotama_and_tingkat($tingkat, $bulan, $tahun);
 
         $objPHPExcel = new PHPExcel();
-        $objPHPExcel->createSheet();
         $objPHPExcel->setActiveSheetIndex(0);
         $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(6);
         $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(30);

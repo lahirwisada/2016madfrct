@@ -24,9 +24,9 @@ class Rkpasukan extends Back_end {
      * Melihat daftar rekap
      */
     public function index() {
-        $kotama = $this->input->post('kotama');
+        $kotama = $this->input->get('kotama');
         if ($this->user_detail['id_kotama'] == 0) {
-            $this->set('list_kotama', $this->model_master_kotama->get_all());
+            $this->set('list_kotama', $this->model_master_kotama->get_all(FALSE, FALSE, TRUE, TRUE)->record_set);
             $this->set('kotama', $kotama);
             $this->set('keyword', $kotama);
         }
@@ -54,11 +54,11 @@ class Rkpasukan extends Back_end {
             "pangkat_ttd",
             "nrp_ttd",
         ));
+        $this->set('kotama', $this->model_master_kotama->get_all(FALSE, FALSE, TRUE, TRUE)->record_set);
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => $this->_header_title,
             "#" => 'Formulir ' . $this->_header_title
         ));
-
         $this->set("additional_js", "back_end/" . $this->_name . "/js/detail_js");
         $this->add_cssfiles(array("plugins/select2/select2.min.css"));
         $this->add_jsfiles(array("plugins/select2/select2.full.min.js"));
@@ -152,7 +152,7 @@ class Rkpasukan extends Back_end {
             ));
             $response_pasukan = $this->read_excel_data_pasukan();
 //            var_dump($id_rekap);
-//            var_dump($response_pasukan);
+//            var_dump($response_pasukan['data']['KODIM 0201 BS']);
 //            exit();
             $this->model_tr_pasukan_detail->save_records($id_rekap, $response_pasukan);
         }
@@ -245,9 +245,6 @@ class Rkpasukan extends Back_end {
 
         $col_map = $this->model_tr_pasukan_detail->col_map;
 
-        $slash_index_min = PHPExcel_Cell::columnIndexFromString('C');
-        $slash_index_max = PHPExcel_Cell::columnIndexFromString('G');
-
         $catch_jumlah_row = FALSE;
         $records = array();
         while (!$catch_jumlah_row && $start_row < $last_row) {
@@ -258,7 +255,7 @@ class Rkpasukan extends Back_end {
 
             if ($is_not_jumlah && $is_not_null_row !== NULL) {
 //                $this->model_master_pangkat->check_id_by_kode_pangkat_and_insert($is_jumlah_row);
-                $records[$is_jumlah_row] = $this->collect_row_data($active_sheet, $slash_index_min, $slash_index_max, $start_row, $col_map);
+                $records[$is_jumlah_row] = $this->collect_row_data($active_sheet, $start_row, $col_map);
             }
             $start_row++;
 
@@ -303,19 +300,19 @@ class Rkpasukan extends Back_end {
         return $nama_satminkal;
     }
 
-    protected function collect_row_data($active_sheet, $slash_index_min, $slash_index_max, $start_row, $col_map) {
+    protected function collect_row_data($active_sheet, $start_row, $col_map) {
         $row = array();
-        for ($x = $slash_index_min; $x <= $slash_index_max; $x++) {
-            $col_alphabet = PHPExcel_Cell::stringFromColumnIndex($x - 1);
-            $cell_index = $col_alphabet . $start_row;
+        foreach ($col_map as $colom => $field) {
+            $cell_index = $colom . $start_row;
             $_row = $active_sheet->getCell($cell_index)->getCalculatedValue();
-            $row[$col_map[$col_alphabet]] = $_row;
             if (is_null($_row)) {
-                $row[$col_map[$col_alphabet]] = 0;
+                $row[$col_map[$colom]] = 0;
+            } else {
+                $row[$col_map[$colom]] = intval($_row);
             }
             unset($_row);
         }
-        unset($active_sheet, $slash_index_min, $slash_index_max, $start_row, $col_map);
+        unset($active_sheet, $start_row, $col_map);
         return $row;
     }
 

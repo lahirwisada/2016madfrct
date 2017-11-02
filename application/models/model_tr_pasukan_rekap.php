@@ -33,8 +33,11 @@ class model_tr_pasukan_rekap extends tr_pasukan_rekap {
 
     public function all($force_limit = FALSE, $force_offset = FALSE) {
         $where = FALSE;
-        if (!empty($this->user_detail['id_kotama'])) {
+        if ($this->user_detail['id_kotama'] > 0) {
             $where = 'sc_fcstprsn.tr_pasukan_rekap.id_kotama = ' . $this->user_detail['id_kotama'];
+        } else {
+            $kotama = $this->input->get('kotama');
+            $where = $kotama ? $this->table_name . '.id_kotama = ' . $kotama : '';
         }
         return parent::get_all(array(
                     "id_kotama",

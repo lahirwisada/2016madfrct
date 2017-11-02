@@ -8,7 +8,7 @@ class Msgolonganpangkat extends Back_end {
     public $model = 'model_master_golongan_pangkat';
 
     public function __construct() {
-        parent::__construct('kelola_pustaka_golongan_pangkat', 'Pustaka Golongan Pangkat');
+        parent::__construct('kelola_pustaka_golongan_pangkat', 'Master Golongan Pangkat');
     }
 
     public function index() {
@@ -25,7 +25,7 @@ class Msgolonganpangkat extends Back_end {
 
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => $this->_header_title,
-            "#" => 'Formulir ' . $this->_header_title
+            "#" => 'Detail ' . $this->_header_title
         ));
 //        $this->add_jsfiles(array("avant/plugins/form-jasnyupload/fileinput.min.js"));
     }

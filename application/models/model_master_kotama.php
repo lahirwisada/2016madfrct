@@ -59,5 +59,4 @@ class Model_master_kotama extends Master_kotama {
 //        }
 //        return FALSE;
 //    }
-
 }

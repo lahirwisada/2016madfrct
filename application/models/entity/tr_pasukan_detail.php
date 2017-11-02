@@ -23,6 +23,10 @@ class tr_pasukan_detail extends LWS_Model {
         "mpp" => array("mpp", "MPP"),
         "lf" => array("lf", "LF"),
         "skorsing" => array("skorsing", "Skorsing"),
+        "danramil_top" => array("danramil_top", "Danramil Top"),
+        "danramil_nyata" => array("danramil_nyata", "Danramil Nyata"),
+        "babinsa_top" => array("babinsa_top", "Babinsa Top"),
+        "babinsa_nyata" => array("babinsa_nyata", "Babinsa Nyata"),
         "created_date" => array("created_date", "created_date"),
         "created_by" => array("created_by", "created_by"),
         "modified_date" => array("modified_date", "modified_date"),
@@ -38,6 +42,10 @@ class tr_pasukan_detail extends LWS_Model {
         array("mpp", ""),
         array("lf", ""),
         array("skorsing", ""),
+        array("danramil_top", ""),
+        array("danramil_nyata", ""),
+        array("babinsa_top", ""),
+        array("babinsa_nyata", ""),
         array("created_date", ""),
         array("created_by", ""),
         array("modified_date", ""),
@@ -99,6 +107,10 @@ class tr_pasukan_detail extends LWS_Model {
         "E" => "mpp",
         "F" => "lf",
         "G" => "skorsing",
+        "J" => "danramil_top",
+        "K" => "danramil_nyata",
+        "L" => "babinsa_top",
+        "M" => "babinsa_nyata"
     );
 
 }

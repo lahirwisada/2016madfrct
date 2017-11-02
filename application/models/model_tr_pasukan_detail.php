@@ -65,6 +65,10 @@ class model_tr_pasukan_detail extends tr_pasukan_detail {
                 "mpp" => $array_jumlah["mpp"],
                 "lf" => $array_jumlah["lf"],
                 "skorsing" => $array_jumlah["skorsing"],
+                "danramil_top" => $array_jumlah["danramil_top"],
+                "danramil_nyata" => $array_jumlah["danramil_nyata"],
+                "babinsa_top" => $array_jumlah["babinsa_top"],
+                "babinsa_nyata" => $array_jumlah["babinsa_nyata"],
                 "created_date" => date('Y-m-d'),
                 "created_by" => ""
             );

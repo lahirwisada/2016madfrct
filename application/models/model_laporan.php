@@ -42,7 +42,7 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_pangkat=' . $this->master_pangkat . '.id_pangkat');
         $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
         $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
-        $this->db->where($this->master_pangkat . '.id_kelompok < 18');
+        $this->db->where($this->master_pangkat . '.id_kelompok > 1');
         if ($jenis != 0) {
             $this->db->where($this->master_kotama . '.struktur_kotama = ' . $jenis);
         }
@@ -51,7 +51,6 @@ class Model_laporan extends LWS_Model {
         $this->db->group_by($this->master_kelompok_pangkat . '.id_kelompok');
         $this->db->order_by($this->master_kelompok_pangkat . '.id_kelompok', 'desc');
         $query = $this->db->get($this->master_pangkat);
-//        echo $this->db->last_query();
         $result = array();
         $top = 0;
         $nyata = 0;
@@ -91,9 +90,6 @@ class Model_laporan extends LWS_Model {
                 );
             }
         }
-//        var_dump($result);
-//        var_dump($query->result());
-//        exit();
         return $result;
     }
 
@@ -108,7 +104,7 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_pangkat=' . $this->master_pangkat . '.id_pangkat');
         $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
         $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
-        $this->db->where($this->master_pangkat . '.id_tingkat < 6');
+        $this->db->where($this->master_pangkat . '.id_tingkat > 1');
         if ($jenis != 0) {
             $this->db->where($this->master_kotama . '.struktur_kotama = ' . $jenis);
         }
@@ -117,7 +113,6 @@ class Model_laporan extends LWS_Model {
         $this->db->group_by($this->master_tingkat_pangkat . '.id_tingkat');
         $this->db->order_by($this->master_tingkat_pangkat . '.id_tingkat', 'desc');
         $query = $this->db->get($this->master_pangkat);
-//        echo $this->db->last_query();
         $result = array();
         foreach ($query->result() as $record) {
             $result[] = array(
@@ -126,9 +121,6 @@ class Model_laporan extends LWS_Model {
                 'top' => $record->top
             );
         }
-//        var_dump($result);
-//        var_dump($query->result());
-//        exit();
         return $result;
     }
 
@@ -143,7 +135,7 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_pangkat=' . $this->master_pangkat . '.id_pangkat');
         $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
         $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
-        $this->db->where($this->master_pangkat . '.id_golongan < 4');
+        $this->db->where($this->master_pangkat . '.id_golongan > 1');
         if ($jenis != 0) {
             $this->db->where($this->master_kotama . '.struktur_kotama = ' . $jenis);
         }
@@ -152,7 +144,6 @@ class Model_laporan extends LWS_Model {
         $this->db->group_by($this->master_golongan_pangkat . '.id_golongan');
         $this->db->order_by($this->master_golongan_pangkat . '.id_golongan', 'desc');
         $query = $this->db->get($this->master_pangkat);
-//        echo $this->db->last_query();
         $result = array();
         foreach ($query->result() as $record) {
             $result[] = array(
@@ -161,9 +152,6 @@ class Model_laporan extends LWS_Model {
                 'top' => $record->top
             );
         }
-//        var_dump($result);
-//        var_dump($query->result());
-//        exit();
         return $result;
     }
 
@@ -178,7 +166,7 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_pangkat=' . $this->master_pangkat . '.id_pangkat');
         $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
         $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
-        $this->db->where($this->master_pangkat . '.id_tingkat < 6');
+        $this->db->where($this->master_pangkat . '.id_tingkat > 1');
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
         $this->db->group_by($this->master_kotama . '.struktur_kotama');
@@ -186,9 +174,6 @@ class Model_laporan extends LWS_Model {
         $this->db->group_by($this->master_tingkat_pangkat . '.id_tingkat');
         $this->db->order_by($this->master_kelompok_pangkat . '.id_kelompok', 'desc');
         $query = $this->db->get($this->master_pangkat);
-//        echo $this->db->last_query();
-//        var_dump($records);
-//        exit();
 
         if ($query->num_rows() > 0) {
             $result = array();
@@ -208,8 +193,6 @@ class Model_laporan extends LWS_Model {
                     $result[$tingkat][$kelompok]['luar_nyata'] = isset($result[$tingkat][$kelompok]['luar_nyata']) ? $result[$tingkat][$kelompok]['luar_nyata'] + intval($record->total) : intval($record->total);
                 }
             }
-//        var_dump($result);
-//        exit();
             return $result;
         }
         return FALSE;
@@ -228,7 +211,7 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_pangkat=' . $this->master_pangkat . '.id_pangkat');
         $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
         $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
-        $this->db->where($this->master_pangkat . '.id_tingkat < 6');
+        $this->db->where($this->master_pangkat . '.id_tingkat > 1');
         $this->db->where($this->master_kotama . '.struktur_kotama = 1');
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
@@ -236,9 +219,6 @@ class Model_laporan extends LWS_Model {
         $this->db->group_by($this->master_kelompok_pangkat . '.id_kelompok');
         $this->db->order_by($this->master_kelompok_pangkat . '.id_kelompok', 'desc');
         $query = $this->db->get($this->master_pangkat);
-//        echo $this->db->last_query();
-//        var_dump($records);
-//        exit();
 
         if ($query->num_rows() > 0) {
             $result = array();
@@ -256,8 +236,6 @@ class Model_laporan extends LWS_Model {
                 $result[$tingkat][$kelompok]['lf'] = isset($result[$tingkat][$kelompok]['lf']) ? $result[$tingkat][$kelompok]['lf'] + intval($record->lf) : intval($record->lf);
                 $result[$tingkat][$kelompok]['skorsing'] = isset($result[$tingkat][$kelompok]['skorsing']) ? $result[$tingkat][$kelompok]['skorsing'] + intval($record->skorsing) : intval($record->skorsing);
             }
-//        var_dump($result);
-//        exit();
             return $result;
         }
         return FALSE;
@@ -278,7 +256,7 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_pangkat=' . $this->master_pangkat . '.id_pangkat');
         $this->db->join($this->tr_pasukan_rekap, $this->tr_pasukan_rekap . '.id_rekap=' . $this->tr_pasukan_detail . '.id_rekap');
         $this->db->join($this->master_kotama, $this->master_kotama . '.id_kotama=' . $this->tr_pasukan_rekap . '.id_kotama');
-        $this->db->where($this->master_pangkat . '.id_tingkat < 6');
+        $this->db->where($this->master_pangkat . '.id_tingkat > 1');
         $this->db->where($this->master_kotama . '.struktur_kotama = 2');
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
@@ -288,9 +266,6 @@ class Model_laporan extends LWS_Model {
         $this->db->order_by($this->master_kotama . '.kode_kotama', 'asc');
         $this->db->order_by($this->master_kelompok_pangkat . '.id_kelompok', 'desc');
         $query = $this->db->get($this->master_pangkat);
-//        echo $this->db->last_query();
-//        var_dump($records);
-//        exit();
 
         if ($query->num_rows() > 0) {
             $result = array();
@@ -314,8 +289,6 @@ class Model_laporan extends LWS_Model {
                 $result['data'][$tingkat][$kelompok]['top'] = isset($result['data'][$tingkat][$kelompok]['top']) ? $result['data'][$tingkat][$kelompok]['top'] + $record->top : $record->top;
                 $result['data'][$tingkat][$kelompok]['jml'][$record->id_kotama] = isset($result['data'][$tingkat][$kelompok]['jml'][$record->id_kotama]) ? $result['data'][$tingkat][$kelompok]['jml'][$record->id_kotama] + $record->dinas + $record->mpp + $record->lf + $record->skorsing : $record->dinas + $record->mpp + $record->lf + $record->skorsing;
             }
-//        var_dump($result);
-//        exit();
             return $result;
         }
         return FALSE;
@@ -332,14 +305,11 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->master_golongan_pangkat, $this->master_golongan_pangkat . '.id_golongan=' . $this->master_pangkat . '.id_golongan');
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
-        $this->db->where($this->master_golongan_pangkat . '.id_golongan < 4');
+        $this->db->where($this->master_golongan_pangkat . '.id_golongan > 1');
         $this->db->group_by($this->master_kotama . '.id_kotama');
         $this->db->group_by($this->master_golongan_pangkat . '.id_golongan');
         $this->db->order_by($this->master_kotama . '.kode_kotama', 'asc');
         $query = $this->db->get($this->master_kotama);
-//        echo $this->db->last_query();
-//        var_dump($query->result());
-//        exit();
         return $this->arrange_by_kotama_and_golongan($query->result());
     }
 
@@ -358,7 +328,6 @@ class Model_laporan extends LWS_Model {
                 $result[$i][strtolower($record->ur_golongan) . "_nyata"] = $record->nyata;
             }
         }
-//        var_dump($result);exit();
         return $result;
     }
 
@@ -375,16 +344,13 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->master_tingkat_pangkat, $this->master_tingkat_pangkat . '.id_tingkat=' . $this->master_pangkat . '.id_tingkat');
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
-        $this->db->where($this->master_tingkat_pangkat . '.id_tingkat < 6');
+        $this->db->where($this->master_tingkat_pangkat . '.id_tingkat > 1');
         $this->db->group_by($this->master_kotama . '.id_kotama');
         $this->db->group_by($this->master_kelompok_pangkat . '.id_kelompok');
         $this->db->group_by($this->master_tingkat_pangkat . '.id_tingkat');
         $this->db->order_by($this->master_kotama . '.kode_kotama', 'asc');
         $this->db->order_by($this->master_tingkat_pangkat . '.id_tingkat', 'desc');
         $query = $this->db->get($this->master_kotama);
-//        echo $this->db->last_query();
-//        var_dump($query->result());
-//        exit();
         return $this->arrange_by_kotama_and_tingkat($query->result());
     }
 
@@ -420,16 +386,13 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->master_golongan_pangkat, $this->master_golongan_pangkat . '.id_golongan=' . $this->master_pangkat . '.id_golongan');
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
-        $this->db->where($this->master_golongan_pangkat . '.id_golongan < 4');
+        $this->db->where($this->master_golongan_pangkat . '.id_golongan > 1');
         $this->db->where($this->master_corps . '.id_corps > 0');
         $this->db->group_by($this->master_corps . '.id_corps');
         $this->db->group_by($this->master_golongan_pangkat . '.id_golongan');
         $this->db->order_by($this->master_corps . '.kode_corps', 'asc');
         $this->db->order_by($this->master_golongan_pangkat . '.id_golongan', 'desc');
         $query = $this->db->get($this->master_corps);
-//        echo $this->db->last_query();
-//        var_dump($query->result());
-//        exit();
         return $this->arrange_by_corps_and_golongan($query->result());
     }
 
@@ -448,7 +411,6 @@ class Model_laporan extends LWS_Model {
                 $result[$i][strtolower($record->ur_golongan) . "_nyata"] = $record->nyata;
             }
         }
-//        var_dump($result);exit();
         return $result;
     }
 
@@ -466,7 +428,7 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->master_tingkat_pangkat, $this->master_tingkat_pangkat . '.id_tingkat=' . $this->master_pangkat . '.id_tingkat');
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
-        $this->db->where($this->master_tingkat_pangkat . '.id_tingkat < 6');
+        $this->db->where($this->master_tingkat_pangkat . '.id_tingkat > 1');
         $this->db->where($this->master_corps . '.id_corps > 0');
 
         $this->db->group_by($this->master_corps . '.id_corps');
@@ -475,9 +437,6 @@ class Model_laporan extends LWS_Model {
         $this->db->order_by($this->master_corps . '.kode_corps', 'asc');
         $this->db->order_by($this->master_tingkat_pangkat . '.id_tingkat', 'desc');
         $query = $this->db->get($this->master_corps);
-//        echo $this->db->last_query();
-//        var_dump($query->result());
-//        exit();
         return $this->arrange_by_corps_and_tingkat($query->result());
     }
 
@@ -497,8 +456,6 @@ class Model_laporan extends LWS_Model {
                 $result[$record->kode_tingkat]["data"][$i][strtolower($record->kode_kelompok) . "_nyata"] = $record->nyata;
             }
         }
-//        var_dump($result);
-//        exit();
         return $result;
     }
 
@@ -514,15 +471,12 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->master_golongan_pangkat, $this->master_golongan_pangkat . '.id_golongan=' . $this->master_pangkat . '.id_golongan');
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
-        $this->db->where($this->master_golongan_pangkat . '.id_golongan < 4');
+        $this->db->where($this->master_golongan_pangkat . '.id_golongan > 1');
         $this->db->where($this->master_satminkal . '.id_corps < 1');
         $this->db->group_by($this->master_kotama . '.id_kotama');
         $this->db->group_by($this->master_golongan_pangkat . '.id_golongan');
         $this->db->order_by($this->master_kotama . '.kode_kotama', 'asc');
         $query = $this->db->get($this->master_kotama);
-//        echo $this->db->last_query();
-//        var_dump($query->result());
-//        exit();
         return $this->arrange_multi_by_kotama_and_golongan($query->result());
     }
 
@@ -541,7 +495,6 @@ class Model_laporan extends LWS_Model {
                 $result[$i][strtolower($record->ur_golongan) . "_nyata"] = $record->nyata;
             }
         }
-//        var_dump($result);exit();
         return $result;
     }
 
@@ -559,7 +512,7 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->master_tingkat_pangkat, $this->master_tingkat_pangkat . '.id_tingkat=' . $this->master_pangkat . '.id_tingkat');
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
-        $this->db->where($this->master_tingkat_pangkat . '.id_tingkat < 6');
+        $this->db->where($this->master_tingkat_pangkat . '.id_tingkat > 1');
         $this->db->where($this->master_satminkal . '.id_corps < 1');
         $this->db->group_by($this->master_kotama . '.id_kotama');
         $this->db->group_by($this->master_kelompok_pangkat . '.id_kelompok');
@@ -567,9 +520,6 @@ class Model_laporan extends LWS_Model {
         $this->db->order_by($this->master_kotama . '.kode_kotama', 'asc');
         $this->db->order_by($this->master_tingkat_pangkat . '.id_tingkat', 'desc');
         $query = $this->db->get($this->master_kotama);
-//        echo $this->db->last_query();
-//        var_dump($query->result());
-//        exit();
         return $this->arrange_multi_by_kotama_and_tingkat($query->result());
     }
 
@@ -589,8 +539,6 @@ class Model_laporan extends LWS_Model {
                 $result[$record->kode_tingkat]["data"][$i][strtolower($record->kode_kelompok) . "_nyata"] = $record->nyata;
             }
         }
-//        var_dump($result);
-//        exit();
         return $result;
     }
 
@@ -606,16 +554,13 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->master_golongan_pangkat, $this->master_golongan_pangkat . '.id_golongan=' . $this->master_pangkat . '.id_golongan');
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
-        $this->db->where($this->master_golongan_pangkat . '.id_golongan < 4');
+        $this->db->where($this->master_golongan_pangkat . '.id_golongan > 1');
         $this->db->where_in($this->master_satminkal . '.id_kesatuan', array(1, 2, 3));
         $this->db->group_by($this->master_kotama . '.id_kotama');
         $this->db->group_by($this->master_golongan_pangkat . '.id_golongan');
         $this->db->order_by($this->master_kotama . '.kode_kotama', 'asc');
         $this->db->order_by($this->master_golongan_pangkat . '.id_golongan', 'desc');
         $query = $this->db->get($this->master_kotama);
-//        echo $this->db->last_query();
-//        var_dump($query->result());
-//        exit();
         return $this->arrange_tempur_by_kotama_and_golongan($query->result());
     }
 
@@ -629,8 +574,6 @@ class Model_laporan extends LWS_Model {
                 );
             }
         }
-//        var_dump($result);
-//        exit();
         return $result;
     }
 
@@ -646,16 +589,13 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->master_golongan_pangkat, $this->master_golongan_pangkat . '.id_golongan=' . $this->master_pangkat . '.id_golongan');
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
-        $this->db->where($this->master_golongan_pangkat . '.id_golongan < 4');
+        $this->db->where($this->master_golongan_pangkat . '.id_golongan > 1');
         $this->db->where_in($this->master_satminkal . '.id_kesatuan', array(4, 5));
         $this->db->group_by($this->master_kotama . '.id_kotama');
         $this->db->group_by($this->master_golongan_pangkat . '.id_golongan');
         $this->db->order_by($this->master_kotama . '.kode_kotama', 'asc');
         $this->db->order_by($this->master_golongan_pangkat . '.id_golongan', 'desc');
         $query = $this->db->get($this->master_kotama);
-//        echo $this->db->last_query();
-//        var_dump($query->result());
-//        exit();
         return $this->arrange_satbalak_by_kotama_and_golongan($query->result());
     }
 
@@ -670,8 +610,6 @@ class Model_laporan extends LWS_Model {
                 );
             }
         }
-//        var_dump($result);
-//        exit();
         return $result;
     }
 
@@ -688,7 +626,7 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->master_golongan_pangkat, $this->master_golongan_pangkat . '.id_golongan=' . $this->master_pangkat . '.id_golongan');
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
-        $this->db->where($this->master_golongan_pangkat . '.id_golongan < 4');
+        $this->db->where($this->master_golongan_pangkat . '.id_golongan > 1');
         $this->db->where_in($this->master_satminkal . '.id_kesatuan', array(4, 5));
         $this->db->group_by($this->master_kotama . '.id_kotama');
         $this->db->group_by($this->master_satminkal . '.id_satminkal');
@@ -697,9 +635,6 @@ class Model_laporan extends LWS_Model {
         $this->db->order_by($this->master_satminkal . '.kode_satminkal', 'asc');
         $this->db->order_by($this->master_golongan_pangkat . '.id_golongan', 'desc');
         $query = $this->db->get($this->master_kotama);
-//        echo $this->db->last_query();
-//        var_dump($query->result());
-//        exit();
         return $this->arrange_satbalak_by_satminkal_and_golongan($query->result());
     }
 
@@ -714,8 +649,6 @@ class Model_laporan extends LWS_Model {
                 );
             }
         }
-//        var_dump($result);
-//        exit();
         return $result;
     }
 
@@ -731,16 +664,12 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->master_golongan_pangkat, $this->master_golongan_pangkat . '.id_golongan=' . $this->master_pangkat . '.id_golongan');
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
-        $this->db->where($this->master_golongan_pangkat . '.id_golongan < 4');
         $this->db->where_in($this->master_satminkal . '.id_kesatuan', array(6, 7));
         $this->db->group_by($this->master_kotama . '.id_kotama');
         $this->db->group_by($this->master_golongan_pangkat . '.id_golongan');
         $this->db->order_by($this->master_kotama . '.kode_kotama', 'asc');
         $this->db->order_by($this->master_golongan_pangkat . '.id_golongan', 'desc');
         $query = $this->db->get($this->master_kotama);
-//        echo $this->db->last_query();
-//        var_dump($query->result());
-//        exit();
         return $this->arrange_satkowil_by_kotama_and_golongan($query->result());
     }
 
@@ -755,18 +684,21 @@ class Model_laporan extends LWS_Model {
                 );
             }
         }
-//        var_dump($result);
-//        exit();
         return $result;
     }
 
     public function get_satkowil_by_satminkal_and_golongan($bulan = 1, $tahun = 2014) {
         $this->db->select($this->master_kotama . '.nama_kotama');
         $this->db->select($this->master_satminkal . '.ur_satminkal');
+        $this->db->select($this->master_satminkal . '.babinsa');
         $this->db->select($this->master_kesatuan . '.kode_kesatuan');
         $this->db->select($this->master_golongan_pangkat . '.kode_golongan');
         $this->db->select_sum($this->tr_pasukan_detail . '.top');
         $this->db->select_sum($this->tr_pasukan_detail . '.dinas + ' . $this->tr_pasukan_detail . '.mpp + ' . $this->tr_pasukan_detail . '.lf + ' . $this->tr_pasukan_detail . '.skorsing', 'nyata');
+        $this->db->select_sum($this->tr_pasukan_detail . '.danramil_top');
+        $this->db->select_sum($this->tr_pasukan_detail . '.danramil_nyata');
+        $this->db->select_sum($this->tr_pasukan_detail . '.babinsa_top');
+        $this->db->select_sum($this->tr_pasukan_detail . '.babinsa_nyata');
         $this->db->join($this->master_satminkal, $this->master_satminkal . '.id_kotama=' . $this->master_kotama . '.id_kotama');
         $this->db->join($this->master_kesatuan, $this->master_kesatuan . '.id_kesatuan=' . $this->master_satminkal . '.id_kesatuan');
         $this->db->join($this->tr_pasukan_detail, $this->tr_pasukan_detail . '.id_satminkal=' . $this->master_satminkal . '.id_satminkal');
@@ -775,7 +707,6 @@ class Model_laporan extends LWS_Model {
         $this->db->join($this->master_golongan_pangkat, $this->master_golongan_pangkat . '.id_golongan=' . $this->master_pangkat . '.id_golongan');
         $this->db->where($this->tr_pasukan_rekap . '.id_bulan', $bulan);
         $this->db->where($this->tr_pasukan_rekap . '.id_tahun', $tahun);
-        $this->db->where($this->master_golongan_pangkat . '.id_golongan < 4');
         $this->db->where_in($this->master_satminkal . '.id_kesatuan', array(6, 7));
         $this->db->group_by($this->master_kotama . '.id_kotama');
         $this->db->group_by($this->master_satminkal . '.id_satminkal');
@@ -785,9 +716,6 @@ class Model_laporan extends LWS_Model {
         $this->db->order_by($this->master_satminkal . '.kode_satminkal', 'asc');
         $this->db->order_by($this->master_golongan_pangkat . '.id_golongan', 'desc');
         $query = $this->db->get($this->master_kotama);
-//        echo $this->db->last_query();
-//        var_dump($query->result());
-//        exit();
         return $this->arrange_satkowil_by_satminkal_and_golongan($query->result());
     }
 
@@ -798,12 +726,15 @@ class Model_laporan extends LWS_Model {
                 $result[$record->nama_kotama][$record->kode_kesatuan][$record->ur_satminkal][] = array(
                     'golongan' => $record->kode_golongan,
                     'top' => $record->top,
-                    'nyata' => $record->nyata
+                    'nyata' => $record->nyata,
+                    'babinsa' => $record->babinsa,
+                    'danramil_top'=> $record->danramil_top,
+                    'danramil_nyata'=> $record->danramil_nyata,
+                    'babinsa_top'=> $record->babinsa_top,
+                    'babinsa_nyata'=> $record->babinsa_nyata
                 );
             }
         }
-//        var_dump($result);
-//        exit();
         return $result;
     }
 

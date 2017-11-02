@@ -8,7 +8,7 @@ class Mskotama extends Back_end {
     public $model = 'model_master_kotama';
 
     public function __construct() {
-        parent::__construct('kelola_pustaka_kotama', 'Pustaka Kotama');
+        parent::__construct('kelola_pustaka_kotama', 'Master Kotama');
     }
 
     public function index() {
@@ -23,7 +23,7 @@ class Mskotama extends Back_end {
 
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => $this->_header_title,
-            "#" => 'Pendaftaran ' . $this->_header_title
+            "#" => 'Detail ' . $this->_header_title
         ));
 //        $this->add_jsfiles(array("avant/plugins/form-jasnyupload/fileinput.min.js"));
     }

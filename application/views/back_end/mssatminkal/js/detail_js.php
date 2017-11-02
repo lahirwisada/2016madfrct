@@ -20,7 +20,7 @@ $detail = isset($detail) ? $detail : FALSE;
             processResults: function (data, params) {
                 var data = $.map(data, function (obj) {
                     obj.id = obj.id || obj.id_kotama;
-                    obj.text = obj.text || obj.ur_kotama;
+                    obj.text = obj.text || obj.nama_kotama;
                     return obj;
                 });
                 params.page = params.page || 1;
@@ -105,7 +105,7 @@ $detail = isset($detail) ? $detail : FALSE;
         slc_kotama_cfg.data = [
             {
                 id: '<?php echo $detail->id_kotama ?>',
-                text: '<?php echo $detail->ur_kotama; ?>'
+                text: '<?php echo $detail->nama_kotama; ?>'
             }
         ];
 <?php endif; ?>

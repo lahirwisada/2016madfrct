@@ -32,7 +32,7 @@ $config["atlant_paging"] = array(
     'num_tag_close' => '</li>',
     
     'query_string_segment' => 'currpage',
-    'full_tag_open' => '<ul class="pagination pagination-sm pull-right push-down-20 push-up-20">',
+    'full_tag_open' => '<ul class="pagination pagination-sm pull-right">',
     'full_tag_close' => '</ul>',
 );
 

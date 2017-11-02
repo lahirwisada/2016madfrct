@@ -9,7 +9,7 @@ class tr_pasukan_rekap extends MY_Model {
     public function __construct() {
         parent::__construct("tr_pasukan_rekap");
         $this->primary_key = "id_rekap";
-        $this->sort_by = "id_tahun,id_bulan";
+        $this->sort_by = array("id_tahun", "id_bulan");
         $this->sort_mode = "desc";
 
         $this->attribute_labels = array_merge_recursive($this->_continuously_attribute_label, $this->attribute_labels);

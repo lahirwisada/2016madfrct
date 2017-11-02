@@ -32,25 +32,14 @@ class Lpkecabangan extends Mslaporan {
         $this->set("records", $records);
     }
 
-        function test($tipe = "rekap",$bulan = 1, $tahun = 2014){
-               $tingkat = 5;
+    function export($bulan = 1, $tahun = 2014) {
+        $this->load->library("PHPExcel/PHPExcel");
 
+        $tingkat = 5;
         $records["kategori"] = $this->model_laporan->get_by_corps_and_golongan($bulan, $tahun);
         $records["tingkat"] = $this->model_laporan->get_by_corps_and_tingkat($tingkat, $bulan, $tahun);
 
-        echo "<pre>";
-        print_r($records);
-        }
-
-    function export($tipe = "rekap",$bulan = 1, $tahun = 2014){
-       $this->load->library("PHPExcel/PHPExcel");
-
-               $tingkat = 5;
-        $records["kategori"] = $this->model_laporan->get_by_corps_and_golongan($bulan, $tahun);
-        $records["tingkat"] = $this->model_laporan->get_by_corps_and_tingkat($tingkat, $bulan, $tahun);
-
-         $objPHPExcel = new PHPExcel();
-        $objPHPExcel->createSheet();
+        $objPHPExcel = new PHPExcel();
         $objPHPExcel->setActiveSheetIndex(0);
 
         $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(6);
@@ -107,85 +96,85 @@ class Lpkecabangan extends Mslaporan {
         $objPHPExcel->getActiveSheet()->mergeCells('L7:N7');
 
         $objPHPExcel->getActiveSheet()->mergeCells('O7:O8');
-        
-        $objPHPExcel->getActiveSheet()->setCellValue('A7','NO');
-        $objPHPExcel->getActiveSheet()->setCellValue('B7','KECAB');
-        $objPHPExcel->getActiveSheet()->setCellValue('C7','PERWIRA');
-        $objPHPExcel->getActiveSheet()->setCellValue('F7','BINTARA');
-        $objPHPExcel->getActiveSheet()->setCellValue('I7','TAMTAMA');
-        $objPHPExcel->getActiveSheet()->setCellValue('L7','JUMLAH');
-        $objPHPExcel->getActiveSheet()->setCellValue('O7','KETERANGAN');
-        
-        $objPHPExcel->getActiveSheet()->setCellValue('C8','TOP');
-        $objPHPExcel->getActiveSheet()->setCellValue('D8','NYATA');
-        $objPHPExcel->getActiveSheet()->setCellValue('E8','+/-');
-        $objPHPExcel->getActiveSheet()->setCellValue('F8','TOP');
-        $objPHPExcel->getActiveSheet()->setCellValue('G8','NYATA');
-        $objPHPExcel->getActiveSheet()->setCellValue('H8','+/-');
-        $objPHPExcel->getActiveSheet()->setCellValue('I8','TOP');
-        $objPHPExcel->getActiveSheet()->setCellValue('J8','NYATA');
-        $objPHPExcel->getActiveSheet()->setCellValue('K8','+/-');
-        $objPHPExcel->getActiveSheet()->setCellValue('L8','TOP');
-        $objPHPExcel->getActiveSheet()->setCellValue('M8','NYATA');
-        $objPHPExcel->getActiveSheet()->setCellValue('N8','+/-');
 
-         $next_list_number = 1;
-                                            $perwira_top = 0;
-                                            $perwira_nyata = 0;
-                                            $bintara_top = 0;
-                                            $bintara_nyata = 0;
-                                            $tamtama_top = 0;
-                                            $tamtama_nyata = 0;
+        $objPHPExcel->getActiveSheet()->setCellValue('A7', 'NO');
+        $objPHPExcel->getActiveSheet()->setCellValue('B7', 'KECAB');
+        $objPHPExcel->getActiveSheet()->setCellValue('C7', 'PERWIRA');
+        $objPHPExcel->getActiveSheet()->setCellValue('F7', 'BINTARA');
+        $objPHPExcel->getActiveSheet()->setCellValue('I7', 'TAMTAMA');
+        $objPHPExcel->getActiveSheet()->setCellValue('L7', 'JUMLAH');
+        $objPHPExcel->getActiveSheet()->setCellValue('O7', 'KETERANGAN');
 
-                                            $objPHPExcel->getActiveSheet()->getStyle('A7:O8')->getAlignment()->setWrapText(TRUE);
-                                            $objPHPExcel->getActiveSheet()->getStyle('A7:O8')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-                                            $objPHPExcel->getActiveSheet()->getStyle('A7:O8')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
-                                    
+        $objPHPExcel->getActiveSheet()->setCellValue('C8', 'TOP');
+        $objPHPExcel->getActiveSheet()->setCellValue('D8', 'NYATA');
+        $objPHPExcel->getActiveSheet()->setCellValue('E8', '+/-');
+        $objPHPExcel->getActiveSheet()->setCellValue('F8', 'TOP');
+        $objPHPExcel->getActiveSheet()->setCellValue('G8', 'NYATA');
+        $objPHPExcel->getActiveSheet()->setCellValue('H8', '+/-');
+        $objPHPExcel->getActiveSheet()->setCellValue('I8', 'TOP');
+        $objPHPExcel->getActiveSheet()->setCellValue('J8', 'NYATA');
+        $objPHPExcel->getActiveSheet()->setCellValue('K8', '+/-');
+        $objPHPExcel->getActiveSheet()->setCellValue('L8', 'TOP');
+        $objPHPExcel->getActiveSheet()->setCellValue('M8', 'NYATA');
+        $objPHPExcel->getActiveSheet()->setCellValue('N8', '+/-');
+
+        $next_list_number = 1;
+        $perwira_top = 0;
+        $perwira_nyata = 0;
+        $bintara_top = 0;
+        $bintara_nyata = 0;
+        $tamtama_top = 0;
+        $tamtama_nyata = 0;
+
+        $objPHPExcel->getActiveSheet()->getStyle('A7:O8')->getAlignment()->setWrapText(TRUE);
+        $objPHPExcel->getActiveSheet()->getStyle('A7:O8')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle('A7:O8')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+
 
 
         $cell = 10;
         foreach ($records["kategori"] as $record):
 
 
-            $objPHPExcel->getActiveSheet()->setCellValue('A'.$cell,$next_list_number);
-            $objPHPExcel->getActiveSheet()->setCellValue('B'.$cell,beautify_str($record["corps"]));
-            $objPHPExcel->getActiveSheet()->setCellValue('C'.$cell,$record['perwira_top']);
-            $objPHPExcel->getActiveSheet()->setCellValue('D'.$cell,$record['perwira_nyata']);
-            $objPHPExcel->getActiveSheet()->setCellValue('E'.$cell,$record['perwira_nyata'] - $record['perwira_top']);
-            $objPHPExcel->getActiveSheet()->setCellValue('F'.$cell,$record['bintara_top']);
-            $objPHPExcel->getActiveSheet()->setCellValue('G'.$cell,$record['bintara_nyata']);
-            $objPHPExcel->getActiveSheet()->setCellValue('H'.$cell,$record['bintara_nyata'] - $record['bintara_top']);
-            $objPHPExcel->getActiveSheet()->setCellValue('I'.$cell,$record['tamtama_top']);
-            $objPHPExcel->getActiveSheet()->setCellValue('J'.$cell,$record['tamtama_nyata']);
-            $objPHPExcel->getActiveSheet()->setCellValue('K'.$cell,$record['tamtama_nyata'] - $record['tamtama_top']);
-            $objPHPExcel->getActiveSheet()->setCellValue('L'.$cell,$record['perwira_top'] + $record['bintara_top'] + $record['tamtama_top']);
-            $objPHPExcel->getActiveSheet()->setCellValue('M'.$cell,$record['perwira_nyata'] + $record['bintara_nyata'] + $record['tamtama_nyata']);
-            $objPHPExcel->getActiveSheet()->setCellValue('N'.$cell,($record["perwira_nyata"] + $record["bintara_nyata"] + $record["tamtama_nyata"]) - ($record["perwira_top"] + $record["bintara_top"] + $record["tamtama_top"]));
+            $objPHPExcel->getActiveSheet()->setCellValue('A' . $cell, $next_list_number);
+            $objPHPExcel->getActiveSheet()->setCellValue('B' . $cell, beautify_str($record["corps"]));
+            $objPHPExcel->getActiveSheet()->setCellValue('C' . $cell, $record['perwira_top']);
+            $objPHPExcel->getActiveSheet()->setCellValue('D' . $cell, $record['perwira_nyata']);
+            $objPHPExcel->getActiveSheet()->setCellValue('E' . $cell, $record['perwira_nyata'] - $record['perwira_top']);
+            $objPHPExcel->getActiveSheet()->setCellValue('F' . $cell, $record['bintara_top']);
+            $objPHPExcel->getActiveSheet()->setCellValue('G' . $cell, $record['bintara_nyata']);
+            $objPHPExcel->getActiveSheet()->setCellValue('H' . $cell, $record['bintara_nyata'] - $record['bintara_top']);
+            $objPHPExcel->getActiveSheet()->setCellValue('I' . $cell, $record['tamtama_top']);
+            $objPHPExcel->getActiveSheet()->setCellValue('J' . $cell, $record['tamtama_nyata']);
+            $objPHPExcel->getActiveSheet()->setCellValue('K' . $cell, $record['tamtama_nyata'] - $record['tamtama_top']);
+            $objPHPExcel->getActiveSheet()->setCellValue('L' . $cell, $record['perwira_top'] + $record['bintara_top'] + $record['tamtama_top']);
+            $objPHPExcel->getActiveSheet()->setCellValue('M' . $cell, $record['perwira_nyata'] + $record['bintara_nyata'] + $record['tamtama_nyata']);
+            $objPHPExcel->getActiveSheet()->setCellValue('N' . $cell, ($record["perwira_nyata"] + $record["bintara_nyata"] + $record["tamtama_nyata"]) - ($record["perwira_top"] + $record["bintara_top"] + $record["tamtama_top"]));
             $cell = $cell + 1;
 
             $next_list_number++;
-                $perwira_top += $record["perwira_top"];
-                                                $perwira_nyata += $record["perwira_nyata"];
-                                                $bintara_top += $record["bintara_top"];
-                                                $bintara_nyata += $record["bintara_nyata"];
-                                                $tamtama_top += $record["tamtama_top"];
-                                                $tamtama_nyata += $record["tamtama_nyata"];
+            $perwira_top += $record["perwira_top"];
+            $perwira_nyata += $record["perwira_nyata"];
+            $bintara_top += $record["bintara_top"];
+            $bintara_nyata += $record["bintara_nyata"];
+            $tamtama_top += $record["tamtama_top"];
+            $tamtama_nyata += $record["tamtama_nyata"];
         endforeach;
         $cell = $cell + 1;
 
-        $objPHPExcel->getActiveSheet()->setCellValue('B'.$cell,'JUMLAH ')->getStyle('B'.$cell)->getFont()->setBold(true);
-        $objPHPExcel->getActiveSheet()->setCellValue('C'.$cell,$perwira_top)->getStyle('C'.$cell)->getFont()->setBold(true);
-        $objPHPExcel->getActiveSheet()->setCellValue('D'.$cell,$perwira_nyata)->getStyle('D'.$cell)->getFont()->setBold(true);
-        $objPHPExcel->getActiveSheet()->setCellValue('E'.$cell,$perwira_nyata - $perwira_top)->getStyle('E'.$cell)->getFont()->setBold(true);
-        $objPHPExcel->getActiveSheet()->setCellValue('F'.$cell,$bintara_top)->getStyle('F'.$cell)->getFont()->setBold(true);
-        $objPHPExcel->getActiveSheet()->setCellValue('G'.$cell,$bintara_nyata)->getStyle('G'.$cell)->getFont()->setBold(true);
-        $objPHPExcel->getActiveSheet()->setCellValue('H'.$cell,$bintara_nyata - $bintara_top)->getStyle('H'.$cell)->getFont()->setBold(true);
-        $objPHPExcel->getActiveSheet()->setCellValue('I'.$cell,$tamtama_top)->getStyle('I'.$cell)->getFont()->setBold(true);
-        $objPHPExcel->getActiveSheet()->setCellValue('J'.$cell,$tamtama_nyata)->getStyle('J'.$cell)->getFont()->setBold(true);
-        $objPHPExcel->getActiveSheet()->setCellValue('K'.$cell,$tamtama_nyata - $tamtama_top)->getStyle('K'.$cell)->getFont()->setBold(true);
-        $objPHPExcel->getActiveSheet()->setCellValue('L'.$cell,$perwira_top + $bintara_top + $tamtama_top)->getStyle('L'.$cell)->getFont()->setBold(true);
-        $objPHPExcel->getActiveSheet()->setCellValue('M'.$cell,$perwira_nyata + $bintara_nyata + $tamtama_nyata)->getStyle('M'.$cell)->getFont()->setBold(true);
-        $objPHPExcel->getActiveSheet()->setCellValue('N'.$cell,($perwira_nyata + $bintara_nyata + $tamtama_nyata) - ($perwira_top + $bintara_top + $tamtama_top))->getStyle('N'.$cell)->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->setCellValue('B' . $cell, 'JUMLAH ')->getStyle('B' . $cell)->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->setCellValue('C' . $cell, $perwira_top)->getStyle('C' . $cell)->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->setCellValue('D' . $cell, $perwira_nyata)->getStyle('D' . $cell)->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->setCellValue('E' . $cell, $perwira_nyata - $perwira_top)->getStyle('E' . $cell)->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->setCellValue('F' . $cell, $bintara_top)->getStyle('F' . $cell)->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->setCellValue('G' . $cell, $bintara_nyata)->getStyle('G' . $cell)->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->setCellValue('H' . $cell, $bintara_nyata - $bintara_top)->getStyle('H' . $cell)->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->setCellValue('I' . $cell, $tamtama_top)->getStyle('I' . $cell)->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->setCellValue('J' . $cell, $tamtama_nyata)->getStyle('J' . $cell)->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->setCellValue('K' . $cell, $tamtama_nyata - $tamtama_top)->getStyle('K' . $cell)->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->setCellValue('L' . $cell, $perwira_top + $bintara_top + $tamtama_top)->getStyle('L' . $cell)->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->setCellValue('M' . $cell, $perwira_nyata + $bintara_nyata + $tamtama_nyata)->getStyle('M' . $cell)->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->setCellValue('N' . $cell, ($perwira_nyata + $bintara_nyata + $tamtama_nyata) - ($perwira_top + $bintara_top + $tamtama_top))->getStyle('N' . $cell)->getFont()->setBold(true);
 
         $objPHPExcel->getActiveSheet()->getStyle('A7:O' . $cell)->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
         $objPHPExcel->getActiveSheet()->getStyle('A7:A' . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
@@ -208,7 +197,7 @@ class Lpkecabangan extends Mslaporan {
 
         $objPHPExcel->getActiveSheet()->getStyle('C10:c' . $cell)->getNumberFormat()->setFormatCode('#,##0');
         $objPHPExcel->getActiveSheet()->getStyle('E10:E' . $cell)->getNumberFormat()->setFormatCode('+#,##0;-#,##0;0');
-        $objPHPExcel->getActiveSheet()->getStyle('D10:D' . $cell)->getNumberFormat()->setFormatCode('#,##0');                
+        $objPHPExcel->getActiveSheet()->getStyle('D10:D' . $cell)->getNumberFormat()->setFormatCode('#,##0');
         $objPHPExcel->getActiveSheet()->getStyle('F10:F' . $cell)->getNumberFormat()->setFormatCode('#,##0');
         $objPHPExcel->getActiveSheet()->getStyle('G10:G' . $cell)->getNumberFormat()->setFormatCode('#,##0');
         $objPHPExcel->getActiveSheet()->getStyle('H10:H' . $cell)->getNumberFormat()->setFormatCode('#,##0');
@@ -218,21 +207,21 @@ class Lpkecabangan extends Mslaporan {
         $objPHPExcel->getActiveSheet()->getStyle('L10:L' . $cell)->getNumberFormat()->setFormatCode('#,##0');
         $objPHPExcel->getActiveSheet()->getStyle('M10:M' . $cell)->getNumberFormat()->setFormatCode('#,##0');
         $objPHPExcel->getActiveSheet()->getStyle('N10:N' . $cell)->getNumberFormat()->setFormatCode('+#,##0;-#,##0;0');
-        
+
 
         $objPHPExcel->getActiveSheet()->setTitle('REKAPITULASI');
         $angka = 1;
-        if($records['tingkat'] != FALSE){
-        foreach ($records["tingkat"] as $tingkat => $data) : 
+        if ($records['tingkat'] != FALSE) {
+            foreach ($records["tingkat"] as $tingkat => $data) :
 
-             $next_list_number = 1;
-                            $jumlah_pangkat = count($data["pangkat"]);
-                            $lebar = round(70 / $jumlah_pangkat / 3);
-                            $total_top = 0;
-                            $total_nyata = 0;
+                $next_list_number = 1;
+                $jumlah_pangkat = count($data["pangkat"]);
+                $lebar = round(70 / $jumlah_pangkat / 3);
+                $total_top = 0;
+                $total_nyata = 0;
 
 
-                    $objPHPExcel->createSheet();
+                $objPHPExcel->createSheet();
                 $objPHPExcel->setActiveSheetIndex($angka);
 
                 $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(6);
@@ -260,22 +249,22 @@ class Lpkecabangan extends Mslaporan {
                 $objPHPExcel->getActiveSheet()
                         ->setCellValue('A1', 'MARKAS BESAR ANGKATAN DARAT')
                         ->setCellValue('A2', 'STAFF UMUM PERSONEL');
-        
+
                 $objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
                 $objPHPExcel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-        
+
                 $objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
                 $objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
                 $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE);
-        
+
                 $objPHPExcel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
                 $objPHPExcel->getActiveSheet()->getStyle('A2')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
                 $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setBold(TRUE);
                 $objPHPExcel->getActiveSheet()->getStyle('A2:C2')->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-        
-                
+
+
                 $objPHPExcel->getActiveSheet()
-                        ->setCellValue('A4', 'REKAPITULASI '.$tingkat.' PERKECABANGAN TNI AD')
+                        ->setCellValue('A4', 'REKAPITULASI ' . $tingkat . ' PERKECABANGAN TNI AD')
                         ->setCellValue('A5', 'Bulan ' . strtoupper(array_month($bulan)) . ' Tahun ' . $tahun);
                 $objPHPExcel->getActiveSheet()->getStyle('A4')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
                 $objPHPExcel->getActiveSheet()->getStyle('A4')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
@@ -283,170 +272,162 @@ class Lpkecabangan extends Mslaporan {
                 $objPHPExcel->getActiveSheet()->getStyle('A5')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
                 $objPHPExcel->getActiveSheet()->getStyle('A5')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
                 $objPHPExcel->getActiveSheet()->getStyle('A5')->getFont()->setBold(TRUE);
-        
 
 
-        $objPHPExcel->getActiveSheet()->mergeCells('A7:A8');
-        $objPHPExcel->getActiveSheet()->mergeCells('B7:B8');
-        $objPHPExcel->getActiveSheet()->mergeCells('C7:E7');
-        $objPHPExcel->getActiveSheet()->mergeCells('F7:H7');
-        $objPHPExcel->getActiveSheet()->mergeCells('I7:K7');
-        $objPHPExcel->getActiveSheet()->mergeCells('L7:N7');
 
-        $objPHPExcel->getActiveSheet()->setCellValue('A7','NO');
-        $objPHPExcel->getActiveSheet()->setCellValue('B7','KECAB');
-        $ha = "C";
-        $habawah = "C";
-        $i = 0;
+                $objPHPExcel->getActiveSheet()->mergeCells('A7:A8');
+                $objPHPExcel->getActiveSheet()->mergeCells('B7:B8');
+                $objPHPExcel->getActiveSheet()->mergeCells('C7:E7');
+                $objPHPExcel->getActiveSheet()->mergeCells('F7:H7');
+                $objPHPExcel->getActiveSheet()->mergeCells('I7:K7');
+                $objPHPExcel->getActiveSheet()->mergeCells('L7:N7');
 
-    
-        foreach($data['pangkat'] as $pangkat):
-            $objPHPExcel->getActiveSheet()->setCellValue($ha.'7',strtoupper($pangkat));
+                $objPHPExcel->getActiveSheet()->setCellValue('A7', 'NO');
+                $objPHPExcel->getActiveSheet()->setCellValue('B7', 'KECAB');
+                $ha = "C";
+                $habawah = "C";
+                $i = 0;
 
-        $objPHPExcel->getActiveSheet()->setCellValue($habawah.'8','TOP');
-                            $habawah = chr(ord($habawah) + 1);
-                            
-        $objPHPExcel->getActiveSheet()->setCellValue($habawah.'8','NYATA');
+
+                foreach ($data['pangkat'] as $pangkat):
+                    $objPHPExcel->getActiveSheet()->setCellValue($ha . '7', strtoupper($pangkat));
+
+                    $objPHPExcel->getActiveSheet()->setCellValue($habawah . '8', 'TOP');
                     $habawah = chr(ord($habawah) + 1);
 
-        $objPHPExcel->getActiveSheet()->setCellValue($habawah.'8','+/-');
-                    $habawah = chr(ord($habawah) + 1);                    
-            $ha = chr(ord($ha) + 3);
-
-             ${"col" . (2 * $i + 1)} = strtolower($pangkat . "_top");
-                                                            ${"col" . (2 * $i + 2)} = strtolower($pangkat . "_nyata");
-                                                            ${"sub" . (2 * $i + 1)} = 0;
-                                                            ${"sub" . (2 * $i + 2)} = 0;
-
-                                                            $i++;
-
-
-        endforeach;
-          $objPHPExcel->getActiveSheet()->setCellValue($ha.'7','JUMLAH');
-
-        $objPHPExcel->getActiveSheet()->setCellValue($habawah.'8','TOP');
+                    $objPHPExcel->getActiveSheet()->setCellValue($habawah . '8', 'NYATA');
                     $habawah = chr(ord($habawah) + 1);
 
-        $objPHPExcel->getActiveSheet()->setCellValue($habawah.'8','NYATA');
+                    $objPHPExcel->getActiveSheet()->setCellValue($habawah . '8', '+/-');
                     $habawah = chr(ord($habawah) + 1);
+                    $ha = chr(ord($ha) + 3);
 
-        $objPHPExcel->getActiveSheet()->setCellValue($habawah.'8','+/-');    
-                $objPHPExcel->getActiveSheet()->mergeCells($ha.'7:'.$habawah.'7');
-                $objPHPExcel->getActiveSheet()->mergeCells('A4:'.$habawah.'4');
-                $objPHPExcel->getActiveSheet()->mergeCells('A5:'.$habawah.'5');
-            $habawah = chr(ord($habawah) + 1);
+                    ${"col" . (2 * $i + 1)} = strtolower($pangkat . "_top");
+                    ${"col" . (2 * $i + 2)} = strtolower($pangkat . "_nyata");
+                    ${"sub" . (2 * $i + 1)} = 0;
+                    ${"sub" . (2 * $i + 2)} = 0;
 
-
-
-            $objPHPExcel->getActiveSheet()->getStyle('A7:'.$habawah.'8')->getAlignment()->setWrapText(TRUE);
-            $objPHPExcel->getActiveSheet()->getStyle('A7:'.$habawah.'8')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-            $objPHPExcel->getActiveSheet()->getStyle('A7:'.$habawah.'8')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
-    
-
-            $cell = 10;
-            foreach($data['data'] as $record):
-                $sub_top = 0;
-                $sub_nyata = 0;
+                    $i++;
 
 
-                $objPHPExcel->getActiveSheet()->setCellValue('A'.$cell,$next_list_number);
-                $objPHPExcel->getActiveSheet()->setCellValue('B'.$cell,beautify_str($record["corps"]));
-                $ha = "c";
+                endforeach;
+                $objPHPExcel->getActiveSheet()->setCellValue($ha . '7', 'JUMLAH');
 
-                for ($i = 1; $i <= ($jumlah_pangkat * 2); $i++){
+                $objPHPExcel->getActiveSheet()->setCellValue($habawah . '8', 'TOP');
+                $habawah = chr(ord($habawah) + 1);
 
-                    $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,number_format($record[${"col" . $i}], 0, ",", "."));
-                     if (($i % 2) == 0) {
-                                            $ha = chr(ord($ha)+1);
+                $objPHPExcel->getActiveSheet()->setCellValue($habawah . '8', 'NYATA');
+                $habawah = chr(ord($habawah) + 1);
 
-                     $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,number_format($record[${"col" . $i}] - $record[${"col" . ($i - 1)}], 0, ",", "."));
-                       $sub_nyata += $record[${"col" . $i}];
+                $objPHPExcel->getActiveSheet()->setCellValue($habawah . '8', '+/-');
+                $objPHPExcel->getActiveSheet()->mergeCells($ha . '7:' . $habawah . '7');
+                $objPHPExcel->getActiveSheet()->mergeCells('A4:' . $habawah . '4');
+                $objPHPExcel->getActiveSheet()->mergeCells('A5:' . $habawah . '5');
+                $habawah = chr(ord($habawah) + 1);
 
-                                                                 $ha = chr(ord($ha)+1);
 
-                    }else{
-                                            $ha = chr(ord($ha)+1);
-                                            $sub_top += $record[${"col" . $i}];
+
+                $objPHPExcel->getActiveSheet()->getStyle('A7:' . $habawah . '8')->getAlignment()->setWrapText(TRUE);
+                $objPHPExcel->getActiveSheet()->getStyle('A7:' . $habawah . '8')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+                $objPHPExcel->getActiveSheet()->getStyle('A7:' . $habawah . '8')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+
+
+                $cell = 10;
+                foreach ($data['data'] as $record):
+                    $sub_top = 0;
+                    $sub_nyata = 0;
+
+
+                    $objPHPExcel->getActiveSheet()->setCellValue('A' . $cell, $next_list_number);
+                    $objPHPExcel->getActiveSheet()->setCellValue('B' . $cell, beautify_str($record["corps"]));
+                    $ha = "c";
+
+                    for ($i = 1; $i <= ($jumlah_pangkat * 2); $i++) {
+
+                        $objPHPExcel->getActiveSheet()->setCellValue($ha . $cell, number_format($record[${"col" . $i}], 0, ",", "."));
+                        if (($i % 2) == 0) {
+                            $ha = chr(ord($ha) + 1);
+
+                            $objPHPExcel->getActiveSheet()->setCellValue($ha . $cell, number_format($record[${"col" . $i}] - $record[${"col" . ($i - 1)}], 0, ",", "."));
+                            $sub_nyata += $record[${"col" . $i}];
+
+                            $ha = chr(ord($ha) + 1);
+                        } else {
+                            $ha = chr(ord($ha) + 1);
+                            $sub_top += $record[${"col" . $i}];
+                        }
+
+
+                        ${"sub" . $i} += $record[${"col" . $i}];
                     }
 
+                    $objPHPExcel->getActiveSheet()->setCellValue($ha . $cell, $sub_top);
+                    $ha = chr(ord($ha) + 1);
 
-                    ${"sub" . $i} += $record[${"col" . $i}]; 
+                    $objPHPExcel->getActiveSheet()->setCellValue($ha . $cell, $sub_nyata);
+                    $ha = chr(ord($ha) + 1);
 
+                    $objPHPExcel->getActiveSheet()->setCellValue($ha . $cell, $sub_nyata - $sub_top);
 
+                    $ha = chr(ord($ha) + 1);
 
-                }
-
-                 $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,$sub_top);
-                                                     $ha = chr(ord($ha) + 1);
-
-                 $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,$sub_nyata);
-                                                     $ha = chr(ord($ha) + 1);
-
-                 $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,$sub_nyata - $sub_top);
-
-                                                     $ha = chr(ord($ha) + 1);
-
-                     $total_top += $sub_top;
-                     $total_nyata += $sub_nyata;
+                    $total_top += $sub_top;
+                    $total_nyata += $sub_nyata;
 
 
                     $cell = $cell + 1;
-                $next_list_number++;
-            endforeach;
+                    $next_list_number++;
+                endforeach;
 
-            $cell = $cell + 1;
+                $cell = $cell + 1;
 
-            $objPHPExcel->getActiveSheet()->setCellValue('B'.$cell,'JUMLAH');
-            $ha = "C";
-               for ($i = 1; $i <= ($jumlah_pangkat * 2); $i++):
-            $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,number_format(${"sub" . $i}, 0, ",", "."));
-                 if (($i % 2) == 0) {
-                    $ha = chr(ord($ha) + 1);
-                    $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,number_format(${"sub" . $i} - ${"sub" . ($i - 1)}, 0, ",", "."));
-                    $ha = chr(ord($ha) + 1);
-                   }else{
-                    $ha = chr(ord($ha) + 1);
-
-                   }
+                $objPHPExcel->getActiveSheet()->setCellValue('B' . $cell, 'JUMLAH');
+                $ha = "C";
+                for ($i = 1; $i <= ($jumlah_pangkat * 2); $i++):
+                    $objPHPExcel->getActiveSheet()->setCellValue($ha . $cell, number_format(${"sub" . $i}, 0, ",", "."));
+                    if (($i % 2) == 0) {
+                        $ha = chr(ord($ha) + 1);
+                        $objPHPExcel->getActiveSheet()->setCellValue($ha . $cell, number_format(${"sub" . $i} - ${"sub" . ($i - 1)}, 0, ",", "."));
+                        $ha = chr(ord($ha) + 1);
+                    } else {
+                        $ha = chr(ord($ha) + 1);
+                    }
                 endfor;
-                $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,$total_top);
-                                    $ha = chr(ord($ha) + 1);
+                $objPHPExcel->getActiveSheet()->setCellValue($ha . $cell, $total_top);
+                $ha = chr(ord($ha) + 1);
 
-                $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,$total_nyata);
-                                    $ha = chr(ord($ha) + 1);
+                $objPHPExcel->getActiveSheet()->setCellValue($ha . $cell, $total_nyata);
+                $ha = chr(ord($ha) + 1);
 
-                $objPHPExcel->getActiveSheet()->setCellValue($ha.$cell,$total_nyata - $total_top);
-                                   // $ha = chr(ord($ha) + 1);
-
-
-                                    $objPHPExcel->getActiveSheet()->getStyle('A7:'.$ha . $cell)->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
-                                    $objPHPExcel->getActiveSheet()->getStyle('A7:A' . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
-                                    $objPHPExcel->getActiveSheet()->getStyle('B7:B' . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
-                                $hurufawal = 'C';
-                                $huruf_akhir = $ha;
-                
-                                while($hurufawal < $huruf_akhir){
-                                    $objPHPExcel->getActiveSheet()->getStyle($hurufawal.'7:'.$hurufawal . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
-                                    $objPHPExcel->getActiveSheet()->getStyle($hurufawal.'10:'.$hurufawal . $cell)->getNumberFormat()->setFormatCode('#,##0');
-                                    
-                                    $hurufawal = chr(ord($hurufawal) + 1);
-                                }
-                                    $objPHPExcel->getActiveSheet()->getStyle('A7:'.$ha.'8')->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
-                                    $objPHPExcel->getActiveSheet()->getStyle('A' . $cell . ':'.$ha . $cell)->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
-                                    $objPHPExcel->getActiveSheet()->getStyle('A7:'.$ha.'7')->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_DOUBLE);
-
-                                   
-                                    $objPHPExcel->getActiveSheet()->getStyle($huruf_akhir.'10:'.$huruf_akhir . $cell)->getNumberFormat()->setFormatCode('+#,##0;-#,##0;0');
+                $objPHPExcel->getActiveSheet()->setCellValue($ha . $cell, $total_nyata - $total_top);
+                // $ha = chr(ord($ha) + 1);
 
 
-        $objPHPExcel->getActiveSheet()->setTitle($tingkat);
+                $objPHPExcel->getActiveSheet()->getStyle('A7:' . $ha . $cell)->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);
+                $objPHPExcel->getActiveSheet()->getStyle('A7:A' . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $objPHPExcel->getActiveSheet()->getStyle('B7:B' . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $hurufawal = 'C';
+                $huruf_akhir = $ha;
 
-        endforeach;
-        
+                while ($hurufawal < $huruf_akhir) {
+                    $objPHPExcel->getActiveSheet()->getStyle($hurufawal . '7:' . $hurufawal . $cell)->getBorders()->getOutline()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                    $objPHPExcel->getActiveSheet()->getStyle($hurufawal . '10:' . $hurufawal . $cell)->getNumberFormat()->setFormatCode('#,##0');
 
-        }else{
+                    $hurufawal = chr(ord($hurufawal) + 1);
+                }
+                $objPHPExcel->getActiveSheet()->getStyle('A7:' . $ha . '8')->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $objPHPExcel->getActiveSheet()->getStyle('A' . $cell . ':' . $ha . $cell)->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
+                $objPHPExcel->getActiveSheet()->getStyle('A7:' . $ha . '7')->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_DOUBLE);
 
 
+                $objPHPExcel->getActiveSheet()->getStyle($huruf_akhir . '10:' . $huruf_akhir . $cell)->getNumberFormat()->setFormatCode('+#,##0;-#,##0;0');
+
+
+                $objPHPExcel->getActiveSheet()->setTitle($tingkat);
+
+            endforeach;
+        } else {
+            
         }
 
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
@@ -457,7 +438,7 @@ class Lpkecabangan extends Mslaporan {
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="LaporanKecabangan.xlsx"');
         $objWriter->save("php://output");
-
+        exit();
     }
 
 }

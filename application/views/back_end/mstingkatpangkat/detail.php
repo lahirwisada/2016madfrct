@@ -11,33 +11,35 @@ $detail = isset($detail) ? $detail : FALSE;
             <div class="panel panel-default">
 
                 <div class="panel-heading">
-                    <h3 class="panel-title">Formulir <strong><?php echo $header_title; ?></strong></h3>
+                    <h3 class="panel-title">Detail <strong><?php echo $header_title; ?></strong></h3>
                 </div>
                 <div class="panel-body">
                     <p><?php echo load_partial("back_end/shared/attention_message"); ?></p>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Kode Tingkat Kategori *</label>
+                        <label class="col-md-3 col-xs-12 control-label">Kode Tingkat *</label>
                         <div class="col-md-6 col-xs-12">                                            
                             <div class="input-group">
+                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                 <input type="text" name="kode_tingkat" class="form-control" value="<?php echo $detail ? $detail->kode_tingkat : ""; ?>">
                             </div>                                            
-                            <span class="help-block">Isikan sesuai dengan kode kategori.</span>
+                            <span class="help-block">Isikan sesuai dengan kode tingkat.</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Nama Tingkat Kategori *</label>
+                        <label class="col-md-3 col-xs-12 control-label">Nama Tingkat *</label>
                         <div class="col-md-6 col-xs-12">                                            
                             <div class="input-group">
+                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                 <input type="text" name="ur_tingkat" class="form-control" value="<?php echo $detail ? $detail->ur_tingkat : ""; ?>">
                             </div>                                            
-                            <span class="help-block">Isikan sesuai dengan nama kategori.</span>
+                            <span class="help-block">Isikan sesuai dengan nama tingkat.</span>
                         </div>
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <button type="submit" class="btn-primary btn pull-right">Submit</button>
+                    <button type="submit" class="btn-primary btn pull-right">Simpan</button>
                     <a href="<?php echo base_url("back_end/".$active_modul."/index"); ?>" class="btn-default btn">Batal / Kembali</a>
                 </div>
             </div>

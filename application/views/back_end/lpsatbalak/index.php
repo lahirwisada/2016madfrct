@@ -12,6 +12,10 @@ $records = isset($records) ? $records : FALSE;
 
         <?php if ($records['golongan']): ?>
             <div class="panel panel-default tabs">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $header_title; ?></h3>
+                    <a class="btn btn-primary pull-right" href="<?php echo base_url() . 'back_end/lpsatbalak/export/' . $bulan . '/' . $tahun ?>">Export to Excel</a>
+                </div>
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="active"><a href="#tab-rekap" role="tab" data-toggle="tab">REKAPITULASI</a></li>
                     <?php foreach ($records['detail'] as $kotama => $data): ?>
@@ -23,11 +27,7 @@ $records = isset($records) ? $records : FALSE;
                     <div class="tab-pane active" id="tab-rekap">
                         <div class="block">
                             <div class="text-center" style="font-weight: bold;">REKAPITULASI KEKUATAN PERSONEL SATBALAK/LEMDIKRAH</div>
-                            <div class="text-center" style="font-weight: bold;">BULAN <?php echo num_to_roman($bulan) ?> TAHUN <?php echo $tahun ?></div>
-
-                            <a class="btn btn-primary" href="<?php echo base_url() ?>back_end/lpsatbalak/export/rekap/<?php echo $bulan.'/'.$tahun; ?>"> <i class="fa fa-print"> </i> Export </a>
-
-
+                            <div class="text-center" style="font-weight: bold;">BULAN <?php echo strtoupper(array_month($bulan)) ?> TAHUN <?php echo $tahun ?></div>
                         </div>
                         <div class="block">
                             <div class="dataTables_wrapper no-footer">
@@ -179,7 +179,7 @@ $records = isset($records) ? $records : FALSE;
                             <div class="tab-pane" id="tab-<?php echo strtolower(str_replace('/', '', str_replace(' ', '_', $kotama))) ?>">
                                 <div class="block">
                                     <div class="text-center" style="font-weight: bold;">DATA KEKUATAN PERSONEL SATBALAK/LEMDIKRAH <?php echo beautify_str($kotama) ?></div>
-                                    <div class="text-center" style="font-weight: bold;">BULAN <?php echo num_to_roman($bulan) ?> TAHUN <?php echo $tahun ?></div>
+                                    <div class="text-center" style="font-weight: bold;">BULAN <?php echo strtoupper(array_month($bulan)) ?> TAHUN <?php echo $tahun ?></div>
                                 </div>
                                 <div class="block">
                                     <div class="dataTables_wrapper no-footer">

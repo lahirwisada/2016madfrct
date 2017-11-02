@@ -16,6 +16,9 @@ $sort_mode = isset($sort_mode) ? $sort_mode : "";
 
         <?php if ($records['max_gabungan'] > 0) : ?>
             <div class="panel panel-default tabs">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $header_title; ?></h3>
+                </div>
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Dalam & Luar Struktur</a></li>
                     <li><a href="#tab-second" role="tab" data-toggle="tab">Dalam Struktur</a></li>

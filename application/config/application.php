@@ -88,7 +88,7 @@ $config['created_by'] = 'created_by';
 $config['modified_by'] = 'modified_by';
 $config['record_active'] = 'record_active';
 
-$config['default_limit_row'] = 30;
+$config['default_limit_row'] = 10;
 $config['limit_key_param'] = 'limit';
 $config['offset_key_param'] = 'offset';
 $config['keyword_key_param'] = 'keyword';

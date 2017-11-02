@@ -8,7 +8,7 @@ class Mssatminkal extends Back_end {
     public $model = 'model_master_satminkal';
 
     public function __construct() {
-        parent::__construct('kelola_pustaka_satminkal', 'Pustaka Data Satminkal');
+        parent::__construct('kelola_pustaka_satminkal', 'Master Satminkal');
     }
 
     public function index() {
@@ -19,10 +19,10 @@ class Mssatminkal extends Back_end {
     }
 
     public function detail($id = FALSE) {
-        parent::detail($id, array("id_kotama", "kode_satminkal", "ur_satminkal", "id_kesatuan", "id_corps"));
+        parent::detail($id, array("id_kotama", "kode_satminkal", "ur_satminkal", "id_kesatuan", "id_corps", "operasional", "babinsa"));
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => $this->_header_title,
-            "#" => 'Pendaftaran ' . $this->_header_title
+            "#" => 'Detail ' . $this->_header_title
         ));
 
         $this->set("additional_js", "back_end/" . $this->_name . "/js/detail_js");

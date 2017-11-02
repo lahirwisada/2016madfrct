@@ -16,3 +16,14 @@ and open the template in the editor.
     text-align: center;
     text-transform: uppercase;
 }
+.panel.tabs {
+    margin-top: 0;
+}
+.page-container:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+form.form-panel {
+    margin-bottom: 10px;
+}

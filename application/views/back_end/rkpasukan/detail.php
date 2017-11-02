@@ -23,27 +23,33 @@ $id_diklat = isset($id_diklat) ? $id_diklat : 0;
 
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Bulan *</label>
-                        <div class="col-md-6 col-xs-12">                                            
-                            <select id="slc-bulan" class="form-control select2-basic" name="id_bulan">
-                            </select>
-                            <span class="help-block">Masukkan kata kunci pada kotak inputan kemudian pilih bulan yang dimaksud.</span>
+                        <div class="col-md-6 col-xs-12">
+                            <?php echo form_dropdown('id_bulan', array_month(), set_value('id_bulan', $detail ? $detail->id_bulan : date('n')), 'class="form-control select"'); ?>
+                            <span class="help-block">Pilih bulan pelaporan</span>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Tahun *</label>
                         <div class="col-md-6 col-xs-12">
-                            <input type="text" name="id_tahun" id="txt-id_tahun" class="form-control" value="<?php echo $detail ? $detail->id_tahun : ""; ?>">
-                            <span class="help-block"></span>
+                            <?php echo dropdown_tahun('id_tahun', set_value('id_tahun', $detail ? $detail->id_tahun : date('Y')), 5, 'class="form-control select"'); ?>
+                            <span class="help-block">Pilih tahun pelaporan</span>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Kotama *</label>
-                        <div class="col-md-6 col-xs-12">                                            
-                            <select id="slc-kotama" class="form-control select2-basic" name="id_kotama">
-                            </select>
-                            <span class="help-block">Masukkan kata kunci pada kotak inputan kemudian pilih kotama yang dimaksud.</span>
+                        <div class="col-md-6 col-xs-12">
+                            <?php
+                            $list_kotama[] = 'PILIH KOTAMA';
+                            if ($kotama) {
+                                foreach ($kotama as $row) {
+                                    $list_kotama[$row->id_kotama] = $row->ur_kotama;
+                                }
+                            }
+                            echo form_dropdown('id_kotama', $list_kotama, set_value('id_kotama', $detail ? $detail->id_kotama : ''), 'class="form-control select"');
+                            ?>
+                            <span class="help-block">Pilih kotama yang akan dilaporkan</span>
                         </div>
                     </div>
 
@@ -57,7 +63,7 @@ $id_diklat = isset($id_diklat) ? $id_diklat : 0;
                             <span class="help-block"></span>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Tgl. TTD</label>
                         <div class="col-md-6 col-xs-12">                                            
@@ -68,7 +74,7 @@ $id_diklat = isset($id_diklat) ? $id_diklat : 0;
                             <span class="help-block"></span>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Uraian Atas TTD</label>
                         <div class="col-md-6 col-xs-12">
@@ -76,7 +82,7 @@ $id_diklat = isset($id_diklat) ? $id_diklat : 0;
                             <span class="help-block"></span>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Jabatan TTD</label>
                         <div class="col-md-6 col-xs-12">
@@ -84,7 +90,7 @@ $id_diklat = isset($id_diklat) ? $id_diklat : 0;
                             <span class="help-block"></span>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Nama Penandatangan</label>
                         <div class="col-md-6 col-xs-12">
@@ -92,7 +98,7 @@ $id_diklat = isset($id_diklat) ? $id_diklat : 0;
                             <span class="help-block"></span>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Pangkat Penandatangan</label>
                         <div class="col-md-6 col-xs-12">
@@ -100,7 +106,7 @@ $id_diklat = isset($id_diklat) ? $id_diklat : 0;
                             <span class="help-block"></span>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">NRP Penandatangan</label>
                         <div class="col-md-6 col-xs-12">
@@ -124,7 +130,7 @@ $id_diklat = isset($id_diklat) ? $id_diklat : 0;
 
                 </div>
                 <div class="panel-footer">
-                    <button type="submit" class="btn-primary btn pull-right">Submit</button>
+                    <button type="submit" class="btn-primary btn pull-right">Simpan</button>
                     <a href="<?php echo base_url("back_end/" . $active_modul . "/index") . "/" . ($detail_diklat ? $detail_diklat->id_diklat_crypted : 0); ?>" class="btn-default btn">Batal / Kembali</a>
                 </div>
             </div>

@@ -12,20 +12,16 @@ $records = isset($records) ? $records : FALSE;
         <div class="panel panel-default">
             <div class="panel-heading ui-draggable-handle">                                
                 <h3 class="panel-title"><?php echo $header_title; ?></h3>
+                <a class="btn btn-primary pull-right" href="<?php echo base_url() . 'back_end/lpsatpur/export/' . $bulan . '/' . $tahun ?>">Export to Excel</a>
             </div>
             <div class="panel-body">
 
                 <!--Rekapitulasi Berdasarkan Kategori-->
 
                 <?php if ($records != FALSE): ?>
-
-                    <div>
-                        <a class="btn btn-primary" href="<?php echo base_url() ?>exportexcel/laporan/satpur"> Export to Excel </a>
-                    </div>
-
                     <div class="block">
                         <div class="text-center" style="font-weight: bold;">REKAPITULASI KEKUATAN PERSONEL SATPUR, SATBANPUR DAN SATPASSUS</div>
-                        <div class="text-center" style="font-weight: bold;">BULAN <?php echo num_to_roman($bulan) ?> TAHUN <?php echo $tahun ?></div>
+                        <div class="text-center" style="font-weight: bold;">BULAN <?php echo strtoupper(array_month($bulan)) ?> TAHUN <?php echo $tahun ?></div>
                     </div>
                     <div class="block">
                         <div class="dataTables_wrapper no-footer">

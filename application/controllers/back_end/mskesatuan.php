@@ -8,7 +8,7 @@ class Mskesatuan extends Back_end {
     public $model = 'model_master_kesatuan';
 
     public function __construct() {
-        parent::__construct('kelola_pustaka_kesatuan', 'Pustaka Kesatuan');
+        parent::__construct('kelola_pustaka_kesatuan', 'Master Kesatuan');
     }
 
     public function index() {
@@ -26,7 +26,7 @@ class Mskesatuan extends Back_end {
 
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => $this->_header_title,
-            "#" => 'Pendaftaran ' . $this->_header_title
+            "#" => 'Detail ' . $this->_header_title
         ));
 //        $this->add_jsfiles(array("avant/plugins/form-jasnyupload/fileinput.min.js"));
     }

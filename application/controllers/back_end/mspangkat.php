@@ -8,7 +8,7 @@ class Mspangkat extends Back_end {
     public $model = 'model_master_pangkat';
 
     public function __construct() {
-        parent::__construct('kelola_pustaka_pangkat', 'Pustaka Pangkat');
+        parent::__construct('kelola_pustaka_pangkat', 'Master Pangkat');
     }
 
     public function index() {
@@ -22,7 +22,7 @@ class Mspangkat extends Back_end {
         parent::detail($id, array("kode_pangkat", "ur_pangkat", "id_kelompok", "id_golongan", "id_tingkat",));
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => $this->_header_title,
-            "#" => 'Formulir ' . $this->_header_title
+            "#" => 'Detail ' . $this->_header_title
         ));
         $this->set("additional_js", "back_end/" . $this->_name . "/js/detail_js");
         $this->add_cssfiles(array("plugins/select2/select2.min.css"));

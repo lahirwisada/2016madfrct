@@ -1,7 +1,15 @@
 <?php
 
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+/*
+ * CV MITRA INDOKOMP SEJAHTERA
+ * MIS DEVELOPER
+ * @autor Rinaldi <rinaldi79@gmail.com>
+ * 2016madfrct
+ * rkpasukan.php
+ * Dec 5, 2016
+ */
+
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Rkpasukan extends Back_end {
 
@@ -145,27 +153,32 @@ class Rkpasukan extends Back_end {
      * @param type $id_detail
      */
     protected function after_save($id_rekap = FALSE, $id_detail = FALSE) {
-        ini_set('memory_limit', '-1');
-        if ($this->load_excel_library()) {
+//        ini_set('memory_limit', '-1');
+        if ($this->before_save_response && is_array($this->before_save_response) && array_key_exists('success_upload', $this->before_save_response) && $this->before_save_response['success_upload']) {
+            $this->load->library('Excel');
             $this->load->model(array(
                 "model_tr_pasukan_detail"
             ));
-            $response_pasukan = $this->read_excel_data_pasukan();
+            $load_excel_data_success = FALSE;
+            try {
+                $response = $this->excel->load($this->before_save_response['upload_data_response']['file_info'], TRUE, array('HTML', 'Excel2003XML'));
+                $load_excel_data_success = TRUE;
+            } catch (Exception $ex) {
+                $load_excel_data_success = FALSE;
+            }
+
+            if (!$response && $load_excel_data_success) {
+                $this->excel->load_using_XML2003($this->before_save_response['upload_data_response']['file_info'], 0, TRUE);
+                $response_pasukan = $this->read_xml_data($this->excel->XML2003_get_table_data());
+            } else {
+                $response_pasukan = $this->read_excel_data_pasukan();
+            }
 //            var_dump($id_rekap);
 //            var_dump($response_pasukan['data']['KODIM 0201 BS']);
 //            exit();
             $this->model_tr_pasukan_detail->save_records($id_rekap, $response_pasukan);
         }
         return TRUE;
-    }
-
-    protected function load_excel_library() {
-        if ($this->before_save_response && is_array($this->before_save_response) && array_key_exists('success_upload', $this->before_save_response) && $this->before_save_response['success_upload']) {
-            $this->load->library('Excel');
-            $this->excel->load($this->before_save_response['upload_data_response']['file_info'], TRUE);
-            return TRUE;
-        }
-        return FALSE;
     }
 
     protected function read_excel_data_pasukan() {
@@ -338,19 +351,91 @@ class Rkpasukan extends Back_end {
         $this->set('records', $records);
     }
 
-    /**
-     * 
-     * @param type $id_kotama
-     */
     public function download($id_kotama = FALSE) {
         if (!$id_kotama) {
             $this->attention_messages = "Data kotama tidak ditemukan.";
             redirect('back_end/' . $this->_name);
         }
-        $this->set("bread_crumb", array(
-            "back_end/" . $this->_name => $this->_header_title,
-            "#" => 'Pendaftaran ' . $this->_header_title
-        ));
+        ini_set('memory_limit', '64M');
+        ini_set('MAX_EXECUTION_TIME', -1);
+        $kotama = $this->db->query("SELECT * FROM sc_fcstprsn.master_kotama WHERE id_kotama = '$id_kotama'")->row_array();
+        $list_satminkal = $this->db->query("SELECT * FROM sc_fcstprsn.master_satminkal WHERE id_kotama = '$id_kotama' ORDER BY kode_satminkal ASC")->result_array();
+        $pangkat = $this->db->query("SELECT * FROM sc_fcstprsn.master_pangkat ORDER BY kode_pangkat DESC")->result_array();
+        $total_pangkat = count($pangkat);
+        $total_satminkal = count($list_satminkal);
+        $satminkal = array();
+        $start = 66;
+        foreach ($list_satminkal as $row) {
+            $row['start'] = $start;
+            $row['pangkat'] = $pangkat;
+            $satminkal[] = $this->load->view('back_end/rkpasukan/template/detail_laporan', $row, TRUE);
+            $start += $total_pangkat + 9;
+        }
+        $data['kotama'] = $kotama;
+        $data['pangkat'] = $pangkat;
+        $data['satminkal'] = implode(" ", $satminkal);
+        $data['jumlah'] = 62 + $total_satminkal * 50;
+        $hasil = str_replace(';', '', $this->load->view('back_end/rkpasukan/template/master_laporan', $data, TRUE));
+        header('Content-type: text/xml');
+        header('Content-Disposition: attachment; filename="' . $kotama['nama_kotama'] . '-' . date('YmdHis') . '.xls"');
+        echo $hasil;
+        exit();
+    }
+
+    protected function read_xml_data($data_xml = FALSE) {
+        if ($data_xml) {
+            $response_data_pasukan = array(
+                "form_format" => TRUE,
+                "read_data" => TRUE,
+                "data" => array()
+            );
+            if (strtolower($data_xml[0]['row_contents'][0]) != 'tentara nasional indonesia angkatan darat') {
+                $response_data_pasukan = array(
+                    "form_format" => FALSE,
+                    "read_data" => FALSE,
+                    "data" => array()
+                );
+            } else {
+                $last_row = count($data_xml);
+                $start_row = 50; // next 96 berarti ada 46 row
+                $record_found = array();
+                $reach_last_row = FALSE;
+                $first_satminkal = TRUE;
+                $nama_satminkal = FALSE;
+                while (!$reach_last_row) {
+                    if ($start_row >= $last_row) {
+                        $reach_last_row = TRUE;
+                    } else {
+                        if ($first_satminkal) {
+                            $first_satminkal = FALSE;
+                            $arr_nama_satminkal = explode(':', $data_xml[$start_row]['row_contents'][0]);
+                            $nama_satminkal = strtolower(trim(end($arr_nama_satminkal)));
+                            $start_row += 5;
+                        } else {
+                            if (strtolower(trim($data_xml[$start_row]['row_contents'][0])) == 'jumlah') {
+                                $first_satminkal = TRUE;
+                            } elseif (strtolower(trim($data_xml[$start_row]['row_contents'][0])) != NULL) {
+                                $record_found[$nama_satminkal][strtolower(trim($data_xml[$start_row]['row_contents'][1]))] = array(
+                                    "top" => intval($data_xml[$start_row]['row_contents'][2]),
+                                    "dinas" => intval($data_xml[$start_row]['row_contents'][3]),
+                                    "mpp" => intval($data_xml[$start_row]['row_contents'][4]),
+                                    "lf" => intval($data_xml[$start_row]['row_contents'][5]),
+                                    "skorsing" => intval($data_xml[$start_row]['row_contents'][6]),
+                                    "danramil_top" => isset($data_xml[$start_row]['row_contents'][9]) ? intval($data_xml[$start_row]['row_contents'][9]) : 0,
+                                    "danramil_nyata" => isset($data_xml[$start_row]['row_contents'][10]) ? intval($data_xml[$start_row]['row_contents'][10]) : 0,
+                                    "babinsa_top" => isset($data_xml[$start_row]['row_contents'][11]) ? intval($data_xml[$start_row]['row_contents'][11]) : 0,
+                                    "babinsa_nyata" => isset($data_xml[$start_row]['row_contents'][12]) ? intval($data_xml[$start_row]['row_contents'][12]) : 0
+                                );
+                            }
+                            $start_row++;
+                        }
+                    }
+                }
+                $response_data_pasukan["data"] = $this->validate_final_response_data($record_found);
+            }
+            return $response_data_pasukan;
+        }
+        return FALSE;
     }
 
 }

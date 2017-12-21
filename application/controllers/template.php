@@ -8,6 +8,8 @@ class Template extends CI_Controller {
 
     function index() {
         $this->load->library("PHPExcel/PHPExcel");
+//        ini_set('memory_limit', '254M');
+//        ini_set('MAX_EXECUTION_TIME', -1);
         //exit;
 
         $kode_kotama = $_GET['kotama'];

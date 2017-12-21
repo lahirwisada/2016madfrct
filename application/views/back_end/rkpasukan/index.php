@@ -21,7 +21,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                 <form class="form-panel">
                     <?php if ($id_kotama > 0): ?>
                         <div class="btn-group">
-                            <a href="<?php echo base_url('template?kotama=' . $id_kotama); ?>" class="btn btn-primary">
+                            <a href="<?php echo base_url('back_end/' . $active_modul . '/download/' . $id_kotama); ?>" class="btn btn-primary">
                                 <span class="fa fa-download"></span> Download Template
                             </a>
                             <a href="<?php echo base_url('back_end/' . $active_modul . '/detail'); ?>" class="btn btn-primary">
@@ -45,7 +45,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                 <div class="input-group-btn">
                                     <button class="btn btn-primary">Pilih Kotama</button>
                                     <?php if ($kotama != NULL): ?>
-                                        <a href="<?php echo base_url('template?kotama=' . $kotama); ?>" class="btn btn-primary">
+                                        <a href="<?php echo base_url('back_end/' . $active_modul . '/download/' . $kotama); ?>" class="btn btn-primary">
                                             <span class="fa fa-download"></span> Download Template
                                         </a>
                                     <?php else: ?>

@@ -194,8 +194,16 @@ $records = isset($records) ? $records : FALSE;
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php
-                                                    ?>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <?php for ($i = 0; $i < ($jumlah_pangkat * 3); $i++): ?>
+                                                            <td>&nbsp;</td>
+                                                        <?php endfor; ?>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                    </tr>
                                                     <?php foreach ($data["data"] as $record) : ?>
                                                         <?php
                                                         $sub_top = 0;
@@ -226,6 +234,16 @@ $records = isset($records) ? $records : FALSE;
                                                             ?>
                                                         </tr>
                                                     <?php endforeach; ?>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <?php for ($i = 0; $i < ($jumlah_pangkat * 3); $i++): ?>
+                                                            <td>&nbsp;</td>
+                                                        <?php endfor; ?>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                    </tr>
                                                     <tr style="font-weight: bold;">
                                                         <td>&nbsp;</td>
                                                         <td>JUMLAH</td>

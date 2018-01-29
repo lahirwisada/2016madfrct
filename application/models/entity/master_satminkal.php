@@ -11,6 +11,9 @@ class Master_satminkal extends LWS_model {
         $this->primary_key = "id_satminkal";
         $this->sort_by = "kode_satminkal";
         $this->sort_mode = "asc";
+
+        $this->attribute_labels = array_merge_recursive($this->_continuously_attribute_label, $this->attribute_labels);
+        $this->rules = array_merge_recursive($this->_continuously_rules, $this->rules);
     }
 
     protected $attribute_labels = array(
@@ -22,11 +25,11 @@ class Master_satminkal extends LWS_model {
         "id_corps" => array("id_corps", "ID Corps"),
         "operasional" => array("operasional", "Satuan Operasional"),
         "babinsa" => array("babinsa", "Babinsa"),
-        "created_date" => array("created_date", "created_date"),
-        "created_by" => array("created_by", "created_by"),
-        "modified_date" => array("modified_date", "modified_date"),
-        "modified_by" => array("modified_by", "modified_by"),
-        "record_active" => array("record_active", "record_active"),
+//        "created_date" => array("created_date", "created_date"),
+//        "created_by" => array("created_by", "created_by"),
+//        "modified_date" => array("modified_date", "modified_date"),
+//        "modified_by" => array("modified_by", "modified_by"),
+//        "record_active" => array("record_active", "record_active"),
     );
     protected $rules = array(
         array("id_satminkal", ""),
@@ -36,12 +39,7 @@ class Master_satminkal extends LWS_model {
         array("id_kesatuan", ""),
         array("id_corps", ""),
         array("operasional", ""),
-        array("babinsa", ""),
-        array("created_date", ""),
-        array("created_by", ""),
-        array("modified_date", ""),
-        array("modified_by", ""),
-        array("record_active", ""),
+        array("babinsa", "")
     );
     protected $related_tables = array(
         "master_kotama" => array(

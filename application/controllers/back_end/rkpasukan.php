@@ -359,7 +359,7 @@ class Rkpasukan extends Back_end {
         ini_set('memory_limit', '64M');
         ini_set('MAX_EXECUTION_TIME', -1);
         $kotama = $this->db->query("SELECT * FROM sc_fcstprsn.master_kotama WHERE id_kotama = '$id_kotama'")->row_array();
-        $list_satminkal = $this->db->query("SELECT * FROM sc_fcstprsn.master_satminkal WHERE id_kotama = '$id_kotama' ORDER BY kode_satminkal ASC")->result_array();
+        $list_satminkal = $this->db->query("SELECT * FROM sc_fcstprsn.master_satminkal WHERE id_kotama = '$id_kotama' AND record_active = 1 ORDER BY kode_satminkal ASC")->result_array();
         $pangkat = $this->db->query("SELECT * FROM sc_fcstprsn.master_pangkat ORDER BY kode_pangkat DESC")->result_array();
         $total_pangkat = count($pangkat);
         $total_satminkal = count($list_satminkal);

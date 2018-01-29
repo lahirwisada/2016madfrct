@@ -166,7 +166,7 @@
                         <Cell ss:StyleID="m00005"/>
                         <Cell ss:StyleID="m00005"/>
                         <Cell ss:StyleID="m00005" ss:Formula="=SUM(RC[-4]:RC[-1])"><Data ss:Type="Number">0</Data></Cell>
-                        <Cell ss:StyleID="m00005" ss:Formula="=(RC[-6]-RC[-1])"><Data ss:Type="Number">0</Data></Cell>
+                        <Cell ss:StyleID="m00005" ss:Formula="=(RC[-1]-RC[-6])"><Data ss:Type="Number">0</Data></Cell>
                     </Row>
                 <?php endforeach; ?>
             <?php endif; ?>

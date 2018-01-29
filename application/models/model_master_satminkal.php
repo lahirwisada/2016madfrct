@@ -6,13 +6,15 @@ if (!defined("BASEPATH")) {
 
 class Model_master_satminkal extends Master_satminkal {
 
-    protected $using_insert_and_update_properties = FALSE;
+//    protected $using_insert_and_update_properties = FALSE;
     protected $rules = array(
         array("id_kotama", "required|numeric"),
         array("kode_satminkal", "required|min_length[1]|max_length[30]"),
         array("ur_satminkal", "required|min_length[1]|max_length[200]"),
         array("id_kesatuan", "required|numeric"),
-        array("id_corps", "required|numeric"),
+        array("id_corps", "numeric"),
+        array("operasional", "numeric"),
+        array("babinsa", "numeric")
     );
 
     public function __construct() {
@@ -22,7 +24,6 @@ class Model_master_satminkal extends Master_satminkal {
     public function all($force_limit = FALSE, $force_offset = FALSE) {
         return parent::get_all(array(
                     "kode_satminkal",
-//                    "ur_kotama",
                     "ur_satminkal",
                         ), FALSE, TRUE, FALSE, 1, TRUE, $force_limit, $force_offset);
     }

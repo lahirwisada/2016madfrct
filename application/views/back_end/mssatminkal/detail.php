@@ -2,6 +2,9 @@
 $header_title = isset($header_title) ? $header_title : '';
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $detail = isset($detail) ? $detail : FALSE;
+$kotama = isset($kotama) ? $kotama : FALSE;
+$kesatuan = isset($kesatuan) ? $kesatuan : FALSE;
+$corps = isset($corps) ? $corps : FALSE;
 ?>
 
 <div class="row">
@@ -18,8 +21,16 @@ $detail = isset($detail) ? $detail : FALSE;
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Kotama *</label>
                         <div class="col-md-6 col-xs-12">                                            
-                            <select id="slc-kotama" class="form-control select2-basicc" name="id_kotama">
-                            </select>
+                            <?php
+                            $kotamas = array();
+                            $kotamas[''] = 'Pilih Kotama';
+                            if ($kotama) {
+                                foreach ($kotama as $row) {
+                                    $kotamas[$row->id_kotama] = $row->ur_kotama;
+                                }
+                            }
+                            echo form_dropdown('id_kotama', $kotamas, set_value('id_kotama', $detail ? $detail->id_kotama : ''), 'id="id_kotama" class="form-control select" data-live-search="true"');
+                            ?>
                         </div>
                     </div>
                     <div class="form-group">
@@ -46,18 +57,34 @@ $detail = isset($detail) ? $detail : FALSE;
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Kesatuan *</label>
+                        <label class="col-md-3 col-xs-12 control-label">Kesatuan</label>
                         <div class="col-md-6 col-xs-12">                                            
-                            <select id="slc-kesatuan" class="form-control select2-basic" name="id_kesatuan">
-                            </select>
+                            <?php
+                            $kesatuans = array();
+                            $kesatuans[''] = 'Pilih Kesatuan';
+                            if ($kesatuan) {
+                                foreach ($kesatuan as $row) {
+                                    $kesatuans[$row->id_kesatuan] = $row->nama_kesatuan;
+                                }
+                            }
+                            echo form_dropdown('id_kesatuan', $kesatuans, set_value('id_kesatuan', $detail ? $detail->id_kesatuan : ''), 'id="id_kesatuan" class="form-control select" data-live-search="true"');
+                            ?>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Corps *</label>
+                        <label class="col-md-3 col-xs-12 control-label">Corps</label>
                         <div class="col-md-6 col-xs-12">                                            
-                            <select id="slc-corps" class="form-control select2-basic" name="id_corps">
-                            </select>
+                            <?php
+                            $corpss = array();
+                            $corpss[''] = 'Pilih Kesatuan';
+                            if ($corps) {
+                                foreach ($corps as $row) {
+                                    $corpss[$row->id_corps] = $row->ur_corps;
+                                }
+                            }
+                            echo form_dropdown('id_corps', $corpss, set_value('id_corps', $detail ? $detail->id_corps : ''), 'id="id_corps" class="form-control select" data-live-search="true"');
+                            ?>
                         </div>
                     </div>
 

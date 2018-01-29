@@ -126,20 +126,5 @@ $detail = isset($detail) ? $detail : FALSE;
         ];
 <?php endif; ?>
     $(document).ready(function () {
-        $("#slc-kotama").select2(slc_kotama_cfg);
-<?php if ($detail && $detail->id_kotama != ""): ?>
-            $("#slc-kotama").val(<?php echo $detail->id_kotama ?>).trigger("change");
-            ;
-<?php endif; ?>
-        $("#slc-kesatuan").select2(slc_kesatuan_cfg);
-<?php if ($detail && $detail->id_kesatuan != ""): ?>
-            $("#slc-kesatuan").val(<?php echo $detail->id_kesatuan ?>).trigger("change");
-            ;
-<?php endif; ?>
-        $("#slc-corps").select2(slc_corps_cfg);
-<?php if ($detail && $detail->id_corps != ""): ?>
-            $("#slc-corps").val(<?php echo $detail->id_corps ?>).trigger("change");
-            ;
-<?php endif; ?>
     });
 </script>

@@ -19,7 +19,7 @@ class Mskotama extends Back_end {
     }
 
     public function detail($id = FALSE) {
-        parent::detail($id, array("kode_kotama", "ur_kotama", "struktur_kotama"));
+        parent::detail($id, array("kode_kotama", "nama_kotama", "ur_kotama", "struktur_kotama"));
 
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => $this->_header_title,

@@ -151,7 +151,7 @@ class Lpsatpur extends Mslaporan {
             $objPHPExcel->getActiveSheet()->setCellValue('C' . $akhir, $sub_top);
             $objPHPExcel->getActiveSheet()->setCellValue('D' . $akhir, $sub_nyata);
             $objPHPExcel->getActiveSheet()->setCellValue('E' . $akhir, $sub_nyata - $sub_top);
-            $objPHPExcel->getActiveSheet()->setCellValue('F' . $akhir, ($sub_nyata / $sub_top) * 100);
+            $objPHPExcel->getActiveSheet()->setCellValue('F' . $akhir, $sub_top > 0 ? ($sub_nyata / $sub_top) * 100 : 0);
 
 
             $akhir = $akhir + 2;
@@ -171,7 +171,7 @@ class Lpsatpur extends Mslaporan {
         $objPHPExcel->getActiveSheet()->setCellValue('C' . $akhir, $pa_top);
         $objPHPExcel->getActiveSheet()->setCellValue('D' . $akhir, $pa_nyata);
         $objPHPExcel->getActiveSheet()->setCellValue('E' . $akhir, $pa_nyata - $pa_top);
-        $objPHPExcel->getActiveSheet()->setCellValue('F' . $akhir, ($pa_nyata / $pa_top) * 100);
+        $objPHPExcel->getActiveSheet()->setCellValue('F' . $akhir, $pa_top > 0 ? ($pa_nyata / $pa_top) * 100 : 0);
 
         $akhir = $akhir + 1;
 
@@ -179,7 +179,7 @@ class Lpsatpur extends Mslaporan {
         $objPHPExcel->getActiveSheet()->setCellValue('C' . $akhir, $ba_top);
         $objPHPExcel->getActiveSheet()->setCellValue('D' . $akhir, $ba_nyata);
         $objPHPExcel->getActiveSheet()->setCellValue('E' . $akhir, $ba_nyata - $ba_top);
-        $objPHPExcel->getActiveSheet()->setCellValue('F' . $akhir, ($ba_nyata / $ba_top) * 100);
+        $objPHPExcel->getActiveSheet()->setCellValue('F' . $akhir, $ba_top > 0 ? ($ba_nyata / $ba_top) * 100 : 0);
 
         $akhir = $akhir + 1;
 
@@ -187,7 +187,7 @@ class Lpsatpur extends Mslaporan {
         $objPHPExcel->getActiveSheet()->setCellValue('C' . $akhir, $ta_top);
         $objPHPExcel->getActiveSheet()->setCellValue('D' . $akhir, $ta_nyata);
         $objPHPExcel->getActiveSheet()->setCellValue('E' . $akhir, $ta_nyata - $ta_top);
-        $objPHPExcel->getActiveSheet()->setCellValue('F' . $akhir, ($ta_nyata / $ta_top) * 100);
+        $objPHPExcel->getActiveSheet()->setCellValue('F' . $akhir, $ta_top > 0 ? ($ta_nyata / $ta_top) * 100 : 0);
 
 
 
@@ -196,8 +196,8 @@ class Lpsatpur extends Mslaporan {
         $objPHPExcel->getActiveSheet()->setCellValue('B' . $akhir, 'Jumlah Besar')->getStyle('B' . $akhir)->getFont()->setBold(TRUE);
         $objPHPExcel->getActiveSheet()->setCellValue('C' . $akhir, $total_top);
         $objPHPExcel->getActiveSheet()->setCellValue('D' . $akhir, $total_nyata);
-        $objPHPExcel->getActiveSheet()->setCellValue('E' . $akhir, $total_top - $total_nyata);
-        $objPHPExcel->getActiveSheet()->setCellValue('F' . $akhir, ($total_top / $total_nyata) * 100);
+        $objPHPExcel->getActiveSheet()->setCellValue('E' . $akhir, $total_nyata - $total_top);
+        $objPHPExcel->getActiveSheet()->setCellValue('F' . $akhir, $total_top > 0 ? ($total_nyata / $total_top) * 100 : 0);
 
 
         $cell = $akhir;

@@ -80,7 +80,7 @@ class Lpkecabangan extends Mslaporan {
         $objPHPExcel->getActiveSheet()->mergeCells('A5:O5');
         $objPHPExcel->getActiveSheet()
                 ->setCellValue('A4', 'REKAPITULASI PA ,BA , TA PERKECABANGAN TNI AD')
-                ->setCellValue('A5', 'Bulan ' . strtoupper(array_month($bulan)) . ' Tahun ' . $tahun);
+                ->setCellValue('A5', 'BULAN ' . strtoupper(array_month($bulan)) . ' TAHUN ' . $tahun);
         $objPHPExcel->getActiveSheet()->getStyle('A4')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         $objPHPExcel->getActiveSheet()->getStyle('A4')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
         $objPHPExcel->getActiveSheet()->getStyle('A4')->getFont()->setBold(TRUE);
@@ -195,7 +195,7 @@ class Lpkecabangan extends Mslaporan {
         $objPHPExcel->getActiveSheet()->getStyle('A' . $cell . ':O' . $cell)->getBorders()->getAllBorders()->setBorderStyle(PHPExcel_Style_Border::BORDER_MEDIUM);
         $objPHPExcel->getActiveSheet()->getStyle('A7:O7')->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_DOUBLE);
 
-        $objPHPExcel->getActiveSheet()->getStyle('C10:c' . $cell)->getNumberFormat()->setFormatCode('#,##0');
+        $objPHPExcel->getActiveSheet()->getStyle('C10:C' . $cell)->getNumberFormat()->setFormatCode('#,##0');
         $objPHPExcel->getActiveSheet()->getStyle('E10:E' . $cell)->getNumberFormat()->setFormatCode('+#,##0;-#,##0;0');
         $objPHPExcel->getActiveSheet()->getStyle('D10:D' . $cell)->getNumberFormat()->setFormatCode('#,##0');
         $objPHPExcel->getActiveSheet()->getStyle('F10:F' . $cell)->getNumberFormat()->setFormatCode('#,##0');
@@ -216,7 +216,7 @@ class Lpkecabangan extends Mslaporan {
 
                 $next_list_number = 1;
                 $jumlah_pangkat = count($data["pangkat"]);
-                $lebar = round(70 / $jumlah_pangkat / 3);
+                $lebar = $jumlah_pangkat > 0 ? round(70 / $jumlah_pangkat / 3) : 0;
                 $total_top = 0;
                 $total_nyata = 0;
 
